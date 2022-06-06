@@ -1,25 +1,23 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Nav from './Components/Nav';
-import { Fab } from '@mui/material';
-import AddIcon from '@mui/icons-material/Add';
 import CssBaseline from '@mui/material/CssBaseline';
+import Posts from './Components/Posts';
+import PostButton from './Components/PostField';
 
 
 function App() {
+
   return (
-    <>
     <CssBaseline>
     <div className='navBar'>
       <Nav />
+    </div>
+    <div className='postsSection'>
+      <Posts />
      </div>
-     <div className='postButton'>
-     <Fab color='primary'>
-      <AddIcon/>
-     </Fab>
-     </div>
+     <PostButton />
     </CssBaseline>
-    </>
   );
 }
 

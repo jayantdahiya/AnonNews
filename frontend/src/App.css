@@ -1,5 +1,8 @@
-.postButton{
+.postsSection{
   display: flex;
-  margin-top: 80vh;
-  margin-left: 80vw;
+  overflow-y: auto;
+  margin-top: 8vh;
+  flex-grow: 1;
+  justify-content: center;
+  align-items: center;
 }
