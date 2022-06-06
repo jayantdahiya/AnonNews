@@ -7,7 +7,11 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import MenuIcon from '@mui/icons-material/Menu';
-import SearchIcon from '@mui/icons-material/Search';
+import { Button } from '@mui/material';
+import {ethers} from 'ethers';
+import abi from '../utils/AnonNews.json';
+import { useState } from 'react';
+import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -52,6 +56,69 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function Nav() {
+
+  const [currentAccount, setCurrentAccount] = useState("");
+  const [walletConnected, setWalletConnected] = useState(true);
+
+  const contractAddress = "0xfE18dE8f84E4dE88b656063503FA61954EC4C959";
+  const contractABI = abi.abi;
+
+  const checkIfWalletIsConnected = async () => {
+    try {
+      const { ethereum } = window;
+
+      if (!ethereum) {
+        console.log("Make sure you have metamask!");
+        return;
+      } else {
+        console.log("We have the ethereum object", ethereum);
+      }
+
+      const accounts = await ethereum.request({ method: "eth_accounts" });
+
+      if (accounts.length !== 0) {
+        const account = accounts[0];
+        console.log("Found an authorized account:", account);
+        setCurrentAccount(account);
+        setWalletConnected(true);
+      } else {
+        console.log("No authorized account found")
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const connectWallet = async () => {
+    try {
+      const { ethereum } = window;
+
+      if (ethereum) {
+        await window.ethereum.enable();
+        const provider = new ethers.providers.Web3Provider(ethereum);
+        const signer = provider.getSigner();
+        const anonNewsContract = new ethers.Contract(contractAddress, contractABI, signer);
+      } else {
+        console.log("Ethereum object doesn't exist!");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  React.useEffect(() => {
+    checkIfWalletIsConnected();
+  }, [])
+
+  const handleClick = () => {
+    if(walletConnected){
+      alert("The wallet is connected")
+    } else {
+      connectWallet();
+    }
+  }
+
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="fixed">
@@ -69,19 +136,19 @@ export default function Nav() {
             variant="h6"
             noWrap
             component="div"
-            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+            sx={{ flexGrow: 1, display: { xs: 'block', sm: 'block' } }}
           >
             AnonNews
           </Typography>
-          <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </Search>
+          <Button
+          size="small"
+          onClick={handleClick}
+          variant="outlined"
+          startIcon={<AccountBalanceWalletIcon/>}
+          color="secondary"
+        >
+          Connect Wallet
+        </Button>
         </Toolbar>
       </AppBar>
     </Box>

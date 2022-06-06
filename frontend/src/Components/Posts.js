@@ -1,77 +1,84 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
-import Skeleton from '@mui/material/Skeleton';
 import ShareIcon from '@mui/icons-material/Share';
+import { ethers, providers } from 'ethers';
+import abi from '../utils/AnonNews.json';
 
-function Media(props) {
-  const { loading = false } = props;
+
+export default function Posts() {
+
+  const contractAddress = "0xfE18dE8f84E4dE88b656063503FA61954EC4C959";
+  const contractABI = abi.abi;
+
+  const [allPosts, setAllPosts ] = React.useState([]);
+
+  const getAllPosts = async () => {
+    try {
+      const {ethereum} = window;
+      if(ethereum){
+        const provider = new ethers.providers.Web3Provider(ethereum);
+        const signer = provider.getSigner();
+        const anonNewsContract = new ethers.Contract(contractAddress, contractABI, signer);
+
+        const posts = await anonNewsContract.getAllPosts();
+
+        let postsCleaned = [];
+        posts.forEach(post => {
+          postsCleaned.push({
+            address: post.voter,
+            timestamp: new Date(post.timestamp * 1000),
+            news: post.message
+          })
+        });
+        postsCleaned.sort((a,b)=> b.timestamp.valueOf() - a.timestamp.valueOf());
+        setAllPosts(postsCleaned);
+        console.log(allPosts);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  React.useEffect(() => {
+    getAllPosts();
+  }, [])
 
   return (
-    <Card sx={{ minWidth: 400, m: 2 }}>
+    <div>
+      {allPosts.map((posts,index) =>{
+        return(
+      <Card sx={{ maxWidth: 500, m: 2 }} id={index} >
       <CardHeader
         avatar={
-          loading ? (
-            <Skeleton animation="wave" variant="circular" width={40} height={40} />
-          ) : (
-            <Avatar
-              alt="Ted talk"
-              src="https://pbs.twimg.com/profile_images/877631054525472768/Xp5FAPD5_reasonably_small.jpg"
-            />
-          )
+            <Avatar/>
         }
         action={
-          loading ? null : (
             <IconButton aria-label="settings">
               <ShareIcon />
             </IconButton>
-          )
         }
-        title={
-          loading ? (
-            <Skeleton
-              animation="wave"
-              height={10}
-              width="80%"
-              style={{ marginBottom: 6 }}
-            />
-          ) : (
-            'Ted'
-          )
-        }
-        subheader={
-          loading ? (
-            <Skeleton animation="wave" height={10} width="40%" />
-          ) : (
-            '5 hours ago'
-          )
+        title={'AnonymousUser'}
+        subheader={      
+          Intl.DateTimeFormat('en-US',{year: 'numeric', 
+          month: '2-digit',
+          day: '2-digit', 
+          })
+          .format(posts.timestamp)
         }
       />
-      {loading ? (
-        <Skeleton sx={{ height: 220 }} animation="wave" variant="rectangular" />
-      ) : (
-        <CardMedia
+        {/* <CardMedia
           component="img"
           height="200"
           minWidth="360"
-          image="https://pi.tedcdn.com/r/talkstar-photos.s3.amazonaws.com/uploads/72bda89f-9bbf-4685-910a-2f151c4f3a8a/NicolaSturgeon_2019T-embed.jpg?w=512"
-          alt="Nicola Sturgeon on a TED talk stage"
-        />
-      )}
-
+          image=""
+          alt=""
+        /> */}
       <CardContent>
-        {loading ? (
-          <React.Fragment>
-            <Skeleton animation="wave" height={10} style={{ marginBottom: 6 }} />
-            <Skeleton animation="wave" height={10} width="80%" />
-          </React.Fragment>
-        ) : (
           <Typography 
           variant="body2" 
           color="text.secondary" 
@@ -79,28 +86,13 @@ function Media(props) {
           minWidth={400}
           >
             {
-              "This is the sample news..."
+              posts.news
             }
           </Typography>
-        )}
       </CardContent>
     </Card>
-  );
-}
-
-Media.propTypes = {
-  loading: PropTypes.bool,
-};
-
-export default function Posts() {
-  return (
-    <div>
-      <Media />
-      <Media />
-      <Media />
-      <Media loading />
-      <Media loading />
-      <Media loading />
+    )
+  })}
     </div>
   );
 }

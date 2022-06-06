@@ -1,7 +1,7 @@
 .postsSection{
   display: flex;
   overflow-y: auto;
-  margin-top: 8vh;
+  margin-top: 10vh;
   flex-grow: 1;
   justify-content: center;
   align-items: center;
