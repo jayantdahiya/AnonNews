@@ -6,3 +6,10 @@
   justify-content: center;
   align-items: center;
 }
+
+.walletError{
+  display: flex;
+  margin-top: 30vh;
+  justify-content: center;
+  align-items: center;
+}

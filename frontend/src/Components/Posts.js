@@ -6,60 +6,26 @@ import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import ShareIcon from '@mui/icons-material/Share';
-import { ethers, providers } from 'ethers';
-import abi from '../utils/AnonNews.json';
+import { AppContext } from '../App';
 
 
 export default function Posts() {
-
-  const contractAddress = "0xfE18dE8f84E4dE88b656063503FA61954EC4C959";
-  const contractABI = abi.abi;
-
-  const [allPosts, setAllPosts ] = React.useState([]);
-
-  const getAllPosts = async () => {
-    try {
-      const {ethereum} = window;
-      if(ethereum){
-        const provider = new ethers.providers.Web3Provider(ethereum);
-        const signer = provider.getSigner();
-        const anonNewsContract = new ethers.Contract(contractAddress, contractABI, signer);
-
-        const posts = await anonNewsContract.getAllPosts();
-
-        let postsCleaned = [];
-        posts.forEach(post => {
-          postsCleaned.push({
-            address: post.voter,
-            timestamp: new Date(post.timestamp * 1000),
-            news: post.message
-          })
-        });
-        postsCleaned.sort((a,b)=> b.timestamp.valueOf() - a.timestamp.valueOf());
-        setAllPosts(postsCleaned);
-        console.log(allPosts);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  React.useEffect(() => {
-    getAllPosts();
-  }, [])
+  const {contractAddress, contractABI, allPosts, theme1 } = React.useContext(AppContext);
 
   return (
     <div>
       {allPosts.map((posts,index) =>{
         return(
-      <Card sx={{ maxWidth: 500, m: 2 }} id={index} >
+      <Card sx={{ maxWidth: 500, m: 2 }} id={index} 
+      theme={theme1}
+      >
       <CardHeader
         avatar={
             <Avatar/>
         }
         action={
             <IconButton aria-label="settings">
-              <ShareIcon />
+              <ShareIcon theme={theme1} color={'black'} />
             </IconButton>
         }
         title={'AnonymousUser'}

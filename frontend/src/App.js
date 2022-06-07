@@ -4,12 +4,29 @@ import Nav from './Components/Nav';
 import CssBaseline from '@mui/material/CssBaseline';
 import Posts from './Components/Posts';
 import PostButton from './Components/PostField';
-import { createContext } from 'react';
+import { createContext, useEffect } from 'react';
 import { useState } from 'react';
 import { ethers } from 'ethers';
 import abi from './utils/AnonNews.json';
+import { Alert, Typography } from '@mui/material';
+import { createTheme } from '@mui/material';
+import { ThemeProvider } from '@mui/private-theming';
+import { grey, green } from '@mui/material/colors';
 
 export const AppContext = createContext();
+
+const theme1 = createTheme({
+  palette: {
+    primary: {
+      main: '#bdbdbd',
+      // main: grey[200],
+    },
+    secondary: {
+      main: '#76ff03',
+      // main: green[400],
+    },
+  },
+});
 
 
 function App() {
@@ -18,6 +35,10 @@ function App() {
 
   const contractAddress = "0xfE18dE8f84E4dE88b656063503FA61954EC4C959";
   const contractABI = abi.abi;
+  const {ethereum} = window;
+  const provider = new ethers.providers.Web3Provider(ethereum);
+  const signer = provider.getSigner();
+  const anonNewsContract = new ethers.Contract(contractAddress, contractABI, signer);
 
   const [allPosts, setAllPosts ] = useState([]);
 
@@ -53,14 +74,14 @@ function App() {
 
       if (ethereum) {
         await window.ethereum.enable();
-        const provider = new ethers.providers.Web3Provider(ethereum);
-        const signer = provider.getSigner();
-        const anonNewsContract = new ethers.Contract(contractAddress, contractABI, signer);
+        window.location.reload(false);
+        alert('Wallet connected!')
       } else {
         console.log("Ethereum object doesn't exist!");
       }
     } catch (error) {
       console.log(error);
+      alert('Wallet not connected. Please try again.')
     }
   }
 
@@ -68,12 +89,7 @@ function App() {
     try {
       const {ethereum} = window;
       if(ethereum){
-        const provider = new ethers.providers.Web3Provider(ethereum);
-        const signer = provider.getSigner();
-        const anonNewsContract = new ethers.Contract(contractAddress, contractABI, signer);
-
         const posts = await anonNewsContract.getAllPosts();
-
         let postsCleaned = [];
         posts.forEach(post => {
           postsCleaned.push({
@@ -91,25 +107,43 @@ function App() {
     }
   }
 
+  useEffect(() => {
+    checkIfWalletIsConnected();
+    getAllPosts();
+  }, [])
+
   return (
+    <ThemeProvider theme={theme1}>
     <AppContext.Provider value={{
+      theme1,
+      contractAddress,
+      contractABI,
+      allPosts,
       currentAccount,
       setCurrentAccount,
       walletConnected,
       setWalletConnected,
       connectWallet,
-      getAllPosts
+      getAllPosts,
     }}>
-    <CssBaseline>
-    <div className='navBar'>
+      <div className='navBar'>
       <Nav />
+    </div>
+    <div>
+    {!walletConnected && (
+      <div className='walletError'>
+        <Typography variant='h6' color='error'>Connect your Ethereum wallet to continue!</Typography>
+      </div>
+    )}
     </div>
     <div className='postsSection'>
       <Posts />
      </div>
      <PostButton />
-    </CssBaseline>
+   
+    
     </AppContext.Provider>
+    </ThemeProvider>
   );
 }
 

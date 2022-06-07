@@ -6,17 +6,18 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import { Fab } from '@mui/material';
+import { CircularProgress, Fab } from '@mui/material';
 import Add from '@mui/icons-material/Add';
 import { ethers } from 'ethers';
-import abi from '../utils/AnonNews.json';
-import LoadBackdrop from './BackDrop';
+import { AppContext } from '../App';
+import {Backdrop} from '@mui/material';
+
 
 export default function PostButton() {
-  const [open, setOpen] = React.useState(false);
+  const { contractAddress, contractABI, theme1} = React.useContext(AppContext);
 
-  const contractAddress = "0xfE18dE8f84E4dE88b656063503FA61954EC4C959";
-  const contractABI = abi.abi;
+  const [open, setOpen] = React.useState(false);
+  const [loader, setLoader] = React.useState(false);
 
   const [newsText, setNewsText] = React.useState();
 
@@ -26,24 +27,33 @@ export default function PostButton() {
 
   const handleClose = () => {
     setOpen(false);
+    setLoader(false);
   };
+
+  const handlePost = () => {
+    setOpen(false);
+    postNews();
+  }
 
   const postNews = async() => {
     try {
       const {ethereum} = window;
       if (ethereum){
+        setLoader(true);
         const provider = new ethers.providers.Web3Provider(ethereum);
         const signer = provider.getSigner();
         const anonNewsContract = new ethers.Contract(contractAddress, contractABI, signer);
 
-        setOpen(false);
-
         const post1 = await anonNewsContract.newPost(newsText);
         console.log("Posting....", post1.hash);
+
         await post1.wait();
+
         console.log("Posted = ", post1.hash);
+        setLoader(false);
+
+        window.location.reload(false);
         alert("News has been posted!");
-        window.location.reload();
       }
     } catch (error) {
       console.log(error);
@@ -54,7 +64,8 @@ export default function PostButton() {
   return (
     <div>
       <Fab
-      color='primary'
+      theme={theme1}
+      color='secondary'
       style={{
         position: 'fixed',
         right: '15vw',
@@ -64,6 +75,13 @@ export default function PostButton() {
       >
         <Add />
       </Fab>
+      <Backdrop
+      sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+      open={loader}
+      onClick={handleClose}
+      >
+        <CircularProgress color='inherit' />
+      </Backdrop>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle gutterBottom>Post your news here</DialogTitle>
         <DialogContent>
@@ -86,6 +104,7 @@ export default function PostButton() {
                 minWidth: '350px'
             }}
             onChange={e=>setNewsText(e.target.value)}
+            theme={theme1}
           />
           </div>
           {/* <div>
@@ -102,7 +121,7 @@ export default function PostButton() {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={postNews}>Post</Button>
+          <Button onClick={handlePost}>Post</Button>
         </DialogActions>
       </Dialog>
     </div>
