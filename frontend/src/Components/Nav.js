@@ -12,6 +12,8 @@ import {ethers} from 'ethers';
 import abi from '../utils/AnonNews.json';
 import { useState } from 'react';
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
+import { useContext } from 'react';
+import { AppContext } from '../App';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -57,8 +59,10 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 export default function Nav() {
 
-  const [currentAccount, setCurrentAccount] = useState("");
-  const [walletConnected, setWalletConnected] = useState(true);
+  const {currentAccount, setCurrentAccount, walletConnected, setWalletConnected} = useContext(AppContext);
+
+  // const [currentAccount, setCurrentAccount] = useState("");
+  // const [walletConnected, setWalletConnected] = useState(false);
 
   const contractAddress = "0xfE18dE8f84E4dE88b656063503FA61954EC4C959";
   const contractABI = abi.abi;
@@ -111,10 +115,10 @@ export default function Nav() {
   }, [])
 
   const handleClick = () => {
-    if(walletConnected){
-      alert("The wallet is connected")
-    } else {
+    if(!walletConnected){
       connectWallet();
+    } else {
+      alert('Wallet Connected');
     }
   }
 

@@ -46,8 +46,8 @@ export default function PostButton() {
         window.location.reload();
       }
     } catch (error) {
-      console.log(error)
-      alert("News not posted. Please try again")
+      console.log(error);
+      alert("News not posted. Please try again");
     }
   }
 
