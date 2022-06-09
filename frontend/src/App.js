@@ -132,7 +132,7 @@ function App() {
     <div>
     {!walletConnected && (
       <div className='walletError'>
-        <Typography variant='h6' color='error'>Connect your Ethereum wallet to continue!</Typography>
+        <Typography variant='h6' color='red'>Connect your Ethereum wallet to continue!</Typography>
       </div>
     )}
     </div>
