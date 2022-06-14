@@ -9,7 +9,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { CircularProgress, Fab } from '@mui/material';
 import Add from '@mui/icons-material/Add';
 import { ethers } from 'ethers';
-import { AppContext } from '../App';
+import { AppContext } from '../AnonNews';
 import {Backdrop} from '@mui/material';
 
 
@@ -20,7 +20,7 @@ export default function PostButton() {
   const [loader, setLoader] = React.useState(false);
 
   const [newsText, setNewsText] = React.useState();
-  const [newsMedia, setNewsMedia] = React.useState();
+  const [newsMedia, setNewsMedia] = React.useState('no media');
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -35,6 +35,8 @@ export default function PostButton() {
     setOpen(false);
     postNews();
   }
+
+  // function that posts the news to the blockchain
 
   const postNews = async() => {
     try {

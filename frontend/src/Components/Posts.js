@@ -7,11 +7,13 @@ import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import ShareIcon from '@mui/icons-material/Share';
-import { AppContext } from '../App';
+import { AppContext } from '../AnonNews';
 
 
 export default function Posts() {
   const {allPosts, theme1 } = React.useContext(AppContext);
+
+
 
   return (
     <div>
@@ -34,17 +36,20 @@ export default function Posts() {
           Intl.DateTimeFormat('en-US',{year: 'numeric', 
           month: '2-digit',
           day: '2-digit', 
+          hour: '2-digit',
+          minute: '2-digit',
           })
           .format(posts.timestamp)
         }
       />
+      {posts.media !== 'no media' &&
         <CardMedia
           component="img"
           height="200"
           minWidth="360"
           image={posts.media}
           alt=""
-        />
+        /> }
       <CardContent>
           <Typography 
           variant="body2" 

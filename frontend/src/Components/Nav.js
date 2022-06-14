@@ -8,7 +8,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { Button } from '@mui/material';
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 import { useContext } from 'react';
-import { AppContext } from '../App';
+import { AppContext } from '../AnonNews';
 
 
 export default function Nav() {
