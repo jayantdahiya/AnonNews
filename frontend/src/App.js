@@ -1,17 +1,15 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Nav from './Components/Nav';
-import CssBaseline from '@mui/material/CssBaseline';
 import Posts from './Components/Posts';
 import PostButton from './Components/PostField';
 import { createContext, useEffect } from 'react';
 import { useState } from 'react';
 import { ethers } from 'ethers';
 import abi from './utils/AnonNews.json';
-import { Alert, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import { createTheme } from '@mui/material';
 import { ThemeProvider } from '@mui/private-theming';
-import { grey, green } from '@mui/material/colors';
 
 export const AppContext = createContext();
 
@@ -33,7 +31,9 @@ function App() {
   const [currentAccount, setCurrentAccount] = useState("");
   const [walletConnected, setWalletConnected] = useState(false);
 
-  const contractAddress = "0xfE18dE8f84E4dE88b656063503FA61954EC4C959";
+  // const contractAddress = "0xfE18dE8f84E4dE88b656063503FA61954EC4C959";
+  // const contractAddress = "0xF5Dd666BE0781843623c81A7c32a0733A1D05447";
+  const contractAddress = "0x96c016966aA78eA7A9fA3bF23E6aEe11095Eb7Fe";
   const contractABI = abi.abi;
   const {ethereum} = window;
   const provider = new ethers.providers.Web3Provider(ethereum);
@@ -95,7 +95,8 @@ function App() {
           postsCleaned.push({
             address: post.voter,
             timestamp: new Date(post.timestamp * 1000),
-            news: post.message
+            news: post.message,
+            media: post.mediaUrl
           })
         });
         postsCleaned.sort((a,b)=> b.timestamp.valueOf() - a.timestamp.valueOf());
@@ -141,7 +142,7 @@ function App() {
      </div>
      <PostButton />
    
-    
+
     </AppContext.Provider>
     </ThemeProvider>
   );

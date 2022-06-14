@@ -20,6 +20,7 @@ export default function PostButton() {
   const [loader, setLoader] = React.useState(false);
 
   const [newsText, setNewsText] = React.useState();
+  const [newsMedia, setNewsMedia] = React.useState();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -44,7 +45,11 @@ export default function PostButton() {
         const signer = provider.getSigner();
         const anonNewsContract = new ethers.Contract(contractAddress, contractABI, signer);
 
-        const post1 = await anonNewsContract.newPost(newsText);
+        console.log(newsText, newsMedia);
+        console.log(typeof newsMedia);
+        console.log(typeof newsText);
+
+        const post1 = await anonNewsContract.newPost(newsText, newsMedia);
         console.log("Posting....", post1.hash);
 
         await post1.wait();
@@ -57,7 +62,7 @@ export default function PostButton() {
       }
     } catch (error) {
       console.log(error);
-      alert("News not posted. Please try again");
+      alert("News not posted. Please try again", error);
     }
   }
 
@@ -107,17 +112,18 @@ export default function PostButton() {
             theme={theme1}
           />
           </div>
-          {/* <div>
+          <div>
             <TextField 
             variant='filled'
             margin='dense'
             label='Image/Video url'
-            type='url'
+            type='text'
             style={{
                 minWidth: '350px'
             }}
+            onChange={e=>setNewsMedia(e.target.value.toString())}
              />
-          </div> */}
+          </div>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>

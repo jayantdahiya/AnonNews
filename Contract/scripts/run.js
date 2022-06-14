@@ -9,13 +9,13 @@ const main = async () => {
 
     let postCounts;
 
-    postCounts = await anonNewsContract.getPostCounts();
-    console.log(postCounts);
+    // postCounts = await anonNewsContract.getPostCounts();
+    // console.log(postCounts);
 
-    let user1 = await anonNewsContract.newPost("This is test message!");
+    let user1 = await anonNewsContract.newPost("This is test message!", "www.testingUrl.com");
     await user1.wait();
 
-    let user2 = await anonNewsContract.newPost("This is the new test message!");
+    let user2 = await anonNewsContract.newPost("This is the new test message!", "testing.com");
     await user2.wait();
 
     postCounts = await anonNewsContract.getPostCounts();

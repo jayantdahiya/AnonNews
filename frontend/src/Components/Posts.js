@@ -2,6 +2,7 @@ import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
+import { CardMedia } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
@@ -10,7 +11,7 @@ import { AppContext } from '../App';
 
 
 export default function Posts() {
-  const {contractAddress, contractABI, allPosts, theme1 } = React.useContext(AppContext);
+  const {allPosts, theme1 } = React.useContext(AppContext);
 
   return (
     <div>
@@ -37,13 +38,13 @@ export default function Posts() {
           .format(posts.timestamp)
         }
       />
-        {/* <CardMedia
+        <CardMedia
           component="img"
           height="200"
           minWidth="360"
-          image=""
+          image={posts.media}
           alt=""
-        /> */}
+        />
       <CardContent>
           <Typography 
           variant="body2" 
