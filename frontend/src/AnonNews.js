@@ -10,6 +10,9 @@ import abi from './utils/AnonNews.json';
 import { Typography } from '@mui/material';
 import { createTheme } from '@mui/material';
 import { ThemeProvider } from '@mui/private-theming';
+import {create as ipfsHttpClient } from 'ipfs-http-client';
+
+const client = ipfsHttpClient('https://ipfs.infura.io:5001/api/v0');
 
 export const AppContext = createContext();
 
@@ -108,6 +111,7 @@ function AnonNews() {
     }
   }
 
+  
   useEffect(() => {
     checkIfWalletIsConnected();
     getAllPosts();
@@ -126,6 +130,7 @@ function AnonNews() {
       setWalletConnected,
       connectWallet,
       getAllPosts,
+      client
     }}>
       <div className='navBar'>
       <Nav />

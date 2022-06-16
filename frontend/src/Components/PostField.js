@@ -6,7 +6,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import { CircularProgress, Fab } from '@mui/material';
+import { CircularProgress, Fab, Input } from '@mui/material';
 import Add from '@mui/icons-material/Add';
 import { ethers } from 'ethers';
 import { AppContext } from '../AnonNews';
@@ -14,7 +14,7 @@ import {Backdrop} from '@mui/material';
 
 
 export default function PostButton() {
-  const { contractAddress, contractABI, theme1} = React.useContext(AppContext);
+  const { contractAddress, contractABI, theme1, client} = React.useContext(AppContext);
 
   const [open, setOpen] = React.useState(false);
   const [loader, setLoader] = React.useState(false);
@@ -51,6 +51,9 @@ export default function PostButton() {
         console.log(typeof newsMedia);
         console.log(typeof newsText);
 
+        // upload the news text on ipfs
+
+
         const post1 = await anonNewsContract.newPost(newsText, newsMedia);
         console.log("Posting....", post1.hash);
 
@@ -65,6 +68,19 @@ export default function PostButton() {
     } catch (error) {
       console.log(error);
       alert("News not posted. Please try again", error);
+    }
+  }
+
+  const uploadMedia = async ( event) => {
+    event.preventDefault()
+    const file = event.target.files[0]
+    if (typeof file !== 'undefined') {
+      try {
+        const result = await client.add(file)
+        setNewsMedia('https://ipfs.infura.io/ipfs/${result.path}')
+      } catch (error) {
+        console.log('ipfs image upload error: ', error);
+      }
     }
   }
 
@@ -115,7 +131,7 @@ export default function PostButton() {
           />
           </div>
           <div>
-            <TextField 
+            {/* <TextField 
             variant='filled'
             margin='dense'
             label='Image/Video url'
@@ -124,7 +140,16 @@ export default function PostButton() {
                 minWidth: '350px'
             }}
             onChange={e=>setNewsMedia(e.target.value.toString())}
-             />
+             /> */}
+
+
+             <Input accept="image/*" id="contained-button-file" multiple type="file" onChange={uploadMedia}>
+             <Button variant="contained" component="span">
+              Upload Image
+             </Button>
+             </Input>
+
+
           </div>
         </DialogContent>
         <DialogActions>
