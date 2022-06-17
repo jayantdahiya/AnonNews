@@ -13,11 +13,12 @@ import { AppContext } from '../AnonNews';
 
 export default function Nav() {
 
-  const {connectWallet, walletConnected, theme1} = useContext(AppContext);
+  const {connectWallet, walletConnected, theme1, currentAccount} = useContext(AppContext);
 
   const handleClick = () => {
     if(!walletConnected){
-      connectWallet();
+      connectWallet()
+      window.location.reload(false)
     } else {
       alert('Wallet Already Connected!');
     }
@@ -45,6 +46,15 @@ export default function Nav() {
           >
             AnonNews
           </Typography>
+          {walletConnected? (
+            <Button disabled variant='outlined' startIcon={<AccountBalanceWalletIcon/>}
+            style={{
+              color: 'Black',
+              borderColor: 'Black'
+            }} >
+              {currentAccount.slice(0,5) + '...' + currentAccount.slice(38,42)}
+            </Button>
+          ) : (
           <Button
           size="small"
           onClick={handleClick}
@@ -57,6 +67,8 @@ export default function Nav() {
         >
           Connect
         </Button>
+          )}
+          
         </Toolbar>
       </AppBar>
     </Box>

@@ -6,7 +6,7 @@ import { CardMedia } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
-import ShareIcon from '@mui/icons-material/Share';
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import { AppContext } from '../AnonNews';
 
 
@@ -28,10 +28,10 @@ export default function Posts() {
         }
         action={
             <IconButton aria-label="settings">
-              <ShareIcon theme={theme1} color={'black'} />
+              <ThumbUpIcon />
             </IconButton>
         }
-        title={'AnonymousUser'}
+        title={'Author: ' + posts.address.slice(0,3)+'...'+posts.address.slice(38,42)}
         subheader={      
           Intl.DateTimeFormat('en-US',{year: 'numeric', 
           month: '2-digit',
