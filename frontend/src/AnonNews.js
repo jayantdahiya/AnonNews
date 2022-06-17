@@ -110,23 +110,6 @@ function AnonNews() {
       console.log(error);
     }
   }
-
-  // Loading post functions that is now added new
-
-  const loadPosts = async () => {
-    let results = await anonNewsContract.getAllPosts()
-    let posts = await Promise.all(results.map( async i =>{
-      let response = await fetch(`https://ipfs.infura.io/ipfs/${i.hash}`)
-      const data = await response.json()
-
-      let post = {
-        id: i.id,
-        content: data.post,
-        
-      }
-    }))
-  }
-
   
   useEffect(() => {
     checkIfWalletIsConnected();
