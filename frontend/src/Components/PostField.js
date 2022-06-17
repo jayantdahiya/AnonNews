@@ -16,11 +16,11 @@ import {Backdrop} from '@mui/material';
 export default function PostButton() {
   const { contractAddress, contractABI, theme1, client} = React.useContext(AppContext);
 
-  const [open, setOpen] = React.useState(false);
-  const [loader, setLoader] = React.useState(false);
+  const [open, setOpen] = React.useState(false)
+  const [loader, setLoader] = React.useState(false)
 
-  const [newsText, setNewsText] = React.useState();
-  const [newsMedia, setNewsMedia] = React.useState('no media');
+  const [newsText, setNewsText] = React.useState()
+  const [newsMedia, setNewsMedia] = React.useState(null)
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -47,13 +47,6 @@ export default function PostButton() {
         const signer = provider.getSigner();
         const anonNewsContract = new ethers.Contract(contractAddress, contractABI, signer);
 
-        console.log(newsText, newsMedia);
-        console.log(typeof newsMedia);
-        console.log(typeof newsText);
-
-        // upload the news text on ipfs
-
-
         const post1 = await anonNewsContract.newPost(newsText, newsMedia);
         console.log("Posting....", post1.hash);
 
@@ -71,15 +64,20 @@ export default function PostButton() {
     }
   }
 
+  // Uploading the news media on IPFS
+
   const uploadMedia = async ( event) => {
     event.preventDefault()
     const file = event.target.files[0]
     if (typeof file !== 'undefined') {
       try {
         const result = await client.add(file)
-        setNewsMedia('https://ipfs.infura.io/ipfs/${result.path}')
+        setNewsMedia(`https://ipfs.infura.io/ipfs/${result.path}`)
+
+        console.log(newsMedia)
+
       } catch (error) {
-        console.log('ipfs image upload error: ', error);
+        console.log('ipfs image upload error: ', error)
       }
     }
   }
@@ -131,25 +129,11 @@ export default function PostButton() {
           />
           </div>
           <div>
-            {/* <TextField 
-            variant='filled'
-            margin='dense'
-            label='Image/Video url'
-            type='text'
-            style={{
-                minWidth: '350px'
-            }}
-            onChange={e=>setNewsMedia(e.target.value.toString())}
-             /> */}
-
-
              <Input accept="image/*" id="contained-button-file" multiple type="file" onChange={uploadMedia}>
              <Button variant="contained" component="span">
               Upload Image
              </Button>
              </Input>
-
-
           </div>
         </DialogContent>
         <DialogActions>
