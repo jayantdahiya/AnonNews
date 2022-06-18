@@ -20,7 +20,7 @@ export default function PostButton() {
   const [loader, setLoader] = React.useState(false)
 
   const [newsText, setNewsText] = React.useState()
-  const [newsMedia, setNewsMedia] = React.useState(null)
+  const [newsMedia, setNewsMedia] = React.useState('')
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -61,23 +61,31 @@ export default function PostButton() {
     } catch (error) {
       console.log(error);
       alert("News not posted. Please try again", error);
+      setLoader(false)
     }
   }
 
   // Uploading the news media on IPFS
 
-  const uploadMedia = async ( event) => {
+  const uploadMedia = async (event) => {
     event.preventDefault()
     const file = event.target.files[0]
     if (typeof file !== 'undefined') {
       try {
-        const result = await client.add(file).wait()
+        const result = await client.add(file, {
+          progress: (progress)=>{
+            alert('Uploading your file, please wait')
+        }})
+        alert('File uploaded!')
         setNewsMedia(`https://ipfs.infura.io/ipfs/${result.path}`)
-        console.log(newsMedia)
+        setLoader(false)
+        console.log('Post link:', newsMedia)
 
       } catch (error) {
         console.log('ipfs image upload error: ', error)
       }
+    } else {
+      alert('Please upload a valid file type')
     }
   }
 
@@ -96,7 +104,9 @@ export default function PostButton() {
         <Add />
       </Fab>
       <Backdrop
-      sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+      sx={{ color: '#fff', 
+      zIndex: (theme) => theme.zIndex.drawer + 1
+       }}
       open={loader}
       onClick={handleClose}
       >
