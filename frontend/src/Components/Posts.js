@@ -11,7 +11,7 @@ import { AppContext } from '../AnonNews';
 
 
 export default function Posts() {
-  const {allPosts, theme1 } = React.useContext(AppContext);
+  const {allPosts, theme1, votePost } = React.useContext(AppContext);
 
 
 
@@ -27,8 +27,18 @@ export default function Posts() {
             <Avatar/>
         }
         action={
-            <IconButton aria-label="settings">
-              <ThumbUpIcon />
+            <IconButton 
+            aria-label="settings"
+            onClick={() => votePost(posts)}
+            >
+              <ThumbUpIcon
+              style={{
+                marginRight: '5px'
+              }}
+               />
+              
+              {posts.votes.toNumber()}
+           
             </IconButton>
         }
         title={'Author: ' + posts.address.slice(0,3)+'...'+posts.address.slice(38,42)}

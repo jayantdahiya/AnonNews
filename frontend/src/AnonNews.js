@@ -11,6 +11,8 @@ import { Typography } from '@mui/material';
 import { createTheme } from '@mui/material';
 import { ThemeProvider } from '@mui/private-theming';
 import {create as ipfsHttpClient } from 'ipfs-http-client';
+import {Backdrop} from '@mui/material';
+import {CircularProgress} from '@mui/material';
 
 const client = ipfsHttpClient('https://ipfs.infura.io:5001/api/v0');
 
@@ -34,8 +36,16 @@ function AnonNews() {
   const [currentAccount, setCurrentAccount] = useState("");
   const [walletConnected, setWalletConnected] = useState(false);
 
+  const [loader, setLoader] = useState(false);
+  const [open, setOpen] = useState(false);
+  const handleClose = () => {
+    setOpen(false);
+    setLoader(false);
+  };
 
-  const contractAddress = "0x96c016966aA78eA7A9fA3bF23E6aEe11095Eb7Fe";
+
+  // const contractAddress = "0x96c016966aA78eA7A9fA3bF23E6aEe11095Eb7Fe";
+  const contractAddress = "0x1401D173802540a7c850418A8cf3379B744DA781";
   const contractABI = abi.abi;
   const {ethereum} = window;
   const provider = new ethers.providers.Web3Provider(ethereum);
@@ -95,19 +105,36 @@ function AnonNews() {
         let postsCleaned = [];
         posts.forEach(post => {
           postsCleaned.push({
-            address: post.voter,
-            timestamp: new Date(post.timestamp * 1000),
-            news: post.message,
+            id: post.id,
+            address: post.author,
+            news: post.postText,
             media: post.mediaUrl,
-            hashValue: post.hash,
+            votes: post.votes,
+            timestamp: new Date(post.timestamp * 1000),
           })
         });
-        postsCleaned.sort((a,b)=> b.timestamp.valueOf() - a.timestamp.valueOf());
+        // postsCleaned.sort((a,b)=> b.timestamp.valueOf() - a.timestamp.valueOf());
+        postsCleaned.sort((a,b)=> b.votes - a.votes);
         setAllPosts(postsCleaned);
         console.log(allPosts);
       }
     } catch (error) {
       console.log(error);
+    }
+  }
+
+  const votePost = async (post) => {
+    try {
+      setLoader(true)
+      await (await anonNewsContract.postVote(post.id, {value: ethers.utils.parseEther("0.001")})).wait()
+      getAllPosts();
+      alert('Sucessfully voted!')
+      setLoader(false);
+      window.location.reload(false);
+
+    } catch (error) {
+      console.log(error);
+      alert(error.reason);
     }
   }
   
@@ -129,15 +156,25 @@ function AnonNews() {
       setWalletConnected,
       connectWallet,
       getAllPosts,
-      client
+      client,
+      votePost
     }}>
       <div className='navBar'>
       <Nav />
     </div>
+    
+    <Backdrop
+      sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+      open={loader}
+      onClick={handleClose}
+      >
+        <CircularProgress color='inherit' />
+    </Backdrop>
+
     <div>
     {!walletConnected && (
       <div className='walletError'>
-        <Typography variant='h6' color='red'>Connect your Ethereum wallet to continue!</Typography>
+        <Typography variant='h6'>Connect your Ethereum wallet to continue!</Typography>
       </div>
     )}
     </div>

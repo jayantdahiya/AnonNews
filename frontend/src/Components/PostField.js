@@ -71,9 +71,8 @@ export default function PostButton() {
     const file = event.target.files[0]
     if (typeof file !== 'undefined') {
       try {
-        const result = await client.add(file)
+        const result = await client.add(file).wait()
         setNewsMedia(`https://ipfs.infura.io/ipfs/${result.path}`)
-
         console.log(newsMedia)
 
       } catch (error) {
