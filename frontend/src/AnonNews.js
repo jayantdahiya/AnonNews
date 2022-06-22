@@ -7,7 +7,7 @@ import { createContext, useEffect } from 'react';
 import { useState } from 'react';
 import { ethers } from 'ethers';
 import abi from './utils/AnonNews.json';
-import { Typography } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 import { createTheme } from '@mui/material';
 import { ThemeProvider } from '@mui/private-theming';
 import {create as ipfsHttpClient } from 'ipfs-http-client';
@@ -21,11 +21,11 @@ export const AppContext = createContext();
 const theme1 = createTheme({
   palette: {
     primary: {
-      main: '#bdbdbd',
+      main: '#000000',
       // main: grey[200],
     },
     secondary: {
-      main: '#76ff03',
+      main: '#F6D623',
       // main: green[400],
     },
   },
@@ -159,7 +159,7 @@ function AnonNews() {
       client,
       votePost
     }}>
-      <div className='navBar'>
+    <div className='navBar'>
       <Nav />
     </div>
     
@@ -170,6 +170,7 @@ function AnonNews() {
       >
         <CircularProgress color='inherit' />
     </Backdrop>
+    
 
     <div>
     {!walletConnected && (
@@ -178,9 +179,13 @@ function AnonNews() {
       </div>
     )}
     </div>
-    <div className='postsSection'>
-      <Posts />
-     </div>
+
+
+      <div className='postsSection'>
+        <Posts />
+      </div>
+      
+
      <PostButton />
    
 

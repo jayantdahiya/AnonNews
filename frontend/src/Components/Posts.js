@@ -21,6 +21,9 @@ export default function Posts() {
         return(
       <Card sx={{ maxWidth: 500, m: 2 }} id={index} 
       theme={theme1}
+      style={{
+        background: '#DFDFDF'
+      }}
       >
       <CardHeader
         avatar={
@@ -33,7 +36,8 @@ export default function Posts() {
             >
               <ThumbUpIcon
               style={{
-                marginRight: '5px'
+                marginRight: '5px',
+                color:'black'
               }}
                />
               
@@ -63,7 +67,7 @@ export default function Posts() {
       <CardContent>
           <Typography 
           variant="body2" 
-          color="text.secondary" 
+          color="black" 
           component="p"
           minWidth={400}
           >

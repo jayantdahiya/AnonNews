@@ -1,3 +1,9 @@
+.mainPage{
+  background-color: #c5c5c5;
+  margin-top: -15px;
+}
+
+
 .postsSection{
   display: flex;
   overflow-y: auto;

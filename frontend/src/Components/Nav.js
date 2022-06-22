@@ -46,12 +46,18 @@ export default function Nav() {
           >
             AnonNews
           </Typography>
+
           {walletConnected? (
-            <Button disabled variant='outlined' startIcon={<AccountBalanceWalletIcon/>}
+            <Button 
+            disabled variant='outlined' 
+            startIcon={<AccountBalanceWalletIcon/>}
+            theme={theme1}
+            color='secondary'
             style={{
-              color: 'Black',
-              borderColor: 'Black'
-            }} >
+              color:'#F6D623',
+              borderColor: '#F6D623'
+            }}
+            >
               {currentAccount.slice(0,5) + '...' + currentAccount.slice(38,42)}
             </Button>
           ) : (
@@ -60,10 +66,12 @@ export default function Nav() {
           onClick={handleClick}
           variant="outlined"
           startIcon={<AccountBalanceWalletIcon/>}
+          theme={theme1}
+          color='secondary'
           style={{
-            color: 'Black',
-            borderColor: 'Black',
-          }}
+              color:'#F6D623',
+              borderColor: '#F6D623'
+            }}
         >
           Connect
         </Button>
