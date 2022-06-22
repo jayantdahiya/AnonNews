@@ -36,8 +36,7 @@ export default function Posts() {
             >
               <ThumbUpIcon
               style={{
-                marginRight: '5px',
-                color:'black'
+                marginRight: '5px'
               }}
                />
               
