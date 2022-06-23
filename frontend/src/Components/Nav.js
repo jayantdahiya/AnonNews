@@ -44,7 +44,7 @@ export default function Nav() {
             component="div"
             sx={{ flexGrow: 1, display: { xs: 'block', sm: 'block' } }}
           >
-            AnonNews
+            AnonNews1
           </Typography>
 
           {walletConnected? (
