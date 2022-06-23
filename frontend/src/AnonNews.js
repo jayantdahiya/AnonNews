@@ -7,7 +7,7 @@ import { createContext, useEffect } from 'react';
 import { useState } from 'react';
 import { ethers } from 'ethers';
 import abi from './utils/AnonNews.json';
-import { Grid, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import { createTheme } from '@mui/material';
 import { ThemeProvider } from '@mui/private-theming';
 import {create as ipfsHttpClient } from 'ipfs-http-client';
@@ -159,9 +159,10 @@ function AnonNews() {
       client,
       votePost
     }}>
-    <div className='navBar'>
-      <Nav />
-    </div>
+    <div className='mainPage'>
+
+    <Nav />
+
     
     <Backdrop
       sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
@@ -187,7 +188,8 @@ function AnonNews() {
       
 
      <PostButton />
-   
+
+     </div>
 
     </AppContext.Provider>
     </ThemeProvider>

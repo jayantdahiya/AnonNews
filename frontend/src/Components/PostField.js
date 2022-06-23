@@ -11,7 +11,8 @@ import Add from '@mui/icons-material/Add';
 import { ethers } from 'ethers';
 import { AppContext } from '../AnonNews';
 import {Backdrop} from '@mui/material';
-
+import { styled } from '@mui/material/styles';
+import FileUploadIcon from '@mui/icons-material/FileUpload';
 
 export default function PostButton() {
   const { contractAddress, contractABI, theme1, client} = React.useContext(AppContext);
@@ -35,6 +36,10 @@ export default function PostButton() {
     setOpen(false);
     postNews();
   }
+
+  const Input = styled('input')({
+  display: 'none',
+  });
 
   // function that posts the news to the blockchain
 
@@ -112,7 +117,10 @@ export default function PostButton() {
       >
         <CircularProgress color='inherit' />
       </Backdrop>
-      <Dialog open={open} onClose={handleClose}>
+      <Dialog open={open} 
+      onClose={handleClose}
+      theme={theme1}
+      >
         <DialogTitle gutterBottom>Post your news here</DialogTitle>
         <DialogContent>
           <DialogContentText>
@@ -138,16 +146,18 @@ export default function PostButton() {
           />
           </div>
           <div>
-             <Input accept="image/*" id="contained-button-file" multiple type="file" onChange={uploadMedia}>
-             <Button variant="contained" component="span">
+             <label htmlFor="contained-button-file">
+             <Input accept="image/*" id="contained-button-file" multiple type="file" onChange={uploadMedia}/>
+             <Button variant="contained" component="span" theme={theme1} color={'secondary'} startIcon={<FileUploadIcon/>}>
               Upload Image
              </Button>
-             </Input>
+             </label>
           </div>
+          
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handlePost}>Post</Button>
+          <Button onClick={handleClose} theme={theme1}>Cancel</Button>
+          <Button onClick={handlePost} theme={theme1}>Post</Button>
         </DialogActions>
       </Dialog>
     </div>

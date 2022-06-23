@@ -3,9 +3,9 @@ import AnonNews from './AnonNews';
 
 function App() {
   return (
-    <div className='mainPage'>
+    
       <AnonNews />
-    </div>
+
   )
 }
 
