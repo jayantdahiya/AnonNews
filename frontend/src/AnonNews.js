@@ -37,9 +37,9 @@ function AnonNews() {
   const [walletConnected, setWalletConnected] = useState(false);
 
   const [loader, setLoader] = useState(false);
-  const [open, setOpen] = useState(false);
+  // const [open, setOpen] = useState(false);
   const handleClose = () => {
-    setOpen(false);
+    // setOpen(false);
     setLoader(false);
   };
 

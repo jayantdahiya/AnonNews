@@ -6,7 +6,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import { CircularProgress, Fab, Input } from '@mui/material';
+import { CircularProgress, Fab } from '@mui/material';
 import Add from '@mui/icons-material/Add';
 import { ethers } from 'ethers';
 import { AppContext } from '../AnonNews';
