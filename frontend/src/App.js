@@ -16,6 +16,9 @@ const client = ipfsHttpClient("https://ipfs.infura.io:5001/api/v0");
 export const AppContext = createContext();
 
 function App() {
+
+  const [theme, setTheme] = useState();
+
   const [currentAccount, setCurrentAccount] = useState("");
   const [walletConnected, setWalletConnected] = useState(false);
 
@@ -98,7 +101,6 @@ function App() {
         // postsCleaned.sort((a,b)=> b.timestamp.valueOf() - a.timestamp.valueOf());
         postsCleaned.sort((a, b) => b.votes - a.votes);
         setAllPosts(postsCleaned);
-        console.log(allPosts);
       }
     } catch (error) {
       console.log(error);
@@ -139,6 +141,8 @@ function App() {
         getAllPosts,
         client,
         votePost,
+        theme,
+        setTheme
       }}
     >
       <Backdrop
@@ -148,12 +152,14 @@ function App() {
       >
         <CircularProgress color="inherit" />
       </Backdrop>
-      <NavBar />
-      <Routes>
-        <Route path="/" element={<Content />} />
-        <Route path="/mission" element={<Mission />} />
-      </Routes>
-      <Footer />
+      <div data-theme={theme}>
+        <NavBar />
+        <Routes>
+          <Route path="/" element={<Content />} />
+          <Route path="/mission" element={<Mission />} />
+        </Routes>
+        <Footer />
+      </div>
     </AppContext.Provider>
   );
 }

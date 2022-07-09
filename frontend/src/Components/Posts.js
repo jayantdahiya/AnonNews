@@ -3,12 +3,12 @@ import { useContext } from "react";
 import { AppContext } from "../App";
 
 function Posts() {
-    const { allPosts, theme1, votePost } = React.useContext(AppContext);
+    const { allPosts, votePost } = React.useContext(AppContext);
   return (
     <div>
     {allPosts.map((posts,index) => {
         return (
-          <div class="card bg-base-100 shadow-xl mt-3" id={index}>
+          <div class="card bg-base-100 shadow-xl mt-3" id={index} key={index}>
             <div>
               <img src={posts.media} alt="news-media" />
             </div>

@@ -3,8 +3,12 @@ import { useContext } from "react";
 import { AppContext } from "../App";
 
 function NavBar() {
-  const { connectWallet, walletConnected, theme1, currentAccount } =
+  const { theme, setTheme, connectWallet, walletConnected, currentAccount } =
     useContext(AppContext);
+
+    const toggleTheme = () => {
+      theme === 'dracula' ? setTheme('pastel') : setTheme('dracula')
+    }
 
     const handleClick = () => {
       if (!walletConnected) {
@@ -56,7 +60,7 @@ function NavBar() {
         </a>
       </div>
       <div class="navbar-end">
-        <button class="btn btn-ghost btn-circle mr-3 text-gray-700">
+        <button class="btn btn-ghost btn-circle mr-3 text-gray-800" onChange={toggleTheme}>
           <label class="swap swap-rotate">
             <input type="checkbox" />
             <svg

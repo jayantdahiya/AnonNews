@@ -5,7 +5,6 @@ import Posts from '../Components/Posts';
 
 function Content() {
   const { walletConnected} = useContext(AppContext);
-  console.log(walletConnected)
   return (
     <div>
       {walletConnected ? (
