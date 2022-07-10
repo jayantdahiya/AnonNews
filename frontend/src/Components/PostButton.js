@@ -109,7 +109,7 @@ function PostButton() {
         open={loader}
         onClick={handleClose}
       >
-        <CircularProgress className="bg-primary" />
+        <CircularProgress color="secondary" />
       </Backdrop>
       <Dialog open={open} onClose={handleClose}>
         {/* <DialogTitle gutterBottom>Post your news here</DialogTitle> */}

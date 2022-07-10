@@ -19,15 +19,15 @@ function App() {
 
   const [theme, setTheme] = useState();
 
-  const [currentAccount, setCurrentAccount] = useState("");
-  const [walletConnected, setWalletConnected] = useState(false);
-
   const [loader, setLoader] = useState(false);
   const [open, setOpen] = useState(false);
   const handleClose = () => {
     setOpen(false);
     setLoader(false);
   };
+
+  const [currentAccount, setCurrentAccount] = useState("");
+  const [walletConnected, setWalletConnected] = useState(false);
 
   const contractAddress = "0x1401D173802540a7c850418A8cf3379B744DA781";
   const contractABI = abi.abi;
@@ -150,7 +150,7 @@ function App() {
         open={loader}
         onClick={handleClose}
       >
-        <CircularProgress color="inherit" />
+        <CircularProgress color="secondary" />
       </Backdrop>
       <div data-theme={theme}>
         <NavBar />
