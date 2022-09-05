@@ -8,6 +8,7 @@ import Content from "./Pages/Content";
 import Footer from "./Components/Footer";
 import { Routes, Route } from "react-router-dom";
 import Mission from "./Pages/Mission";
+import CommingSoon from "./Pages/CommingSoon";
 import { Backdrop } from "@mui/material";
 import {CircularProgress} from "@mui/material";
 
@@ -155,8 +156,9 @@ function App() {
       <div data-theme={theme}>
         <NavBar />
         <Routes>
-          <Route path="/" element={<Content />} />
-          <Route path="/mission" element={<Mission />} />
+          {/* <Route path="/" element={<Content />} />
+          <Route path="/mission" element={<Mission />} /> */}
+          <Route path="/" element={<CommingSoon />} />
         </Routes>
         <Footer />
       </div>

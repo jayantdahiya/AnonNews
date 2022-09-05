@@ -1,21 +1,19 @@
-require("@nomiclabs/hardhat-waffle");
-require("dotenv").config();
+require("@nomicfoundation/hardhat-toolbox");
+require("@nomiclabs/hardhat-etherscan");
+const dotenv = require("dotenv");
 
+dotenv.config();
+
+/** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
   solidity: "0.8.4",
   networks: {
-    rinkeby: {
+    mumbai: {
       url: process.env.STAGING_ALCHEMY_KEY,
       accounts: [process.env.PRIVATE_KEY],
-      gas: 2100000,
-      gasPrice: 8000000000
     },
-    mainnet: {
-      chainId: 1,
-      url: process.env.PROD_ALCHEMY_KEY,
-      accounts: [process.env.PRIVATE_KEY],
-      gas: 2100000,
-      gasPrice: 8000000000
-    },
+  },
+  etherscan: {
+    apiKey: process.env.PROD_ALCHEMY_KEY,
   },
 };

@@ -1,26 +1,15 @@
-const main = async () => {
-  const [deployer] = await hre.ethers.getSigners();
-  const accountBalance = await deployer.getBalance();
+const hre = require("hardhat");
 
-  console.log("Deploying contracts with account: ", deployer.address);
-  console.log("Account balance:", accountBalance.toString());
+async function main() {
+  const AnonNews = await hre.ethers.getContractFactory("AnonNews");
+  const anonNews = await AnonNews.deploy();
 
-  const anonNewsFactory = await hre.ethers.getContractFactory("AnonNews");
-  const anonNewsContract = await anonNewsFactory.deploy();
-  await anonNewsContract.deployed();
-  
-  console.log("AnonNews Address: ", anonNewsContract.address);
+  await anonNews.deployed();
 
-};
+  console.log("Blog is deployed to:", anonNews.address);
+}
 
-const runMain = async () => {
-  try{
-    await main();
-    process.exit(0);
-  } catch (error) {
-    console.log(error);
-    process.exit(1);
-  }
-};
-
-runMain();
+main().catch((error) => {
+  console.error(error);
+  process.exitCode = 1;
+});

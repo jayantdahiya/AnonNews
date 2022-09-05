@@ -5,16 +5,19 @@ pragma solidity ^0.8.0;
 import "hardhat/console.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
+import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts/utils/Counters.sol";
 
-contract AnonNews is ERC721URIStorage {
-    uint256 postCount=0;
+contract AnonNews is ERC721, ERC721URIStorage {
+    using Counters for Counters.Counter;
+    Counters.Counter private _postCounts;
+    
     mapping(uint256 => Post) public posts;
     
 
     event NewsPosted(
         uint256 id,
         address payable author,
-        string postText,
         string mediaUrl,
         uint256 votes
     );
@@ -22,7 +25,6 @@ contract AnonNews is ERC721URIStorage {
     event NewsVoted(
         uint256 id,
         address payable author,
-        string postText,
         string mediaUrl,
         uint256 votes
     );
@@ -30,30 +32,34 @@ contract AnonNews is ERC721URIStorage {
     struct Post {
         uint256 id;
         address payable author;
-        string postText;
         string mediaUrl;
         uint256 votes;
         uint256 timestamp;
     }
 
     constructor() ERC721("AnonNews", "DAPP") {
-        console.log("This is the smart contract for AnonNews");
+        console.log("AnonNews Contract");
     }
 
-    function newPost(string memory _message, string memory mediaUrl) external  {
-        // To make sure that post text is not empty
-        require(bytes(_message).length > 0, "Cannot post an empty post");
-        // Increment post count
-        postCount ++;
+
+    function postNews(string memory mediaUrl) external  {
+        uint256 currentCount = _postCounts.current();
+        // mint the token
+        _safeMint(msg.sender, currentCount);
+        // set the token data
+        _setTokenURI(currentCount, mediaUrl);
         // Add post to the contract
-        posts[postCount] = Post(postCount, payable(msg.sender), _message, mediaUrl, 0, block.timestamp);
+        posts[currentCount] = Post(currentCount, payable(msg.sender), mediaUrl, 0, block.timestamp);
+         // Increment post count
+        _postCounts.increment();
         // Trigger an event
-        emit NewsPosted(postCount, payable(msg.sender), _message, mediaUrl, 0);
+        emit NewsPosted(currentCount, payable(msg.sender), mediaUrl, 0);
     }
 
-    function postVote(uint256 _id) external payable {
+    function voteNews(uint256 _id) external payable {
+        uint256 currentCount = _postCounts.current();
         // Make sure the post id is valid
-        require(_id > 0 && _id <= postCount, "Invalid post id");
+        require(_id >= 0 && _id <= currentCount, "Invalid post id");
         // Fetch the post
         Post memory _post = posts[_id];
         // Make sure author doesn't vote their own post
@@ -65,19 +71,34 @@ contract AnonNews is ERC721URIStorage {
         // Update the image
         posts[_id] = _post;
         // Trigger an event
-        emit NewsVoted(_id, _post.author, _post.postText, _post.mediaUrl, _post.votes);
-    }
-    
-    function getPostCount() public view returns (uint256){
-        return postCount;
+        emit NewsVoted(_id, _post.author, _post.mediaUrl, _post.votes);
     }
     
     // Fetches all the posts
-    function getAllPosts() external view returns (Post[] memory _posts) {
-        _posts = new Post[] (postCount);
+    function getAllNews() external view returns (Post[] memory _posts) {
+        uint256 currentCount = _postCounts.current();
+        _posts = new Post[] (currentCount);
         for (uint256 i = 0; i < _posts.length; i++) {
             _posts[i] = posts[i + 1];
         }
+    }
+
+    // Override Functions
+
+    function _burn(uint256 tokenId)
+        internal
+        override(ERC721, ERC721URIStorage)
+    {
+        super._burn(tokenId);
+    }
+
+    function tokenURI(uint256 tokenId)
+        public
+        view
+        override(ERC721, ERC721URIStorage)
+        returns (string memory)
+    {
+        return super.tokenURI(tokenId);
     }
 }
 
