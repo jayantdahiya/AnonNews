@@ -9,7 +9,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@carbon/grid": "^11.6.0",
     "@carbon/react": "^1.12.0",
+    "@carbon/type": "^11.9.0",
     "@chakra-ui/icons": "^2.0.9",
     "@chakra-ui/react": "^2.3.2",
     "@emotion/react": "^11.10.4",
@@ -18,7 +20,8 @@
     "daisyui": "^2.27.0",
     "framer-motion": "^7.3.2",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.4.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.17",

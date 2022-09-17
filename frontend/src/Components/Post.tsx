@@ -1,66 +1,24 @@
 import React from 'react'
-import { Button, Modal, TextInput, TextArea, FormItem, FileUploaderDropContainer } from '@carbon/react'
+import {ExpandableTile, TileAboveTheFoldContent, TileBelowTheFoldContent} from '@carbon/react';
 
-function Post () {
-    const [open, setOpen] = React.useState(false)
-
-    const postNews = () => {
-        setOpen(true)
-    }
+function Post() {
   return (
-    <>
-    <div style={{
-        position: 'fixed',
-        bottom: '5rem',
-        right: '5rem',
-    }}>
-        <Button onClick={postNews}>
-            New Post
-        </Button>
-    </div>
-    <Modal
-     open={open}
-     modalHeading="Post a new news"
-     primaryButtonText="Post"
-     secondaryButtonText="Cancel"
-     onRequestClose={() => setOpen(false)}
-    >
-        <TextInput type="text" labelText="Heading of the news" />
-        <br />
-        <TextArea labelText="Content of the news" />
-        <br />
-
-        <FormItem>
-  <p className="cds--file--label">
-    Upload news image
-  </p>
-  <p className="cds--label-description">
-    Supported file types are .jpg and .png.
-  </p>
-  <FileUploaderDropContainer
-    accept={[
-      'image/jpeg',
-      'image/png'
-    ]}
-    innerRef={{
-      current: '[Circular]'
-    }}
-    labelText="Drag and drop files here or click to upload"
-    multiple
-    name=""
-    onAddFiles={function noRefCheck(){}}
-    onChange={function noRefCheck(){}}
-    role=""
-  />
-  <div
-    className="cds--file-container"
-    style={{
-      width: '100%'
-    }}
-  />
-</FormItem>
-    </Modal>
-    </>
+            <ExpandableTile tileCollapsedIconText="Click to Expand tile" tileExpandIconText="Click to Collapse Tile" style={{
+                marginBottom: '1rem',
+            }}>
+            <TileAboveTheFoldContent>
+                <div>
+                    <img src='https://via.placeholder.com/400x200' alt='Post Image' />
+                    <h4>Post Title</h4>
+                </div>
+            </TileAboveTheFoldContent>
+            <TileBelowTheFoldContent>
+                <div>
+                    <p>Post Content</p>
+                </div>
+                <a href='#'>Read More</a>
+            </TileBelowTheFoldContent>
+        </ExpandableTile>
   )
 }
 
