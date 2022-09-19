@@ -23,7 +23,7 @@ function App() {
       handleLatestSort,
       handleTopVotedSort
       }}>
-        <Theme theme={theme}>
+        <Theme theme='g100'>
           <NavBar />
         <Routes>
           <Route path="/" element={<Content />} />

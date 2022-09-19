@@ -6,14 +6,13 @@ import RightNav from "../Components/RightNav";
 
 function Content() {
   return (
-    <div style={{
-      paddingTop: '2rem',
-    }}>
       <Grid>
       <Column lg={2} sm={0} md={0}>
         <LeftNav />
       </Column>
-      <Column lg={12} sm={4} md={8}>
+      <Column lg={12} sm={4} md={8} style={{
+        marginTop: '4rem',
+      }}>
         <Grid>
           {/* Main post taking up all the grid */}
           <Column lg={9} md={8} sm={4}>
@@ -37,11 +36,13 @@ function Content() {
           </Column>
         </Grid>
       </Column>
-      <Column lg={2} sm={0} md={0}>
+      <Column lg={2} sm={0} md={0} style={{
+        marginTop: '4rem',
+        width: '100%',
+      }}>
         <RightNav />
       </Column>
     </Grid>
-    </div>
   );
 }
 

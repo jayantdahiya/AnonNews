@@ -1,24 +1,26 @@
 import React from 'react'
-import {ExpandableTile, TileAboveTheFoldContent, TileBelowTheFoldContent} from '@carbon/react';
+import {Tile, Button, ButtonSet} from '@carbon/react';
+import {ThumbsUp} from '@carbon/icons-react'
+import { sampleHeading, samplePostContent } from '../assets/SampleText';
+import sampleImage2 from '../assets/sampleImage2.webp'
 
 function Post() {
   return (
-            <ExpandableTile tileCollapsedIconText="Click to Expand tile" tileExpandIconText="Click to Collapse Tile" style={{
-                marginBottom: '1rem',
-            }}>
-            <TileAboveTheFoldContent>
-                <div>
-                    <img src='https://via.placeholder.com/400x200' alt='Post Image' />
-                    <h4>Post Title</h4>
-                </div>
-            </TileAboveTheFoldContent>
-            <TileBelowTheFoldContent>
-                <div>
-                    <p>Post Content</p>
-                </div>
-                <a href='#'>Read More</a>
-            </TileBelowTheFoldContent>
-        </ExpandableTile>
+    <Tile style={{
+        marginBottom: '1rem',
+    }}>
+        <div>
+            <img src={sampleImage2} alt="sampleImage" style={{
+                width: '100%',
+            }} />
+            <br />
+            <h4>{sampleHeading}</h4>
+            <br />
+            <p>{samplePostContent} <a href='#'>....read more</a></p>
+            <br />
+            <Button renderIcon={ThumbsUp} kind="secondary" iconDescription="Like Button">Like</Button>
+        </div>
+    </Tile>
   )
 }
 
