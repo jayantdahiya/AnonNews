@@ -1,38 +1,35 @@
-import { createContext, useState } from "react";
-import "./App.css";
-import NavBar from "./Components/NavBar";
-import Content from "./Pages/Content";
-import { Routes, Route } from "react-router-dom";
-import FullPost from "./Pages/FullPost";
-import {Grid, useTheme, Theme} from '@carbon/react'
-import Mission from "./Pages/Mission";
+import { useState } from 'react'
+import './App.css'
+import {createContext} from 'react'
+import {Routes, Route } from 'react-router-dom'
+
+import NavBar from './Components/NavBar';
+import LandingPage from './Pages/LandingPage';
+import NewsPosts from './Pages/NewsPosts';
+import MissionPage from './Pages/MissionPage';
+import NewsView from './Pages/NewsView';
 
 export const AppContext = createContext();
 
 function App() {
-  const {theme} = useTheme();
-  const handleLatestSort = () => {
-    console.log("Latest");
-  }
-  const handleTopVotedSort = () => {
-    console.log("Top Voted");
-  }
+  const [walletConnected, setWalletConnected] = useState(false);
   return (
     <AppContext.Provider value={{
-      theme,
-      handleLatestSort,
-      handleTopVotedSort
-      }}>
-        <Theme theme='g100'>
-          <NavBar />
-        <Routes>
-          <Route path="/" element={<Content />} />
-          <Route path="/mission" element={<Mission />} />
-          <Route path="/post" element={<FullPost />} />
-        </Routes>
-        </Theme>
+      walletConnected,
+      setWalletConnected
+    }}>
+      <NavBar />
+      <Routes>
+        { walletConnected ? (
+          <Route path="/" element={<NewsPosts />} />
+        ): (
+          <Route path="/" element={<LandingPage />} />
+        )}
+        <Route path="/mission" element={<MissionPage />} />
+        <Route path="/newsView/:id" element={<NewsView />} />
+      </Routes>
     </AppContext.Provider>
-  );
+  )
 }
 
-export default App;
+export default App
