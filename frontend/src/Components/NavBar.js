@@ -1,15 +1,14 @@
 import {useContext} from 'react'
 import { AppContext } from '../App';
-import { connectWallet } from '../Utils/Functions';
+
 import Tooltip from '../Utils/Tooltip';
+
+import {useConnectModal} from '@rainbow-me/rainbowkit';
 
 function NavBar() {
   const {walletConnected , setWalletConnected, address, setAddress} = useContext(AppContext);
-  
-  
-  const handleConnectWallet = async () => {
-    connectWallet({ address, setAddress, setWalletConnected });
-  }
+
+  const {openConnectModal} = useConnectModal();
 
   //function to handle the post button click 
   const handlePost  = async() => {
@@ -21,7 +20,7 @@ function NavBar() {
   }
   
   return (
-    <div className="flex flex-col justify-between w-16 h-screen backdrop-blur-md bg-white/30 border-r fixed">
+    <div className="flex flex-col justify-between w-16 h-screen backdrop-blur-md bg-[#F5F2E8]/40 border-r border-gray-700 fixed">
       <div>
         <div className="inline-flex items-center justify-center w-16 h-16 cursor-pointer bg-[#1E2022] text-[#F0F5F9]">
           <span className="text-3xl">an</span>
@@ -95,9 +94,8 @@ function NavBar() {
           </nav>
         </div>
       </div>
-
-      {walletConnected ? (
-        <div className="sticky inset-x-0 bottom-0 border-t border-gray-100">
+      
+        <div className="sticky inset-x-0 bottom-0 border-t border-gray-700">
           <button
             onClick={handlePost}
             className="flex justify-center w-full px-2 py-1.5 text-sm hover:bg-gray-400 hover:text-gray-100 group relative"
@@ -122,29 +120,6 @@ function NavBar() {
             </span>
           </button>
         </div>
-      ) : (
-        <div className="sticky inset-x-0 bottom-0 p-2 border-t border-gray-100">
-          <button
-            onClick={handleConnectWallet}
-            className="flex justify-center w-full px-2 py-1.5 text-sm  hover:bg-gray-400 hover:text-gray-100 group relative"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              fill="currentColor"
-              class="bi bi-wallet"
-              viewBox="0 0 16 16"
-            >
-              <path d="M0 3a2 2 0 0 1 2-2h13.5a.5.5 0 0 1 0 1H15v2a1 1 0 0 1 1 1v8.5a1.5 1.5 0 0 1-1.5 1.5h-12A2.5 2.5 0 0 1 0 12.5V3zm1 1.732V12.5A1.5 1.5 0 0 0 2.5 14h12a.5.5 0 0 0 .5-.5V5H2a1.99 1.99 0 0 1-1-.268zM1 3a1 1 0 0 0 1 1h12V2H2a1 1 0 0 0-1 1z" />
-            </svg>
-
-            <span className="absolute text-xs font-medium text-white bg-gray-900 left-full ml-4 px-2 py-1.5 top-1/2 -translate-y-1/2 rounded opacity-0 group-hover:opacity-100">
-              Connect Wallet
-            </span>
-          </button>
-        </div>
-      )}
     </div>
   );
 }
