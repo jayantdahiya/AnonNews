@@ -33,52 +33,52 @@ export const ConnectButtonCustom = () => {
             {(() => {
               if (!connected) {
                 return (
-                  <button onClick={openConnectModal} type="button">
+                  <button
+                    onClick={openConnectModal}
+                    type="button"
+                    className="p-2 border border-gray-700 hover:bg-gray-900 hover:text-gray-100"
+                  >
                     Connect Wallet
                   </button>
                 );
               }
-              if (chain.unsupported) {
+              if (chain && chain.name === "Polygon") {
                 return (
-                  <button onClick={openChainModal} type="button">
+                  <button
+                    onClick={openChainModal}
+                    type="button"
+                    className="p-2 border border-gray-700 hover:bg-gray-900 hover:text-gray-100"
+                  >
                     Wrong network
                   </button>
                 );
               }
               return (
-                <div style={{ display: "flex", gap: 12 }}>
+                <div className="inline-flex items-stretch ">
+                  <button
+                    onClick={openAccountModal}
+                    type="button"
+                    className="p-2 border border-gray-700 hover:bg-gray-900 hover:text-gray-100"
+                  >
+                    {account.displayName}
+                  </button>
+
                   <button
                     onClick={openChainModal}
                     style={{ display: "flex", alignItems: "center" }}
                     type="button"
+                    className="p-2 border border-l-0 border-gray-700 hover:bg-gray-900 hover:text-gray-100"
                   >
-                    {chain.hasIcon && (
-                      <div
-                        style={{
-                          background: chain.iconBackground,
-                          width: 12,
-                          height: 12,
-                          borderRadius: 999,
-                          overflow: "hidden",
-                          marginRight: 4,
-                        }}
-                      >
-                        {chain.iconUrl && (
-                          <img
-                            alt={chain.name ?? "Chain icon"}
-                            src={chain.iconUrl}
-                            style={{ width: 12, height: 12 }}
-                          />
-                        )}
-                      </div>
-                    )}
-                    {chain.name}
-                  </button>
-                  <button onClick={openAccountModal} type="button">
-                    {account.displayName}
-                    {account.displayBalance
-                      ? ` (${account.displayBalance})`
-                      : ""}
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      fill="currentColor"
+                      class="bi bi-three-dots-vertical"
+                      viewBox="0 0 16 16"
+                    >
+                      <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
+                    </svg>
                   </button>
                 </div>
               );

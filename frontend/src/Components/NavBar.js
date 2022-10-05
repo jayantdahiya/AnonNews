@@ -32,7 +32,7 @@ function NavBar() {
             <div className="py-2">
               <a
                 href="/"
-                className="flex justify-center px-2 py-1.5 group relative  hover:bg-gray-400 hover:text-gray-100"
+                className="flex justify-center px-2 py-1.5 group relative  hover:bg-gray-900 hover:text-gray-100"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -52,7 +52,7 @@ function NavBar() {
             <div className="py-2">
               <a
                 href="/"
-                className="flex justify-center px-2 py-1.5 group relative  hover:bg-gray-400 hover:text-gray-100"
+                className="flex justify-center px-2 py-1.5 group relative  hover:bg-gray-900 hover:text-gray-100"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -72,7 +72,7 @@ function NavBar() {
             <div className="py-2">
               <a
                 href="/"
-                className="flex justify-center px-2 py-1.5 group relative  hover:bg-gray-400 hover:text-gray-100"
+                className="flex justify-center px-2 py-1.5 group relative  hover:bg-gray-900 hover:text-gray-100"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -95,10 +95,10 @@ function NavBar() {
         </div>
       </div>
       
-        <div className="sticky inset-x-0 bottom-0 border-t border-gray-700">
+        <div className="sticky inset-x-0 bottom-0 border-t border-gray-900">
           <button
             onClick={handlePost}
-            className="flex justify-center w-full px-2 py-1.5 text-sm hover:bg-gray-400 hover:text-gray-100 group relative"
+            className="relative flex justify-center w-full px-2 py-4 text-md hover:bg-gray-900 hover:text-gray-100 group"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

@@ -1,8 +1,10 @@
 import React from 'react'
+import { useParams } from 'react-router-dom';
 
 function NewsPost() {
+  const { url } = useParams();
   return (
-    <div>NewsPost</div>
+    <div className='w-full h-screen'>{url}</div>
   )
 }
 

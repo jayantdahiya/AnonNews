@@ -4,28 +4,12 @@ import NewsCard from '../Components/NewsCard'
 import PopUp from '../Components/PopUp';
 import { sampleImageLink, sampleNewsHeading, sampleNewsContent } from '../Utils/TestLinks';
 
-import {useConnectModal} from '@rainbow-me/rainbowkit';
 import { ConnectButtonCustom } from '../Utils/ConnectButton';
 
 function LandingPage() {
-  const modalConfig = {
-    modalSize : 'compact'
-  }
-  const {openConnectModal} = useConnectModal({modalSize: 'compact'});
   return (
     <>
-      <div className="mt-2 mr-4 text-end">
-        {/* {openConnectModal && (
-          <button
-            className="h-10 p-1 text-sm border border-gray-700"
-            onClick={openConnectModal}
-          >
-            Connect Wallet
-          </button>
-        )} */}
-        <ConnectButtonCustom />
-      </div>
-      {/* <div className="fixed right-2 top-3">
+      {/* <div className="fixed left-16 top-3">
         <Dropdown />
       </div> */}
       <div className="grid lg:grid-cols-4 md:grid-cols-2">
@@ -34,6 +18,7 @@ function LandingPage() {
             imageUrl={sampleImageLink}
             heading={sampleNewsHeading}
             content={sampleNewsContent}
+            url="1"
           />
         </div>
         <div>
@@ -48,6 +33,7 @@ function LandingPage() {
             imageUrl={sampleImageLink}
             heading={sampleNewsHeading}
             content={sampleNewsContent}
+            url="2"
           />
         </div>
         <div>
@@ -55,6 +41,7 @@ function LandingPage() {
             imageUrl={sampleImageLink}
             heading={sampleNewsHeading}
             content={sampleNewsContent}
+            url="3"
           />
         </div>
         <div>
