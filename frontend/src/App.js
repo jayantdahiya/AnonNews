@@ -6,6 +6,7 @@ import LandingPage from './Pages/LandingPage';
 import AboutPage from './Pages/AboutPage';
 import ProfilePage from './Pages/ProfilePage';
 import NewsPost from './Pages/NewsPost';
+import NewNewsPost from './Pages/NewNewsPost';
 
 import { ConnectButtonCustom } from './Utils/ConnectButton';
 
@@ -34,6 +35,7 @@ function App() {
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/about" element={<AboutPage />} />
+            <Route path="/newNewsPost" element={<NewNewsPost />} />
             <Route path="/profile/:address" element={<ProfilePage />} />
             <Route path="/NewsPost/:url" element={<NewsPost />} />
           </Routes>

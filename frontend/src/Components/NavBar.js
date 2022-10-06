@@ -3,21 +3,9 @@ import { AppContext } from '../App';
 
 import Tooltip from '../Utils/Tooltip';
 
-import {useConnectModal} from '@rainbow-me/rainbowkit';
 
 function NavBar() {
-  const {walletConnected , setWalletConnected, address, setAddress} = useContext(AppContext);
 
-  const {openConnectModal} = useConnectModal();
-
-  //function to handle the post button click 
-  const handlePost  = async() => {
-    try{
-      
-    } catch(error) {
-      console.log(error);
-    }
-  }
   
   return (
     <div className="flex flex-col justify-between w-16 h-screen backdrop-blur-md bg-[#F5F2E8]/40 border-r border-gray-700 fixed">
@@ -97,7 +85,7 @@ function NavBar() {
       
         <div className="sticky inset-x-0 bottom-0 border-t border-gray-900">
           <button
-            onClick={handlePost}
+            onClick={() => (window.location.href = "/NewPost")}
             className="relative flex justify-center w-full px-2 py-4 text-md hover:bg-gray-900 hover:text-gray-100 group"
           >
             <svg
@@ -115,9 +103,7 @@ function NavBar() {
               />
             </svg>
 
-            <span className="absolute text-xs font-medium text-white bg-gray-900 left-full ml-4 px-2 py-1.5 top-1/2 -translate-y-1/2 rounded opacity-0 group-hover:opacity-100">
-              New Post
-            </span>
+            <Tooltip message={"New Post!"} />
           </button>
         </div>
     </div>

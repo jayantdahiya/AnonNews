@@ -4,14 +4,10 @@ import NewsCard from '../Components/NewsCard'
 import PopUp from '../Components/PopUp';
 import { sampleImageLink, sampleNewsHeading, sampleNewsContent } from '../Utils/TestLinks';
 
-import { ConnectButtonCustom } from '../Utils/ConnectButton';
 
 function LandingPage() {
   return (
     <>
-      {/* <div className="fixed left-16 top-3">
-        <Dropdown />
-      </div> */}
       <div className="grid lg:grid-cols-4 md:grid-cols-2">
         <div className="lg:col-span-3">
           <NewsCard
@@ -72,7 +68,6 @@ function LandingPage() {
             content={sampleNewsContent}
           />
         </div>
-        <PopUp />
       </div>
     </>
   );
