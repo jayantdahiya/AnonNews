@@ -1,5 +1,5 @@
 import './App.css';
-import {createContext, useState} from 'react';
+import {createContext} from 'react';
 
 import NavBar from './Components/NavBar';
 import LandingPage from './Pages/LandingPage';
@@ -9,21 +9,18 @@ import NewsPost from './Pages/NewsPost';
 import NewNewsPost from './Pages/NewNewsPost';
 
 import { ConnectButtonCustom } from './Utils/ConnectButton';
+import { useAccount } from 'wagmi';
 
 import { Routes, Route } from 'react-router-dom';
 
 export const AppContext = createContext();
 
 function App() {
-  const [ walletConnected, setWalletConnected ] = useState(false);
-  const [ address, setAddress ] = useState('');
+  const { address } = useAccount();
   return (
     <AppContext.Provider
       value={{
-        walletConnected,
-        setWalletConnected,
         address,
-        setAddress,
       }}
     >
       <div className="flex font-RobotoSlab bg-[#F5F2E8]">

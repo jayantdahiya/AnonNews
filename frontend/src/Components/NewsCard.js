@@ -21,7 +21,7 @@ function NewsCard({imageUrl, heading, content, url}) {
           className="object-cover max-h-[300px] w-[90%] mx-auto"
         />
       </div>
-      <div className="pb-4 mt-4 text-center border-b-2 border-gray-400">
+      <div className="pb-4 mt-4 text-2xl font-light text-center border-b-2 border-gray-400">
         {heading}
       </div>
       <div className="p-4">
@@ -35,11 +35,11 @@ function NewsCard({imageUrl, heading, content, url}) {
         </div>
         <br />
         <div className="text-justify text-gray-500">{trimmedString}</div>
-        <a href="/">
-          <div className="mt-3 text-center text-md">
+        <span>
+          <div className="mt-3 cursor-pointer text-end text-md">
             <span className="border-gray-500 border-y-2" onClick={handlePostCardClick}>More</span>
           </div>
-        </a>
+        </span>
       </div>
     </div>
   );
