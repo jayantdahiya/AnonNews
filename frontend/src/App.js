@@ -25,10 +25,10 @@ function App() {
     >
       <div className="flex font-RobotoSlab bg-[#F5F2E8]">
         <NavBar />
-        <div className="pl-16">
-          <div className="flex justify-end mt-2 mr-4">
-            <ConnectButtonCustom />
-          </div>
+        <div className="fixed top-3 right-3">
+          <ConnectButtonCustom />
+        </div>
+        <div className="mt-16 ml-16">
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/about" element={<AboutPage />} />
