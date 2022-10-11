@@ -2,7 +2,7 @@ import React from 'react'
 
 function MissionPage() {
   return (
-    <div>MissionPage</div>
+    <div className='h-screen'>MissionPage</div>
   )
 }
 

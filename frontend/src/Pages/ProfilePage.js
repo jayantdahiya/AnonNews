@@ -6,33 +6,60 @@ import {
   sampleNewsHeading,
   sampleNewsContent,
 } from "../Utils/TestLinks";
+import { useAccount } from 'wagmi';
 
 
 function ProfilePage() {
   const {address} = useParams();
-  console.log({address})
-  if (address !== 'undefined') {
+  const {isConnected} = useAccount();
+  console.log(address)
+  if (isConnected) {
     return (
-      <div>
-        <NewsCard
-          imageUrl={sampleImageLink}
-          heading={sampleNewsHeading}
-          content={sampleNewsContent}
-          url="000"
-        />
+      <div className="grid min-h-screen grid-cols-4 gap-4">
+        <div className="col-span-4">
+          <div className="flex flex-col justify-start pl-16">
+            <div className="inline-flex">
+              <div className="text-3xl font-light">Hi 👋</div>
+              <span className="p-2 text-xl font-light text-gray-600">
+                {address.slice(0, 4) + "..." + address.slice(-4)}
+              </span>
+            </div>
+            <div className="text-xl font-light">
+              Here are the news posts you've posted
+            </div>
+          </div>
+        </div>
+        <div className="col-span-2">
+          <NewsCard
+            heading={sampleNewsHeading}
+            content={sampleNewsContent}
+            imageUrl={sampleImageLink}
+            url="000"
+          />
+        </div>
+        <div className="col-span-2">
+          <NewsCard
+            heading={sampleNewsHeading}
+            content={sampleNewsContent}
+            imageUrl={sampleImageLink}
+            url="000"
+          />
+        </div>
       </div>
     );
-  } else {
-    return (
-      <div className='flex w-full h-screen'>
-        <div className=''>
-          <div className="font-light text-gray-900 text-md">
-            Connect your wallet to see your posts.
+  }
+  return (
+      <div className="grid min-h-screen grid-cols-4 gap-4">
+        <div className="col-span-4">
+          <div className="flex flex-col justify-start mt-16 ml-16">
+            <div className="text-3xl font-light">Hi 👋,</div>
+            <div className="text-xl font-light">
+              Connect your wallet to see your news posts
+            </div>
           </div>
         </div>
       </div>
-    )
-  }
+    );
 }
 
 export default ProfilePage

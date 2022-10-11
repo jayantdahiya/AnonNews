@@ -18,13 +18,13 @@ function Dropdown() {
         setIsOpen(!isOpen);
     }
   return (
-    <div class="inline-flex items-stretch backdrop-blur-md bg-white/40 border border-gray-300 rounded-md">
-      <span class="px-4 py-2 text-sm text-gray-700 rounded-l-md">Sort by</span>
-      <div class="relative">
+    <div className="inline-flex items-stretch backdrop-blur-md bg-white/40 border border-gray-300 rounded-md">
+      <span className="px-4 py-2 text-sm text-gray-700 rounded-l-md">Sort by</span>
+      <div className="relative">
         <button
           type="button"
           onClick={handleSelect}
-          class="inline-flex items-center justify-center h-full px-2 text-gray-700 border-l border-gray-300 hover:text-gray-700 rounded-r-md hover:bg-gray-50"
+          className="inline-flex items-center justify-center h-full px-2 text-gray-700 border-l border-gray-300 hover:text-gray-700 rounded-r-md hover:bg-gray-50"
         >
           {isOpen ? (
             <svg
@@ -32,7 +32,7 @@ function Dropdown() {
               width="16"
               height="16"
               fill="currentColor"
-              class="bi bi-chevron-up"
+              className="bi bi-chevron-up"
               viewBox="0 0 16 16"
             >
               <path
@@ -46,7 +46,7 @@ function Dropdown() {
               width="16"
               height="16"
               fill="currentColor"
-              class="bi bi-chevron-down"
+              className="bi bi-chevron-down"
               viewBox="0 0 16 16"
             >
               <path
@@ -59,13 +59,13 @@ function Dropdown() {
 
         {isOpen ? (
           <div
-            class="absolute right-0 z-10 w-56 mt-4 origin-top-right backdrop-blur-lg bg-white/30 border border-gray-700 rounded-md shadow-lg"
+            className="absolute right-0 z-10 w-56 mt-4 origin-top-right backdrop-blur-lg bg-white/30 border border-gray-700 rounded-md shadow-lg"
             role="menu"
           >
-            <div class="p-2">
+            <div className="p-2">
               {topVotedSelected ? (
                 <span
-                  class="block px-4 py-2 text-sm text-gray-700 rounded-lg  hover:bg-gray-50 hover:text-gray-700"
+                  className="block px-4 py-2 text-sm text-gray-700 rounded-lg  hover:bg-gray-50 hover:text-gray-700"
                   role="menuitem"
                   onClick={handleTopVoted}
                 >
@@ -73,7 +73,7 @@ function Dropdown() {
                 </span>
               ) : (
                 <span
-                  class="block px-4 py-2 text-sm text-gray-700 rounded-lg  hover:bg-gray-50 hover:text-gray-700"
+                  className="block px-4 py-2 text-sm text-gray-700 rounded-lg  hover:bg-gray-50 hover:text-gray-700"
                   role="menuitem"
                   onClick={handleTopVoted}
                 >
@@ -83,7 +83,7 @@ function Dropdown() {
 
               {newestSelected ? (
                 <span
-                  class="block px-4 py-2 text-sm text-gray-700 rounded-lg hover:bg-gray-50 hover:text-gray-700"
+                  className="block px-4 py-2 text-sm text-gray-700 rounded-lg hover:bg-gray-50 hover:text-gray-700"
                   role="menuitem"
                   onClick={handleNewest}
                 >
@@ -91,7 +91,7 @@ function Dropdown() {
                 </span>
               ) : (
                 <span
-                  class="block px-4 py-2 text-sm text-gray-700 rounded-lg hover:bg-gray-50 hover:text-gray-700"
+                  className="block px-4 py-2 text-sm text-gray-700 rounded-lg hover:bg-gray-50 hover:text-gray-700"
                   role="menuitem"
                   onClick={handleNewest}
                 >

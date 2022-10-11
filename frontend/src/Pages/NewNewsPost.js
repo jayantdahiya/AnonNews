@@ -69,7 +69,7 @@ function NewNewsPost() {
                   <input
                     type="file"
                     multiple
-                    class="cursor-pointer relative block opacity-0 w-full h-full p-20 z-50"
+                    className="cursor-pointer relative block opacity-0 w-full h-full p-20 z-50"
                   />
                   <div className="absolute top-0 left-0 right-0 p-10 m-auto text-sm text-center">
                     <div className="font-light text-gray-900">

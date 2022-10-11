@@ -7,10 +7,10 @@ function PopUp() {
     if (show) {
         if (!walletConnected) {
             return (
-              <aside class="fixed z-50 flex items-center justify-center px-5 py-3 text-gray-700 border border-gray-300 backdrop-blur-sm bg-white/30 rounded-lg bottom-2 left-[5rem] ">
+              <aside className="fixed z-50 flex items-center justify-center px-5 py-3 text-gray-700 border border-gray-300 backdrop-blur-sm bg-white/30 rounded-lg bottom-2 left-[5rem] ">
                 <a
                   href="/"
-                  class="text-sm font-medium hover:opacity-75"
+                  className="text-sm font-medium hover:opacity-75"
                 >
                   Connect your wallet here 👈
                 </a>
@@ -18,22 +18,22 @@ function PopUp() {
             );
         } 
         if (walletConnected) {
-            <aside class="fixed z-50 flex items-center justify-center px-5 py-3 text-gray-700 border border-gray-300 backdrop-blur-sm bg-white/30  rounded-lg bottom-2 left-[5rem] ">
+            <aside className="fixed z-50 flex items-center justify-center px-5 py-3 text-gray-700 border border-gray-300 backdrop-blur-sm bg-white/30  rounded-lg bottom-2 left-[5rem] ">
               <a
                 href="/"
-                class="text-sm font-medium hover:opacity-75"
+                className="text-sm font-medium hover:opacity-75"
               >
                 Post a news here 👈
               </a>
 
               <button
-                class="p-1 ml-3 rounded bg-white/20 hover:bg-white/10"
+                className="p-1 ml-3 rounded bg-white/20 hover:bg-white/10"
                 aria-label="Dismiss Popup"
                 onClick={() => setShow(false)}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="w-4 h-4"
+                  className="w-4 h-4"
                   viewBox="0 0 20 20"
                   fill="currentColor"
                 >

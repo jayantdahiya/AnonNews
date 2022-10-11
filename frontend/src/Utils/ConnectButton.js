@@ -36,7 +36,7 @@ export const ConnectButtonCustom = () => {
                   <button
                     onClick={openConnectModal}
                     type="button"
-                    className="p-2 font-light text-gray-900 border border-gray-700 hover:bg-gray-900 hover:text-gray-100"
+                    className="p-2 font-light text-gray-900 border border-gray-700 rounded-sm backdrop-blur-lg bg-white/50 hover:bg-gray-900 hover:text-gray-100"
                   >
                     Connect Wallet
                   </button>
@@ -47,7 +47,7 @@ export const ConnectButtonCustom = () => {
                   <button
                     onClick={openChainModal}
                     type="button"
-                    className="p-2 border border-gray-700 hover:bg-gray-900 hover:text-gray-100"
+                    className="p-2 border border-gray-700 rounded-sm hover:bg-gray-900 hover:text-gray-100 backdrop-blur-lg bg-white/50"
                   >
                     Wrong network
                   </button>
@@ -58,7 +58,7 @@ export const ConnectButtonCustom = () => {
                   <button
                     onClick={openAccountModal}
                     type="button"
-                    className="p-2 text-gray-600 border border-gray-500 hover:bg-gray-900 hover:text-gray-100"
+                    className="p-2 text-gray-600 border border-gray-500 rounded-sm hover:bg-gray-900 hover:text-gray-100 backdrop-blur-lg bg-white/50"
                   >
                     {account.displayName}
                   </button>
@@ -67,14 +67,14 @@ export const ConnectButtonCustom = () => {
                     onClick={openChainModal}
                     style={{ display: "flex", alignItems: "center" }}
                     type="button"
-                    className="p-2 border border-l-0 border-gray-700 hover:bg-gray-900 hover:text-gray-100"
+                    className="p-2 border border-l-0 border-gray-700 rounded-sm hover:bg-gray-900 hover:text-gray-100 backdrop-blur-lg bg-white/50"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="16"
                       height="16"
                       fill="currentColor"
-                      class="bi bi-three-dots-vertical"
+                      className="bi bi-three-dots-vertical"
                       viewBox="0 0 16 16"
                     >
                       <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
