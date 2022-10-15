@@ -1,12 +1,14 @@
 import {useContext} from 'react'
 import { useNavigate } from 'react-router-dom';
 import { AppContext } from '../App';
+import { useAccount } from 'wagmi';
 
 import Tooltip from '../Utils/Tooltip';
 
 
 function NavBar() {
  const { address } = useContext(AppContext);
+ const { isConnected } = useAccount();
  const navigate = useNavigate();
  const handleProfileNav = () => {
    navigate(`/profile/${address}`);
@@ -91,7 +93,13 @@ function NavBar() {
 
       <div className="sticky inset-x-0 bottom-0 border-t border-gray-900">
         <button
-          onClick={() => (window.location.href = "/newNewsPost")}
+          onClick={
+            isConnected ? (
+              () => (window.location.href = "/newNewsPost")
+            ) : (
+              () => alert("Please login to post news")
+            )
+          }
           className="relative flex justify-center w-full px-2 py-4 text-md hover:bg-gray-900 hover:text-gray-100 group"
         >
           <svg

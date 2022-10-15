@@ -3,8 +3,8 @@ import React from 'react'
 function Landing() {
   return (
     <div class="h-screen mx-10 flex w-[80vw] lg:w-[90vw]">
-      <div class="max-w-96 h-fit outline-dashed p-5 m-auto text-center">
-        <h1 class="text-3xl font-bold sm:text-5xl text-gray-600 py-14">
+      <div class="max-w-96 h-fit outline-dashed p-5 m-auto mt-[50%] lg:mt-[20%] text-center">
+        <h1 class="text-3xl font-bold sm:text-5xl text-gray-700 py-14">
           The news you deserve
           <br />
           <span class="sm:block text-gray-900 font-extrabold"> - uncensored and anonymous. </span>
