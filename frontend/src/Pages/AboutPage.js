@@ -2,9 +2,9 @@ import React from 'react'
 
 function MissionPage() {
   return (
-    <div className="ml-16 h-fit">
+    <div className="min-h-screen h-fit">
       <section class="bg-base text-gray-900">
-        <div class="w-full px-10 py-[20%] min-h-[70vh] min-w-[80vw] text-center items-center outline-dashed">
+        <div class="lg:w-[90vw] md:w-[80vw] px-4 mx-10 py-[20%] sm:px-6 lg:px-8 items-center text-center outline-dashed mb-10 mt-3">
           <div class="text-center w-full">
             <h1 class="text-3xl font-extrabold sm:text-5xl">
               The news you deserve
@@ -13,15 +13,15 @@ function MissionPage() {
 
             <div class="mt-8 flex flex-wrap justify-center gap-4">
               <a
-                class="block w-full rounded border border-gray-900 bg-gray-900 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-gray-900 focus:outline-none focus:ring active:text-opacity-75 sm:w-auto"
-                href="/get-started"
+                class="block rounded border border-gray-900 bg-gray-900 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-gray-900 focus:outline-none focus:ring active:text-opacity-75 sm:w-auto"
+                href="/news"
               >
                 View News
               </a>
 
               <a
-                class="inline-flex w-full rounded border border-gray-900 px-12 py-3 text-sm font-medium text-gray-900 hover:bg-gray-900 hover:text-gray-100 focus:outline-none focus:ring sm:w-auto"
-                href="/about"
+                class="inline-flex rounded border border-gray-900 px-12 py-3 text-sm font-medium text-gray-900 hover:bg-gray-900 hover:text-gray-100 focus:outline-none focus:ring sm:w-auto"
+                href="https://github.com/jayantdahiya/AnonNews"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -38,7 +38,7 @@ function MissionPage() {
             </div>
           </div>
         </div>
-        <div class="px-4 py-[20%] sm:px-6 lg:px-8 items-center text-center outline-dashed my-10">
+        <div class="lg:w-[90vw] md:w-[80vw] px-4 mx-10 py-[20%] sm:px-6 lg:px-8 items-center text-center outline-dashed my-10">
           <div class="w-full">
             <h2 class="text-3xl font-bold sm:text-4xl">How do we do it?</h2>
 
@@ -50,7 +50,7 @@ function MissionPage() {
               the way that news should be: free and open.
             </p>
           </div>
-          <div className="grid grid-cols-1 gap-4 mt-8 text-center lg:grid-cols-3">
+          <div className="grid grid-cols-3 gap-4 p-4 mt-8">
             <div className="w-full">
               <svg
                 xmlns="http://www.w3.org/2000/svg"

@@ -14,14 +14,14 @@ function NewsCard({imageUrl, heading, content, url}) {
   }
   return (
     <div className="flex flex-col max-h-[800px] max-w-[90%] m-4">
-      <div className="pt-2 pb-3 text-3xl border-b-2 border-gray-400">
+      <div className="pt-2 pb-3 text-3xl border-b-2 border-gray-700 border-dashed">
         <img
           src={imageUrl}
           alt=""
           className="object-cover max-h-[300px] w-[90%] mx-auto"
         />
       </div>
-      <div className="pb-4 mt-4 text-2xl font-light text-center border-b-2 border-gray-400">
+      <div className="pb-4 mt-4 text-2xl font-light text-center border-b-2 border-gray-700 border-dashed">
         {heading}
       </div>
       <div className="p-4">

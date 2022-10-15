@@ -6,7 +6,8 @@ import LandingPage from './Pages/LandingPage';
 import AboutPage from './Pages/AboutPage';
 import ProfilePage from './Pages/ProfilePage';
 import NewsPost from './Pages/NewsPost';
-import NewNewsPost from './Pages/NewNewsPost';
+import NewNewsPost from './Pages/PostNews';
+import Landing from './Pages/Landing';
 
 import { ConnectButtonCustom } from './Utils/ConnectButton';
 import { useAccount } from 'wagmi';
@@ -30,7 +31,8 @@ function App() {
         </div>
         <div className="mt-16 ml-16">
           <Routes>
-            <Route path="/" element={<LandingPage />} />
+            <Route path="/" element={<Landing />} />
+            <Route path="/news" element={<LandingPage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/newNewsPost" element={<NewNewsPost />} />
             <Route path="/profile/:address" element={<ProfilePage />} />

@@ -15,13 +15,13 @@ function ProfilePage() {
   console.log(address)
   if (isConnected) {
     return (
-      <div className="grid min-h-screen grid-cols-4 gap-4">
-        <div className="col-span-4">
+      <div className="grid min-h-screen grid-cols-4 gap-4 p-4 sm:grid-cols-1">
+        <div className="col-span-4 my-10">
           <div className="flex flex-col justify-start pl-16">
             <div className="inline-flex">
               <div className="text-3xl font-light">Hi 👋</div>
               <span className="p-2 text-xl font-light text-gray-600">
-                {address.slice(0, 4) + "..." + address.slice(-4)}
+                {address.slice(0, 4) + " ... " + address.slice(-4)}
               </span>
             </div>
             <div className="text-xl font-light">
@@ -29,7 +29,7 @@ function ProfilePage() {
             </div>
           </div>
         </div>
-        <div className="col-span-2">
+        <div className='w-full col-span-4'>
           <NewsCard
             heading={sampleNewsHeading}
             content={sampleNewsContent}
@@ -37,7 +37,7 @@ function ProfilePage() {
             url="000"
           />
         </div>
-        <div className="col-span-2">
+        <div className='w-full col-span-4'>
           <NewsCard
             heading={sampleNewsHeading}
             content={sampleNewsContent}
@@ -49,17 +49,19 @@ function ProfilePage() {
     );
   }
   return (
-      <div className="grid min-h-screen grid-cols-4 gap-4">
-        <div className="col-span-4">
-          <div className="flex flex-col justify-start mt-16 ml-16">
-            <div className="text-3xl font-light">Hi 👋,</div>
-            <div className="text-xl font-light">
-              Connect your wallet to see your news posts
-            </div>
+    <div className="grid min-h-screen grid-cols-4 gap-4 p-4">
+      <div className="col-span-4">
+        <div className="flex flex-col justify-start mt-16 ml-16">
+          <div className="text-3xl font-light">Hi 👋,</div>
+          <div className="text-xl font-light">
+            Connect your wallet to see your news posts
+            <br />
+            <span className='text-sm'>(ps: you can use the top right button 🙃)</span>
           </div>
         </div>
       </div>
-    );
+    </div>
+  );
 }
 
 export default ProfilePage

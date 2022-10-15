@@ -58,7 +58,7 @@ export const ConnectButtonCustom = () => {
                   <button
                     onClick={openAccountModal}
                     type="button"
-                    className="p-2 text-gray-600 border border-gray-500 rounded-sm hover:bg-gray-900 hover:text-gray-100 backdrop-blur-lg bg-white/50"
+                    className="p-2 font-light text-gray-900 border border-gray-500 rounded-sm hover:bg-gray-900 hover:text-gray-100 backdrop-blur-lg bg-white/50"
                   >
                     {account.displayName}
                   </button>

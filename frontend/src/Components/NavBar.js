@@ -15,15 +15,17 @@ function NavBar() {
     <div className="flex flex-col justify-between w-16 h-screen backdrop-blur-md bg-[#F5F2E8]/40 border-r border-gray-700 fixed">
       <div>
         <div className="inline-flex items-center justify-center w-16 h-16 cursor-pointer bg-[#1E2022] text-[#F0F5F9]">
-          <span className="text-3xl">an</span>
-          <span className="text-3xl text-red-500">.</span>
+          <a href='/'>
+            <span className="text-3xl">an</span>
+            <span className="text-3xl text-red-500">.</span>
+          </a>
         </div>
 
         <div className="border-t border-gray-100">
           <nav className="flex flex-col">
             <div className="py-2 hover:bg-gray-900 hover:text-gray-100">
               <a
-                href="/"
+                href="/news"
                 className="flex justify-center px-2 py-1.5 group relative cursor-pointer"
               >
                 <svg
