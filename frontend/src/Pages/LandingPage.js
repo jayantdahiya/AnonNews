@@ -8,7 +8,7 @@ import { sampleImageLink, sampleNewsHeading, sampleNewsContent } from '../Utils/
 function LandingPage() {
   return (
     <>
-      <div className="grid lg:grid-cols-4 md:grid-cols-2">
+      <div className="grid p-4 lg:grid-cols-4 md:grid-cols-2">
         <div className="lg:col-span-3">
           <NewsCard
             imageUrl={sampleImageLink}

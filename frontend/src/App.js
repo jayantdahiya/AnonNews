@@ -8,6 +8,7 @@ import ProfilePage from './Pages/ProfilePage';
 import NewsPost from './Pages/NewsPost';
 import NewNewsPost from './Pages/PostNews';
 import Landing from './Pages/Landing';
+import TermsOfUse from './Pages/TermsOfUse';
 
 import { ConnectButtonCustom } from './Utils/ConnectButton';
 import { useAccount } from 'wagmi';
@@ -37,6 +38,7 @@ function App() {
             <Route path="/newNewsPost" element={<NewNewsPost />} />
             <Route path="/profile/:address" element={<ProfilePage />} />
             <Route path="/NewsPost/:url" element={<NewsPost />} />
+            <Route path="/terms" element={<TermsOfUse />} />
           </Routes>
         </div>
       </div>
