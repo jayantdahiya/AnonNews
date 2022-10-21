@@ -37,7 +37,7 @@ function PostNews() {
               </p>
             </div>
 
-            <form className="grid grid-cols-6 gap-6 mt-8">
+            <form className="grid grid-cols-6 gap-6 p-5 mt-8 outline-dashed">
               <div className="col-span-6">
                 <label className="block text-sm font-medium text-gray-700">
                   News Headline
