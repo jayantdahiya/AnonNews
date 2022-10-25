@@ -1,7 +1,6 @@
 import React from 'react'
 import {useParams} from 'react-router-dom';
 import NewsCard from '../Components/NewsCard';
-import profilePageBg from '../Utils/svg/profilePageBg.svg';
 import {
   sampleImageLink,
   sampleNewsHeading,
@@ -34,7 +33,7 @@ function ProfilePage() {
               </div>
             </div>
           </div>
-          <div className="max-w-lg p-4 mt-10 outline-dashed lg:max-w-2xl">
+          <div className="max-w-lg p-4 mt-10 mb-10 outline-dashed lg:max-w-2xl">
             <div className="w-full">
               <NewsCard
                 heading={sampleNewsHeading}

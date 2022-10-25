@@ -2,7 +2,7 @@ import './App.css';
 import {createContext} from 'react';
 
 import NavBar from './Components/NavBar';
-import LandingPage from './Pages/LandingPage';
+import LandingPage from './Pages/News';
 import AboutPage from './Pages/AboutPage';
 import ProfilePage from './Pages/ProfilePage';
 import NewsPost from './Pages/NewsPost';

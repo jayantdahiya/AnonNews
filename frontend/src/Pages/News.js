@@ -1,14 +1,12 @@
-import React from 'react'
-import Dropdown from '../Components/Dropdown';
-import NewsCard from '../Components/NewsCard'
-import PopUp from '../Components/PopUp';
+import React from 'react';
+import NewsCard from '../Components/NewsCard';
 import { sampleImageLink, sampleNewsHeading, sampleNewsContent } from '../Utils/TestLinks';
 
 
-function LandingPage() {
+function News() {
   return (
     <>
-      <div className="grid p-4 lg:grid-cols-4 md:grid-cols-2">
+      <div className="grid p-4 m-5 lg:grid-cols-4 md:grid-cols-2 outline-dashed">
         <div className="lg:col-span-3">
           <NewsCard
             imageUrl={sampleImageLink}
@@ -73,4 +71,4 @@ function LandingPage() {
   );
 }
 
-export default LandingPage
+export default News

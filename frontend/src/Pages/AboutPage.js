@@ -1,6 +1,6 @@
 import React from 'react'
 
-function MissionPage() {
+function AboutPage() {
   return (
     <div className="min-h-screen h-fit">
       <section class="bg-base text-gray-900">
@@ -134,4 +134,4 @@ function MissionPage() {
   );
 }
 
-export default MissionPage
+export default AboutPage

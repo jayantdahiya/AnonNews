@@ -11,30 +11,37 @@ function TermsOfUse() {
               By posting a news on our anonymous and decentralised news website,
               you agree to the following terms:
               <br />
-              1. The news you post must be true and accurate to the best of your
-              knowledge.
               <br />
-              2. The news you post must not be libelous or defamatory.
+              <span className="font-bold">1. </span>The news you post must be
+              true and accurate to the best of your knowledge.
               <br />
-              3. The news you post must not violate the privacy of any
-              individual or organisation.
+              <span className="font-bold">2. </span>The news you post must not
+              be libelous or defamatory.
               <br />
-              4. The news you post must not be commercial in nature.
+              <span className="font-bold">3. </span>The news you post must not
+              violate the privacy of any individual or organisation.
               <br />
-              5. The news you post must not promote any illegal activity.
+              <span className="font-bold">4. </span>The news you post must not
+              be commercial in nature.
               <br />
-              6. The news you post must not be obscene or offensive.
+              <span className="font-bold">5. </span>The news you post must not
+              promote any illegal activity.
               <br />
-              7. The news you post must not be spam.
+              <span className="font-bold">6. </span>The news you post must not
+              be obscene or offensive.
               <br />
-              8. You must not post any news that you do not have the right to
-              post.
+              <span className="font-bold">7. </span>The news you post must not
+              be spam.
               <br />
-              9. You must not post any news that contains viruses or other
-              malicious code.
+              <span className="font-bold">8. </span>You must not post any news
+              that you do not have the right to post.
               <br />
-              10. We reserve the right to remove any news that violates these
-              terms or that we deem to be inappropriate for our website.
+              <span className="font-bold">9. </span>You must not post any news
+              that contains viruses or other malicious code.
+              <br />
+              <span className="font-bold">10. </span>We reserve the right to
+              remove any news that violates these terms or that we deem to be
+              inappropriate for our website.
             </div>
           </div>
         </div>
