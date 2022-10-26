@@ -2,12 +2,12 @@ import React from 'react'
 
 function Landing() {
   return (
-    <div class="h-screen mx-10 flex w-[60vw] lg:w-[90vw]">
+    <div class="h-screen mx-4 lg:mx-10 flex w-[70vw] lg:w-[90vw]">
       <div class="max-w-96 h-fit outline-dashed p-5 m-auto mt-[50%] lg:mt-[20%] text-center">
         <h1 class="text-3xl font-bold lg:text-5xl text-gray-700 py-14">
           The news you deserve
           <br />
-          <span class="sm:block text-gray-900 font-extrabold"> - uncensored and anonymous. </span>
+          <span class="sm:block text-gray-900 font-extrabold"> - Uncensored & Anonymous. </span>
         </h1>
 
         <div class="mt-4 flex flex-wrap justify-center gap-4">
