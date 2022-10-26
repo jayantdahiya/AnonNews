@@ -14,12 +14,12 @@ function NavBar() {
    navigate(`/profile/${address}`);
  };
   return (
-    <div className="flex flex-col justify-between w-16 h-screen backdrop-blur-md bg-[#F5F2E8]/40 border-r border-gray-700 fixed">
+    <div className="flex flex-col justify-between w-12 lg:w-16 h-screen backdrop-blur-md bg-[#F5F2E8]/40 border-r border-gray-700 fixed">
       <div>
-        <div className="inline-flex items-center justify-center w-16 h-16 cursor-pointer bg-[#1E2022] text-[#F0F5F9]">
+        <div className="inline-flex items-center justify-center w-full h-16 cursor-pointer bg-[#1E2022] text-[#F0F5F9]">
           <a href='/'>
-            <span className="text-3xl">an</span>
-            <span className="text-3xl text-red-500">.</span>
+            <span className="text-2xl lg:text-3xl">an</span>
+            <span className="text-2xl text-red-500 lg:text-3xl">.</span>
           </a>
         </div>
 

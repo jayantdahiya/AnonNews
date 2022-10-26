@@ -17,7 +17,7 @@ function ProfilePage() {
     return (
       <div className="flex items-center w-screen min-h-screen p-4 -ml-12 lg:mt-12">
         <div className="m-auto">
-          <div className="max-w-lg p-4 outline-dashed lg:max-w-2xl">
+          <div className="max-w-lg p-4 mx-10 lg:mx-0 outline-dashed lg:max-w-2xl">
             <div className="Justify-start">
               <div className="inline-flex">
                 <div className="text-3xl font-light">Hi 👋</div>
@@ -28,12 +28,12 @@ function ProfilePage() {
               {/* <div className='m-10'>
               <img src={profilePageBg} alt="" className="w-full h-80" />
             </div> */}
-              <div className="text-xl text-gray-900">
-                Here are the news posts you've posted
+              <div className="text-lg text-gray-900 lg:text-xl">
+                Here is the news you've posted
               </div>
             </div>
           </div>
-          <div className="max-w-lg p-4 mt-10 mb-10 outline-dashed lg:max-w-2xl">
+          <div className="max-w-lg p-2 mx-10 mt-10 mb-10 lg:mx-0 lg:p-4 outline-dashed lg:max-w-2xl">
             <div className="w-full">
               <NewsCard
                 heading={sampleNewsHeading}

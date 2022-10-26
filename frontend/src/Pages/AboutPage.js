@@ -5,11 +5,11 @@ function AboutPage() {
     <div className="min-h-screen h-fit">
       <section class="bg-base text-gray-900">
         {/* why section */}
-        <div class="lg:w-[90vw] md:w-[80vw] px-4 mx-10 py-[20%] sm:px-6 lg:px-8 items-center text-center outline-dashed my-10">
+        <div class="lg:w-[90vw] md:w-[80vw] px-4 mx-4 lg:mx-10 py-[20%] sm:px-6 lg:px-8 items-center text-center outline-dashed my-10">
           <div class="w-full">
-            <h2 class="text-3xl font-bold sm:text-4xl">Why?</h2>
+            <h2 class="text-2xl font-bold lg:text-4xl">Why?</h2>
 
-            <p class="mx-auto mt-4 max-w-xl sm:text-xl sm:leading-relaxed text-justify font-light">
+            <p class="mx-auto mt-4 max-w-xl text-sm lg:text-xl sm:leading-relaxed text-justify font-light">
               The future of news is decentralized and uncensored. This means
               that anyone, anywhere can publish news without fear of censorship
               or retribution. This also means that news can be spread more
@@ -20,10 +20,10 @@ function AboutPage() {
           </div>
         </div>
         {/* what section */}
-        <div class="lg:w-[90vw] md:w-[80vw] px-4 mx-10 py-[20%] sm:px-6 lg:px-8 items-center text-center outline-dashed mb-10 mt-3">
+        <div class="lg:w-[90vw] md:w-[80vw] px-4 mx-4 lg:mx-10 py-[20%] sm:px-6 lg:px-8 items-center text-center outline-dashed mb-10 mt-3">
           <div class="text-center w-full">
-            <h2 class="text-3xl font-bold sm:text-4xl">What?</h2>
-            <div className="max-w-xl mx-auto mt-4 font-light text-justify sm:text-xl sm:leading-relaxed">
+            <h2 class="text-2xl lg:text-4xl font-bold">What?</h2>
+            <div className="max-w-xl mx-auto mt-4 text-sm font-light text-justify lg:text-xl sm:leading-relaxed">
               A new kind of news platform is emerging, one that is decentralised
               and anonymous. This type of platform offers a unique way for
               people to get their news, without having to worry about censorship
@@ -59,11 +59,11 @@ function AboutPage() {
           </div>
         </div>
         {/* how section */}
-        <div class="lg:w-[90vw] md:w-[80vw] mx-10 px-4 py-[20%] sm:px-6 lg:px-8 items-center text-center outline-dashed my-10">
+        <div class="lg:w-[90vw] md:w-[80vw] mx-4 lg:mx-10 px-4 py-[20%] sm:px-6 lg:px-8 items-center text-center outline-dashed my-10">
           <div class="w-full">
-            <h2 class="text-3xl font-bold sm:text-4xl">How?</h2>
+            <h2 class="text-2xl font-bold lg:text-4xl">How?</h2>
           </div>
-          <div className="flex items-center w-full p-4 mt-8">
+          <div className="flex items-center w-full p-4 mt-8 text-sm lg:text-xl">
             <div className="max-w-xl m-auto">
               <div className="w-full">
                 <svg
@@ -76,11 +76,11 @@ function AboutPage() {
                 >
                   <path d="M7.752.066a.5.5 0 0 1 .496 0l3.75 2.143a.5.5 0 0 1 .252.434v3.995l3.498 2A.5.5 0 0 1 16 9.07v4.286a.5.5 0 0 1-.252.434l-3.75 2.143a.5.5 0 0 1-.496 0l-3.502-2-3.502 2.001a.5.5 0 0 1-.496 0l-3.75-2.143A.5.5 0 0 1 0 13.357V9.071a.5.5 0 0 1 .252-.434L3.75 6.638V2.643a.5.5 0 0 1 .252-.434L7.752.066ZM4.25 7.504 1.508 9.071l2.742 1.567 2.742-1.567L4.25 7.504ZM7.5 9.933l-2.75 1.571v3.134l2.75-1.571V9.933Zm1 3.134 2.75 1.571v-3.134L8.5 9.933v3.134Zm.508-3.996 2.742 1.567 2.742-1.567-2.742-1.567-2.742 1.567Zm2.242-2.433V3.504L8.5 5.076V8.21l2.75-1.572ZM7.5 8.21V5.076L4.75 3.504v3.134L7.5 8.21ZM5.258 2.643 8 4.21l2.742-1.567L8 1.076 5.258 2.643ZM15 9.933l-2.75 1.571v3.134L15 13.067V9.933ZM3.75 14.638v-3.134L1 9.933v3.134l2.75 1.571Z" />
                 </svg>
-                <div className="mt-5 text-left text-md">
+                <div className="mt-5 text-left">
                   - Every article published on the site is stored as a block on
                   the blockchain.
                 </div>
-                <div className="mt-2 text-left text-md">
+                <div className="mt-2 text-left">
                   - Readers can view a transparent and tamper-proof record of
                   all the articles that have been published on the site.
                 </div>
@@ -96,11 +96,11 @@ function AboutPage() {
                 >
                   <path d="M5.5 13v1.25c0 .138.112.25.25.25h1a.25.25 0 0 0 .25-.25V13h.5v1.25c0 .138.112.25.25.25h1a.25.25 0 0 0 .25-.25V13h.084c1.992 0 3.416-1.033 3.416-2.82 0-1.502-1.007-2.323-2.186-2.44v-.088c.97-.242 1.683-.974 1.683-2.19C11.997 3.93 10.847 3 9.092 3H9V1.75a.25.25 0 0 0-.25-.25h-1a.25.25 0 0 0-.25.25V3h-.573V1.75a.25.25 0 0 0-.25-.25H5.75a.25.25 0 0 0-.25.25V3l-1.998.011a.25.25 0 0 0-.25.25v.989c0 .137.11.25.248.25l.755-.005a.75.75 0 0 1 .745.75v5.505a.75.75 0 0 1-.75.75l-.748.011a.25.25 0 0 0-.25.25v1c0 .138.112.25.25.25L5.5 13zm1.427-8.513h1.719c.906 0 1.438.498 1.438 1.312 0 .871-.575 1.362-1.877 1.362h-1.28V4.487zm0 4.051h1.84c1.137 0 1.756.58 1.756 1.524 0 .953-.626 1.45-2.158 1.45H6.927V8.539z" />
                 </svg>
-                <div className="mt-5 text-left text-md">
+                <div className="mt-5 text-left">
                   - Cryptocurrency is a digital or virtual currency that uses
                   cryptography for security.
                 </div>
-                <div className="mt-2 text-left text-md">
+                <div className="mt-2 text-left">
                   - Cryptocurrencies are decentralized, meaning they are not
                   subject to government or financial institution control.
                 </div>
@@ -117,11 +117,11 @@ function AboutPage() {
                   <path d="m10.79 12.912-1.614-1.615a3.5 3.5 0 0 1-4.474-4.474l-2.06-2.06C.938 6.278 0 8 0 8s3 5.5 8 5.5a7.029 7.029 0 0 0 2.79-.588zM5.21 3.088A7.028 7.028 0 0 1 8 2.5c5 0 8 5.5 8 5.5s-.939 1.721-2.641 3.238l-2.062-2.062a3.5 3.5 0 0 0-4.474-4.474L5.21 3.089z" />
                   <path d="M5.525 7.646a2.5 2.5 0 0 0 2.829 2.829l-2.83-2.829zm4.95.708-2.829-2.83a2.5 2.5 0 0 1 2.829 2.829zm3.171 6-12-12 .708-.708 12 12-.708.708z" />
                 </svg>
-                <div className="mt-5 text-left text-md">
+                <div className="mt-5 text-left">
                   - All users are anonymous and their identities are not stored
                   or tracked.
                 </div>
-                <div className="mt-2 text-left text-md">
+                <div className="mt-2 text-left">
                   - All data is stored in an encrypted format and can not be
                   accessed by anyone.
                 </div>

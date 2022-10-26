@@ -9,32 +9,22 @@ function PostNews() {
           <img
             alt="Night"
             src={postNewsBg}
-            className="absolute inset-0 object-cover w-full h-screen opacity-80 sm:h-full"
+            className="absolute inset-0 object-cover w-full h-full opacity-80 lg:h-screen"
           />
 
           <div className="hidden lg:relative lg:block lg:p-12">
             <h1 className="mt-6 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl">
               Post your news here
             </h1>
-
-            <p className="max-w-lg mt-4 leading-relaxed text-gray-700">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi
-              nam dolorum aliquam, quibusdam aperiam voluptatum.
-            </p>
           </div>
         </section>
 
-        <main className="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:py-12 lg:px-16 xl:col-span-6">
-          <div className="max-w-xl lg:max-w-3xl">
+        <main className="flex items-center justify-center px-4 py-8 sm:px-12 lg:col-span-7 lg:py-12 lg:px-16 xl:col-span-6">
+          <div className="w-full lg:max-w-3xl">
             <div className="relative block -mt-16 lg:hidden">
               <h1 className="mt-12 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl">
                 Post your news here
               </h1>
-
-              <p className="mt-4 leading-relaxed text-gray-700">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Eligendi nam dolorum aliquam, quibusdam aperiam voluptatum.
-              </p>
             </div>
 
             <form className="grid grid-cols-6 gap-6 p-5 mt-5 outline-dashed">
@@ -67,7 +57,7 @@ function PostNews() {
                   News Media (Image)
                 </label>
 
-                <div className="relative mt-1 border border-gray-500 border-dashed">
+                <div className="relative mt-1 border border-gray-500 border-dashed rounded-md">
                   <input
                     type="file"
                     multiple

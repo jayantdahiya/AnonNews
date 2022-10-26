@@ -36,13 +36,13 @@ export const ConnectButtonCustom = () => {
                   <button
                     onClick={openConnectModal}
                     type="button"
-                    className="p-2 font-light text-gray-900 border border-gray-700 rounded-sm backdrop-blur-lg bg-white/50 hover:bg-gray-900 hover:text-gray-100"
+                    className="p-2 text-sm font-light text-gray-900 border border-gray-700 rounded-sm lg:text-md backdrop-blur-lg bg-white/50 hover:bg-gray-900 hover:text-gray-100"
                   >
                     Connect Wallet
                   </button>
                 );
               }
-              if (chain && chain.name === "Polygon") {
+              if (chain && chain.name !== "Polygon Mumbai") {
                 return (
                   <button
                     onClick={openChainModal}
@@ -58,7 +58,7 @@ export const ConnectButtonCustom = () => {
                   <button
                     onClick={openAccountModal}
                     type="button"
-                    className="p-2 font-light text-gray-900 border border-gray-500 rounded-sm hover:bg-gray-900 hover:text-gray-100 backdrop-blur-lg bg-white/50"
+                    className="z-50 p-2 text-sm text-gray-900 border border-gray-500 rounded-sm shadow-md lg:text-lg hover:bg-gray-900 hover:text-gray-100 backdrop-blur-lg bg-white/50"
                   >
                     {account.displayName}
                   </button>
@@ -67,7 +67,7 @@ export const ConnectButtonCustom = () => {
                     onClick={openChainModal}
                     style={{ display: "flex", alignItems: "center" }}
                     type="button"
-                    className="p-2 border border-l-0 border-gray-700 rounded-sm hover:bg-gray-900 hover:text-gray-100 backdrop-blur-lg bg-white/50"
+                    className="z-50 p-2 border border-l-0 border-gray-700 rounded-sm shadow-md hover:bg-gray-900 hover:text-gray-100 backdrop-blur-lg bg-white/50"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
