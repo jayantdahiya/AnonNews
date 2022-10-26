@@ -4,7 +4,7 @@ function TermsOfUse() {
   return (
     <div className="min-h-screen h-fit">
       <section class="bg-base text-gray-900">
-        <div class="lg:w-[90vw] md:w-[80vw] px-4 mx-10 py-[20%] sm:px-6 lg:px-8 items-center text-center outline-dashed mb-10 mt-3">
+        <div class="lg:w-[90vw] md:w-[80vw] px-4 mx-4 lg:mx-10 py-[20%] sm:px-6 lg:px-8 items-center text-center outline-dashed mb-10 mt-3">
           <div class="text-center w-full">
             <h2 class="text-xl font-bold lg:text-4xl">Terms of Use</h2>
             <div className="max-w-xl mx-auto mt-4 text-sm font-light text-justify lg:text-lg">
@@ -45,7 +45,7 @@ function TermsOfUse() {
             </div>
           </div>
         </div>
-        <div class="lg:w-[90vw] md:w-[80vw] px-4 mx-10 py-[20%] sm:px-6 lg:px-8 items-center text-center outline-dashed my-10">
+        <div class="lg:w-[90vw] md:w-[80vw] px-4 mx-4 lg:mx-10 py-[20%] sm:px-6 lg:px-8 items-center text-center outline-dashed my-10">
           <div class="w-full">
             <p class="mx-auto mt-4 max-w-xl text-justify font-light text-sm lg:text-lg">
               This platform is for posting news anonymously and decentralised.
@@ -65,7 +65,7 @@ function TermsOfUse() {
             </p>
           </div>
         </div>
-        <div class="lg:w-[90vw] md:w-[80vw] mx-10 px-4 py-[20%] sm:px-6 lg:px-8 items-center text-center outline-dashed my-10">
+        <div class="lg:w-[90vw] md:w-[80vw] mx-4 lg:mx-10 px-4 py-[20%] sm:px-6 lg:px-8 items-center text-center outline-dashed my-10">
           <div class="w-full">
             <h2 class="text-xl font-bold lg:text-4xl">
               Found a bug? Report it here

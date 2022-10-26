@@ -6,8 +6,8 @@ import { sampleImageLink, sampleNewsHeading, sampleNewsContent } from '../Utils/
 function News() {
   return (
     <>
-      <div className="grid p-4 m-5 lg:grid-cols-4 md:grid-cols-2 outline-dashed">
-        <div className="lg:col-span-3">
+      <div className="grid gap-8 p-4 my-5 lg:grid-cols-4 md:grid-cols-2">
+        <div className="lg:col-span-3 outline-dashed">
           <NewsCard
             imageUrl={sampleImageLink}
             heading={sampleNewsHeading}
@@ -15,14 +15,14 @@ function News() {
             url="1"
           />
         </div>
-        <div>
+        <div className="outline-dashed">
           <NewsCard
             imageUrl={sampleImageLink}
             heading={sampleNewsHeading}
             content={sampleNewsContent}
           />
         </div>
-        <div>
+        <div className="outline-dashed">
           <NewsCard
             imageUrl={sampleImageLink}
             heading={sampleNewsHeading}
@@ -30,7 +30,7 @@ function News() {
             url="2"
           />
         </div>
-        <div>
+        <div className="outline-dashed">
           <NewsCard
             imageUrl={sampleImageLink}
             heading={sampleNewsHeading}
@@ -38,28 +38,28 @@ function News() {
             url="3"
           />
         </div>
-        <div>
+        <div className="outline-dashed">
           <NewsCard
             imageUrl={sampleImageLink}
             heading={sampleNewsHeading}
             content={sampleNewsContent}
           />
         </div>
-        <div>
+        <div className="outline-dashed">
           <NewsCard
             imageUrl={sampleImageLink}
             heading={sampleNewsHeading}
             content={sampleNewsContent}
           />
         </div>
-        <div>
+        <div className="outline-dashed">
           <NewsCard
             imageUrl={sampleImageLink}
             heading={sampleNewsHeading}
             content={sampleNewsContent}
           />
         </div>
-        <div>
+        <div className="outline-dashed">
           <NewsCard
             imageUrl={sampleImageLink}
             heading={sampleNewsHeading}
