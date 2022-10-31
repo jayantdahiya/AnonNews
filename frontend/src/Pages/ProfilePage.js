@@ -58,10 +58,11 @@ function ProfilePage() {
   return (
     <div className="grid min-h-screen grid-cols-4 gap-4 p-4">
       <div className="col-span-4">
-        <div className="flex flex-col justify-start mt-16 ml-16">
+        <div className="flex flex-col justify-start p-4 mt-16 outline-dashed">
           <div className="text-3xl font-light">Hi 👋,</div>
           <div className="text-xl font-light">
-            Connect your wallet to see your news posts
+            Connect your wallet to see your profile
+            <br />
             <br />
             <span className='text-sm'>(ps: you can use the top right button 🙃)</span>
           </div>
