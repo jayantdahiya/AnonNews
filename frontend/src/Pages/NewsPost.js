@@ -5,9 +5,11 @@ import {
   sampleNewsHeading,
   sampleNewsContent,
 } from "../Utils/TestLinks";
+import { useAccount } from 'wagmi';
 
 function NewsPost() {
   const { url } = useParams();
+  const { isConnected } = useAccount();
   const handleVote = async() => {
     console.log({url});
   }
@@ -34,7 +36,9 @@ function NewsPost() {
           <div className="my-8 text-sm cursor-pointer text-start lg:text-md">
             <span
               className="p-2 font-light border-2 border-gray-900 rounded-sm hover:bg-gray-900 hover:text-gray-100"
-              onClick={handleVote}
+              onClick={
+                isConnected ? handleVote : () => alert("Please connect your wallet!")
+              }
             >
               Vote This News!
             </span>
