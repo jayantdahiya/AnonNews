@@ -2,11 +2,10 @@ import React from 'react'
 import postNewsBg from '../Utils/svg/postNewsBg.svg';
 import getContract from '../Utils/getContract';
 
-import Web3Strorage from 'web3.storage';
+import Web3Storage from "web3.storage";
 
 const client = new Web3Storage({
-  token:
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweENDMUQyZTc4RUVkRDI4MDY2YmIyNzhlNDlkQTkzNTZDRWNmMjE0OTEiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2NzE4MjAyMzgyMjgsIm5hbWUiOiJhbm9uTmV3cyJ9.1DXQ3NwAVG1ayAjlmc0vltu6j69G3Bk4dm1hlqilqfU",
+  token: process.env.WEB3STORAGE_API_TOKEN,
 });
 
 function PostNews() {
