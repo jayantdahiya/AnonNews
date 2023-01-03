@@ -2,11 +2,7 @@ import React from 'react'
 import postNewsBg from '../Utils/svg/postNewsBg.svg';
 import getContract from '../Utils/getContract';
 
-import Web3Storage from "web3.storage";
 
-const client = new Web3Storage({
-  token: process.env.WEB3STORAGE_API_TOKEN,
-});
 
 function PostNews() {
   const [termsOfUse, setTermsOfUse] = React.useState(false);
@@ -15,16 +11,18 @@ function PostNews() {
   const [newsMedia, setNewsMedia] = React.useState("");
 
   const contract = getContract();
-  
+
+  console.log(contract)
 
   const handleNewsPost = () => {
     if (newsHeadline === "" || newsContent === "" || newsMedia === "") {
       alert("Please fill all the fields");
     }
     else {
-      console.log(newsHeadline, newsContent, newsMedia)
+      console.log(newsHeadline, newsContent, newsMedia);
     }
   }
+
   return (
     <section className="min-h-screen mt-3 bg-base">
       <div className="lg:grid lg:h-screen lg:grid-cols-12">
@@ -34,7 +32,7 @@ function PostNews() {
             src={postNewsBg}
             className="absolute inset-0 object-cover w-full h-full opacity-80 lg:h-screen"
           />
-
+          
           <div className="hidden lg:relative lg:block lg:p-12">
             <h1 className="mt-6 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl">
               Post your news here
