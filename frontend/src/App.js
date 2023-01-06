@@ -1,5 +1,5 @@
 import './App.css';
-import {createContext} from 'react';
+import {createContext, useEffect, useState} from 'react';
 
 import NavBar from './Components/NavBar';
 import LandingPage from './Pages/News';
@@ -9,6 +9,7 @@ import NewsPost from './Pages/NewsPost';
 import NewNewsPost from './Pages/PostNews';
 import Landing from './Pages/Landing';
 import TermsOfUse from './Pages/TermsOfUse';
+import getContract from './Utils/getContract';
 
 import { ConnectButtonCustom } from './Utils/ConnectButton';
 import { useAccount } from 'wagmi';
@@ -19,10 +20,15 @@ export const AppContext = createContext();
 
 function App() {
   const { address } = useAccount();
+  const [ contract, setContract ] = useState("");
+  if(!contract) {
+    setContract(getContract())
+  }
   return (
     <AppContext.Provider
       value={{
         address,
+        contract
       }}
     >
       <div className="flex font-RobotoSlab bg-[#F5F2E8]">

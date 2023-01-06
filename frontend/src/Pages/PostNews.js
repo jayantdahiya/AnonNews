@@ -1,6 +1,5 @@
 import React from 'react'
 import postNewsBg from '../Utils/svg/postNewsBg.svg';
-import getContract from '../Utils/getContract';
 
 
 
@@ -9,10 +8,6 @@ function PostNews() {
   const [newsHeadline, setNewsHeadline] = React.useState("");
   const [newsContent, setNewsContent] = React.useState("");
   const [newsMedia, setNewsMedia] = React.useState("");
-
-  const contract = getContract();
-
-  console.log(contract)
 
   const handleNewsPost = () => {
     if (newsHeadline === "" || newsContent === "" || newsMedia === "") {
