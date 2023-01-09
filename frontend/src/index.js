@@ -13,7 +13,10 @@ import { publicProvider } from "wagmi/providers/public";
 
 const { chains, provider } = configureChains(
   [chain.polygonMumbai],
-  [alchemyProvider({ apiKey: process.env.ALCHEMY_KEY }), publicProvider()]
+  [
+    alchemyProvider({ apiKey: "0iAmaxqXkXu0LCsk7dxtu11lxllr6pgq" }),
+    publicProvider(),
+  ]
 );
 const { connectors } = getDefaultWallets({
   appName: 'AnonNews',
