@@ -1,5 +1,5 @@
 import './App.css';
-import {createContext, useEffect, useState} from 'react';
+import {createContext, useState} from 'react';
 
 import NavBar from './Components/NavBar';
 import LandingPage from './Pages/News';

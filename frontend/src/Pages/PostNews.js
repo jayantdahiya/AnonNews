@@ -1,20 +1,68 @@
 import React from 'react'
 import postNewsBg from '../Utils/svg/postNewsBg.svg';
+import { AppContext } from '../App';
 
+import { create } from "ipfs-http-client";
+
+async function ipfsClient() {
+  const ipfs = create({
+    host: "ipfs.infura.io",
+    port: 5001,
+    protocol: "https",
+  });
+  return ipfs;
+}
 
 
 function PostNews() {
+  const { contract } = React.useContext(AppContext);
   const [termsOfUse, setTermsOfUse] = React.useState(false);
   const [newsHeadline, setNewsHeadline] = React.useState("");
   const [newsContent, setNewsContent] = React.useState("");
   const [newsMedia, setNewsMedia] = React.useState("");
 
-  const handleNewsPost = () => {
+  const handleNewsPost = async (newsHeadline, newsContent, newsMedia) => {
     if (newsHeadline === "" || newsContent === "" || newsMedia === "") {
       alert("Please fill all the fields");
     }
     else {
-      console.log(newsHeadline, newsContent, newsMedia);
+      try {
+        uploadNewsTextToIPFS(newsHeadline, newsContent);
+        uploadMediaToIPFS(newsMedia);
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  }
+
+  const uploadMediaToIPFS = async () => {
+    try {
+      let ipfs = await ipfsClient();
+      let mediaData = newsMedia;
+      let options = {
+        warpWithDirectory: false,
+        progress: (prog) => console.log(`Saved: ${prog}`),
+      };
+      let mediaDataHash = await ipfs.add(mediaData, options);
+      console.log(mediaDataHash);
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const uploadNewsTextToIPFS = async () => {
+    try {
+      let ipfs = await ipfsClient();
+      let newsData = {
+        headline: newsHeadline,
+        content: newsContent,
+      };
+      let newsDataJSON = JSON.stringify(newsData);
+      let newsDataBuffer = Buffer.from(newsDataJSON);
+      let newsDataHash = await ipfs.add(newsDataBuffer);
+      console.log(newsDataHash);
+    } catch (error) {
+      console.log(error)
     }
   }
 
@@ -139,7 +187,7 @@ function PostNews() {
                   className="inline-block px-12 py-3 font-light text-gray-900 transition border border-gray-900 rounded-sm text-md shrink-0 hover:bg-gray-900 hover:text-gray-100 focus:outline-none"
                   onClick={() => {
                     if (termsOfUse) {
-                      handleNewsPost();
+                      handleNewsPost(newsHeadline, newsContent, newsMedia);
                     } else {
                       alert("Please read and agree to the terms of use");
                     }

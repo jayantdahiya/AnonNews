@@ -3,7 +3,7 @@ import React from 'react'
 function Landing() {
   return (
     <div class="h-screen mx-4 lg:mx-10 flex w-[70vw] lg:w-[90vw]">
-      <div class="max-w-96 h-fit outline-dashed p-5 m-auto mt-[40%] lg:mt-[20%] text-center">
+      <div class="max-w-96 h-fit outline-dashed p-5 m-auto mt-[30%] lg:mt-[10%] text-center">
         <h1 class="text-3xl font-bold lg:text-5xl text-gray-700 py-14">
           The news you deserve
           <br />
