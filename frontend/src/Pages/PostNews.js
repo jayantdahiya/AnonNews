@@ -4,15 +4,9 @@ import { AppContext } from '../App';
 
 import { create } from "ipfs-http-client";
 
-async function ipfsClient() {
-  const ipfs = create({
-    host: "ipfs.infura.io",
-    port: 5001,
-    protocol: "https",
-  });
-  return ipfs;
-}
+const ipfsClient = create("https://ipfs.infura.io:5001/api/v0");
 
+console.log(ipfsClient)
 
 function PostNews() {
   const { contract } = React.useContext(AppContext);
@@ -137,7 +131,7 @@ function PostNews() {
                     }}
                   />
                   {newsMedia ? (
-                    <div className="absolute top-0 left-0 right-0 p-10 m-auto text-sm text-center">
+                    <div className="absolute top-0 left-0 right-0 h-full p-10 m-auto text-sm text-center">
                       <img
                         src={URL.createObjectURL(newsMedia)}
                         alt="newsMedia"
