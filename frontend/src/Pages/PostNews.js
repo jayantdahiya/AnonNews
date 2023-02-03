@@ -6,7 +6,6 @@ import { create } from "ipfs-http-client";
 
 const ipfsClient = create("https://ipfs.infura.io:5001/api/v0");
 
-console.log(ipfsClient)
 
 function PostNews() {
   const { contract } = React.useContext(AppContext);
@@ -21,8 +20,9 @@ function PostNews() {
     }
     else {
       try {
-        uploadNewsTextToIPFS(newsHeadline, newsContent);
-        uploadMediaToIPFS(newsMedia);
+        console.log('uploading media and content to IPFS')
+        await uploadNewsTextToIPFS(newsHeadline, newsContent);
+        await uploadMediaToIPFS(newsMedia);
       } catch (error) {
         console.log(error)
       }
