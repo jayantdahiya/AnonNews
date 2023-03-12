@@ -27,10 +27,10 @@ function NewsCard({imageUrl, heading, content, url}) {
       <div className="p-4">
         <div className="flex">
           <span className="mt-4 text-xs text-left text-gray-400">
-            <span className='text-gray-500'>Author: {" "}</span> 0x000...000
+            <span className='text-gray-900'>Author: {" "}</span> 0x000...000
           </span>
           <span className="mt-4 ml-auto text-xs text-right text-gray-400">
-            <span className='text-gray-500'>Date: {" "}</span> 00/00/0000
+            <span className='text-gray-900'>Date: {" "}</span> 00/00/0000
           </span>
         </div>
         <br />
@@ -38,12 +38,12 @@ function NewsCard({imageUrl, heading, content, url}) {
           {trimmedString}
         </div>
         <span>
-          <div className="mt-3 cursor-pointer text-md text-end">
+          <div className="mt-3 text-center cursor-pointer text-md">
             <span
-              className="font-light border-gray-500 border-y-2"
+              className="text-black border-gray-500 border-y-2"
               onClick={handlePostCardClick}
             >
-              More
+              Read More
             </span>
           </div>
         </span>
