@@ -2,7 +2,7 @@ import './App.css';
 import {createContext, useState} from 'react';
 
 import NavBar from './Components/NavBar';
-import LandingPage from './Pages/News';
+import News from './Pages/News';
 import AboutPage from './Pages/AboutPage';
 import ProfilePage from './Pages/ProfilePage';
 import NewsPost from './Pages/NewsPost';
@@ -39,7 +39,7 @@ function App() {
         <div className="mt-16 ml-16">
           <Routes>
             <Route path="/" element={<Landing />} />
-            <Route path="/news" element={<LandingPage />} />
+            <Route path="/news" element={<News />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/newNewsPost" element={<NewNewsPost />} />
             <Route path="/profile/:address" element={<ProfilePage />} />

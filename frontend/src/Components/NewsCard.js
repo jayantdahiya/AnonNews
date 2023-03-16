@@ -14,10 +14,10 @@ function NewsCard({imageUrl, heading, content, url}) {
   }
   return (
     <div className="flex flex-col max-h-[800px] max-w-[90%] m-4">
-      <div className="pb-4 mt-4 text-xl font-light text-center border-b-2 border-gray-900 border-dashed lg:text-3xl">
+      <div className="pb-4 mt-4 text-xl font-light text-center border-b-4 border-gray-900 border-dashed lg:text-3xl">
         {heading}
       </div>
-      <div className="py-4 text-3xl border-b-2 border-gray-700 border-dashed">
+      <div className="py-4 text-3xl border-b-4 border-gray-700 border-dashed">
         <img
           src={imageUrl}
           alt=""
@@ -40,7 +40,7 @@ function NewsCard({imageUrl, heading, content, url}) {
         <span>
           <div className="mt-3 text-center cursor-pointer text-md">
             <span
-              className="text-black border-gray-500 border-y-2"
+              className="text-black border-gray-900 border-dashed border-y-2"
               onClick={handlePostCardClick}
             >
               Read More

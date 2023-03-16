@@ -12,10 +12,9 @@ import { useAccount } from 'wagmi';
 function ProfilePage() {
   const {address} = useParams();
   const {isConnected} = useAccount();
-  console.log(address)
   if (isConnected) {
     return (
-      <div className="flex items-center w-screen min-h-screen p-4 -ml-12 lg:mt-12">
+      <div className="flex items-center w-screen min-h-screen p-4 -ml-12">
         <div className="m-auto">
           <div className="max-w-lg p-4 mx-10 lg:mx-0 outline-dashed lg:max-w-2xl">
             <div className="Justify-start">
@@ -25,9 +24,6 @@ function ProfilePage() {
                   {address.slice(0, 4) + " ... " + address.slice(-4)}
                 </span>
               </div>
-              {/* <div className='m-10'>
-              <img src={profilePageBg} alt="" className="w-full h-80" />
-            </div> */}
               <div className="text-lg text-gray-900 lg:text-xl">
                 Here is the news you've posted
               </div>
