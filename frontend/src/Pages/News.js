@@ -1,4 +1,5 @@
 import React from 'react';
+import Loader from '../Components/Loader';
 import NewsCard from '../Components/NewsCard';
 import { sampleImageLink, sampleNewsHeading, sampleNewsContent } from '../Utils/TestLinks';
 
@@ -14,7 +15,7 @@ function News() {
             <NewsCard imageUrl={sampleImageLink} heading={sampleNewsHeading} content={sampleNewsContent} url="1" />
           </div>
           <div className='max-w-lg p-4 mx-10 mb-8 lg:mx-0 outline-dashed lg:max-w-xl'>
-            <NewsCard imageUrl={sampleImageLink} heading={sampleNewsHeading} content={sampleNewsContent} url="1" />
+            <Loader size='60' />
           </div>
         </div>
       </div>

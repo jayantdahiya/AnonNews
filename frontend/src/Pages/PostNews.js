@@ -1,91 +1,75 @@
-import React from 'react'
+import React, { useState } from 'react'
 import postNewsBg from '../Utils/svg/postNewsBg.svg';
 import { AppContext } from '../App';
-
 import { create } from "ipfs-http-client";
-
-const ipfsClient = create("https://ipfs.infura.io:5001/api/v0");
-
+import { Buffer } from 'buffer';
 
 function PostNews() {
-  const { contract } = React.useContext(AppContext);
-  const [termsOfUse, setTermsOfUse] = React.useState(false);
-  const [newsHeadline, setNewsHeadline] = React.useState("");
-  const [newsContent, setNewsContent] = React.useState("");
-  const [newsMedia, setNewsMedia] = React.useState("");
-
-  const handleNewsPost = async (newsHeadline, newsContent, newsMedia) => {
-    if (newsHeadline === "" || newsContent === "" || newsMedia === "") {
-      alert("Please fill all the fields");
+  const { contract, client } = React.useContext(AppContext);
+  const [termsOfUse, setTermsOfUse] = useState(false);
+  const [newsHeadline, setNewsHeadline] = useState();
+  const [newsContent, setNewsContent] = useState();
+  const [newsMedia, setNewsMedia] = useState();
+  
+  const HandleNewsPost = async (e, newsHeadline, newsContent, newsMedia) => {
+    e.preventDefault();
+    if (newsHeadline === "" && newsContent === "" && newsMedia === "") {
+      console.log('Please fill all the fields')
+    } else {
+      console.log('uploading news...')
+      await uploadNewsContent(newsHeadline, newsContent, newsMedia);
+      console.log('news uploaded!')
     }
-    else {
+  }
+
+  const uploadNewsContent = async (newsHeadline, newsContent, newsMedia) => {
+    let newUrl;
+    // uploading media to ipfs
+    if (newsMedia) {
       try {
-        console.log('uploading media and content to IPFS')
-        await uploadNewsTextToIPFS(newsHeadline, newsContent);
-        await uploadMediaToIPFS(newsMedia);
+        const added = await client.add(newsMedia);
+        console.log('Uploading news media file...')
+        const url = `https://anonnews.infura-ipfs.io/ipfs/${added.path}`;
+        newUrl = url.toString();
+        console.log('Media url: ', newUrl);
       } catch (error) {
         console.log(error)
       }
     }
-  }
-
-  const uploadMediaToIPFS = async () => {
+    // *********
+    let newsBody = {
+      headline: newsHeadline,
+      body: newsContent,
+      media: newUrl,
+    };
+    let jsonString = JSON.stringify(newsBody)
+    console.log(jsonString)
     try {
-      let ipfs = await ipfsClient();
-      let mediaData = newsMedia;
-      let options = {
-        warpWithDirectory: false,
-        progress: (prog) => console.log(`Saved: ${prog}`),
-      };
-      let mediaDataHash = await ipfs.add(mediaData, options);
-      console.log(mediaDataHash);
+      const added = await client.add(jsonString);
+      const url = `https://anonnews.infura-ipfs.io/ipfs/${added.path}`;
+      console.log("News content url: ", url);
+      setTermsOfUse(false);
+      setNewsHeadline("");
+      setNewsContent("");
+      setNewsMedia("");
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   }
 
-  const uploadNewsTextToIPFS = async () => {
-    try {
-      let ipfs = await ipfsClient();
-      let newsData = {
-        headline: newsHeadline,
-        content: newsContent,
-      };
-      let newsDataJSON = JSON.stringify(newsData);
-      let newsDataBuffer = Buffer.from(newsDataJSON);
-      let newsDataHash = await ipfs.add(newsDataBuffer);
-      console.log(newsDataHash);
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
+  
   return (
-    <section className="min-h-screen mt-3 bg-base">
+    <div className="min-h-screen mt-3 bg-base">
       <div className="lg:grid lg:h-screen lg:grid-cols-12">
-        <section className="relative flex items-end h-32 lg:col-span-5 lg:h-[95%] xl:col-span-6">
-          <img
-            alt="Night"
-            src={postNewsBg}
-            className="absolute inset-0 object-cover w-full h-full opacity-80 lg:h-screen"
-          />
-          
-          <div className="hidden lg:relative lg:block lg:p-12">
-            <h1 className="mt-6 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl">
-              Post your news here
-            </h1>
-          </div>
-        </section>
-
-        <main className="flex items-center justify-center py-8 pr-4 sm:px-12 lg:col-span-7 lg:py-12 lg:px-16 xl:col-span-6">
-          <div className="w-full lg:max-w-3xl">
+        <div className="flex items-center justify-center py-8 pr-4 sm:px-12 lg:col-span-7 lg:py-12 lg:px-16 xl:col-span-6">
+          <div className="w-full mx-auto lg:max-w-3xl">
             <div className="relative block -mt-16 lg:hidden">
-              <h1 className="mt-12 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl">
+              <div className="mt-12 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl">
                 Post your news here
-              </h1>
+              </div>
             </div>
 
-            <form className="grid grid-cols-6 gap-6 p-5 mt-5 outline-dashed">
+            <div className="grid grid-cols-6 gap-6 p-5 mt-5 outline-dashed">
               <div className="col-span-6">
                 <label className="block text-sm font-medium text-gray-700">
                   News Headline
@@ -131,13 +115,14 @@ function PostNews() {
                     }}
                   />
                   {newsMedia ? (
-                    <div className="absolute top-0 left-0 right-0 h-full p-10 m-auto text-sm text-center">
+                    <div className="absolute top-0 left-0 right-0 justify-center p-10 text-sm text-center">
                       <img
                         src={URL.createObjectURL(newsMedia)}
                         alt="newsMedia"
-                        className="w-1/2 h-1/2"
+                        width='200px'
+                        className='mx-auto'
                       />
-                      <div className="font-light text-gray-900">
+                      <div className="mx-auto font-light text-gray-900">
                         {newsMedia.name}
                       </div>
                     </div>
@@ -179,9 +164,9 @@ function PostNews() {
               <div className="flex w-full col-span-6 sm:items-center sm:gap-4">
                 <button
                   className="inline-block px-12 py-3 font-light text-gray-900 transition border border-gray-900 rounded-sm text-md shrink-0 hover:bg-gray-900 hover:text-gray-100 focus:outline-none"
-                  onClick={() => {
+                  onClick={(e) => {
                     if (termsOfUse) {
-                      handleNewsPost(newsHeadline, newsContent, newsMedia);
+                      HandleNewsPost(e, newsHeadline, newsContent, newsMedia);
                     } else {
                       alert("Please read and agree to the terms of use");
                     }
@@ -190,11 +175,11 @@ function PostNews() {
                   Post
                 </button>
               </div>
-            </form>
+            </div>
           </div>
-        </main>
+        </div>
       </div>
-    </section>
+    </div>
   );
 }
 
