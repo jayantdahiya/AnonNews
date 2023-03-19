@@ -1,9 +1,20 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { AppContext } from '../App';
 import Loader from '../Components/Loader';
 import NewsCard from '../Components/NewsCard';
 import { sampleImageLink, sampleNewsHeading, sampleNewsContent } from '../Utils/TestLinks';
 
 function News() {
+  const { contract } = useState(AppContext);
+  const getNews = async () => {
+    console.log('Fetching contract')
+    let news = await contract.getAllNews;
+    console.log(news)
+  }
+  useEffect(() => {
+    getNews()
+  }, [])
+  
   return (
     <>
       <div className='flex items-center w-screen min-h-screen p-4 -ml-16'>

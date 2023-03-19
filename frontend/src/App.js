@@ -9,7 +9,7 @@ import NewsPost from './Pages/FullNewsPost';
 import NewNewsPost from './Pages/PostNews';
 import Landing from './Pages/Landing';
 import TermsOfUse from './Pages/TermsOfUse';
-import getContract from './Utils/getContract';
+import GetContract from './Utils/GetContract';
 
 import { ConnectButtonCustom } from './Utils/ConnectButton';
 import { useAccount } from 'wagmi';
@@ -24,22 +24,8 @@ export const AppContext = createContext();
 
 function App() {
   const { address } = useAccount();
-  const [contract, setContract] = useState("");
-  if (!contract) {
-    setContract(getContract());
-  }
-  console.log('Smart comtract: ', contract);
-
   const [allNews, setAllNews] = useState([]);
-
-  const getAllNews = async () => {
-    const news = await contract.getAllNews();
-    console.log(news)
-  }
- useEffect(() => {
-   getAllNews();
- }, [contract])
- 
+  const [contract, setContract] = useState("");
 
 
   // Setting up ipfs infura
@@ -64,6 +50,8 @@ function App() {
         address,
         contract,
         client,
+        allNews,
+        setAllNews,
       }}
     >
       <div className="flex font-RobotoSlab bg-[#F5F2E8]">
@@ -81,6 +69,7 @@ function App() {
             <Route path="/NewsPost/:url" element={<NewsPost />} />
             <Route path="/terms" element={<TermsOfUse />} />
             <Route path='/ipfs' element={<TestingIPFS />} />
+            <Route path='/contract' element={<GetContract />} />
           </Routes>
         </div>
       </div>

@@ -3,14 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@alch/alchemy-web3": "^1.4.7",
     "@rainbow-me/rainbowkit": "^0.7.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "@walletconnect/auth-client": "^0.3.2",
-    "@web3modal/ethereum": "^2.0.0-alpha.3",
-    "@web3modal/react": "^2.0.0-alpha.4",
-    "better-sqlite3": "^7.6.2",
     "dotenv": "^16.0.3",
     "ethers": "^5.7.1",
     "ipfs-http-client": "^59.0.0",
@@ -18,10 +15,9 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.1",
     "react-scripts": "5.0.1",
+    "stream-browserify": "^3.0.0",
     "wagmi": "^0.6.7",
-    "web-vitals": "^2.1.4",
-    "web3.storage": "^4.4.0",
-    "web3modal": "^1.9.9"
+    "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
