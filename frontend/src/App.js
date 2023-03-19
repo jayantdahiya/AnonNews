@@ -11,6 +11,9 @@ import Landing from './Pages/Landing';
 import TermsOfUse from './Pages/TermsOfUse';
 import GetContract from './Utils/GetContract';
 
+import contractABI from "./Utils/AnonNews.json";
+import { ethers } from "ethers";
+
 import { ConnectButtonCustom } from './Utils/ConnectButton';
 import { useAccount } from 'wagmi';
 
@@ -25,8 +28,34 @@ export const AppContext = createContext();
 function App() {
   const { address } = useAccount();
   const [allNews, setAllNews] = useState([]);
-  const [contract, setContract] = useState("");
 
+  // Setting up smart contract
+  const getContract = () => {
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
+    let contract = new ethers.Contract(
+      process.env.REACT_APP_CONTRACT_ADDRESS,
+      contractABI.abi,
+      signer
+    );
+    return contract;
+  };
+
+  useEffect(() => {
+    getNews();
+  }, [])
+
+  const getNews = async () => {
+    try {
+      let allnews = await getContract().getAllNews();
+      console.log("All news on contract:", allnews);
+      setAllNews(allNews);
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  
+  // **********
 
   // Setting up ipfs infura
   const projectId = process.env.REACT_APP_INFURA_API_KEY;
@@ -48,10 +77,9 @@ function App() {
     <AppContext.Provider
       value={{
         address,
-        contract,
         client,
         allNews,
-        setAllNews,
+        getContract
       }}
     >
       <div className="flex font-RobotoSlab bg-[#F5F2E8]">

@@ -3,6 +3,8 @@ import { AppContext } from '../App';
 import Loader from '../Components/Loader';
 import NewsCard from '../Components/NewsCard';
 import { sampleImageLink, sampleNewsHeading, sampleNewsContent } from '../Utils/TestLinks';
+import contractABI from '../Utils/AnonNews.json';
+import { ethers } from 'ethers';
 
 function News() {
   const { contract } = useState(AppContext);
@@ -11,10 +13,6 @@ function News() {
     let news = await contract.getAllNews;
     console.log(news)
   }
-  useEffect(() => {
-    getNews()
-  }, [])
-  
   return (
     <>
       <div className='flex items-center w-screen min-h-screen p-4 -ml-16'>

@@ -5,11 +5,12 @@ import { create } from "ipfs-http-client";
 import { Buffer } from 'buffer';
 
 function PostNews() {
-  const { contract, client } = React.useContext(AppContext);
+  const { getContract, client } = React.useContext(AppContext);
   const [termsOfUse, setTermsOfUse] = useState(false);
   const [newsHeadline, setNewsHeadline] = useState();
   const [newsContent, setNewsContent] = useState();
   const [newsMedia, setNewsMedia] = useState();
+  const [newsMeta, setNewsMeta] = useState("");
   
   const HandleNewsPost = async (e, newsHeadline, newsContent, newsMedia) => {
     e.preventDefault();
@@ -18,7 +19,7 @@ function PostNews() {
     } else {
       console.log('uploading news...')
       await uploadNewsContent(newsHeadline, newsContent, newsMedia);
-      console.log('news uploaded!')
+      console.log('news uploaded to ipfs!')
     }
   }
 
@@ -48,15 +49,13 @@ function PostNews() {
       const added = await client.add(jsonString);
       const url = `https://anonnews.infura-ipfs.io/ipfs/${added.path}`;
       console.log("News content url: ", url);
-      setTermsOfUse(false);
-      setNewsHeadline("");
-      setNewsContent("");
-      setNewsMedia("");
+      await getContract().postNews(newsMeta).then((res) => {
+        console.log(res)
+      })
     } catch (error) {
       console.log(error);
     }
   }
-
   
   return (
     <div className="min-h-screen mt-3 bg-base">
