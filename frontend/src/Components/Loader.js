@@ -1,7 +1,6 @@
 import React from 'react'
 
 function Loader({ size }) {
-  console.log(size)
   return (
     <div className="flex justify-center w-full h-full">
       <div

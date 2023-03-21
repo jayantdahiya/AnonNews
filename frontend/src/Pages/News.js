@@ -6,6 +6,8 @@ import { sampleImageLink, sampleNewsHeading, sampleNewsContent } from '../Utils/
 
 function News() {
   const { allNews } = useState(AppContext);
+
+  console.log(allNews);
   return (
     <>
       <div className='flex items-center w-screen min-h-screen p-4 -ml-16'>

@@ -23,7 +23,7 @@ export const AppContext = createContext();
 
 function App() {
   const { address } = useAccount();
-  const [allNews, setAllNews] = useState([]);
+  const [ allNews, setAllNews] = useState();
 
   // Setting up smart contract
   const getContract = () => {
@@ -36,18 +36,30 @@ function App() {
     );
     return contract;
   };
+  // **********
 
+  // Getting all news from smart contract
   const getNews = async () => {
     try {
       let news = await getContract().getAllNews();
-      console.log("All news on contract:", news);
-      console.log(news[15])
-      setAllNews(news);
+      console.log('Fetching news from contract...')
+      // cleaning up news
+      let res = Object.keys(news).map((key) => [
+        news[key].author,
+        Number(news[key].id),
+        news[key].mediaUrl,
+        Date(Number(news[key].timestamp)),
+        Number(news[key].votes),
+      ]);
+      setAllNews(res);
+      console.log("Fetched all news from contract!");
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
   // **********
+
+  console.log(allNews)
 
   // Setting up ipfs infura
   const projectId = process.env.REACT_APP_INFURA_API_KEY;
@@ -65,7 +77,6 @@ function App() {
   });
   // **********
 
-
   useEffect(() => {
     getNews();
   }, []);
@@ -76,7 +87,6 @@ function App() {
         address,
         client,
         allNews,
-        getContract
       }}
     >
       <div className="flex font-RobotoSlab bg-[#F5F2E8]">
