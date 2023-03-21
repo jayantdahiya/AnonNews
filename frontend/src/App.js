@@ -1,5 +1,12 @@
 import './App.css';
-import {createContext, useState, useEffect} from 'react';
+
+import { createContext, useState, useEffect } from 'react';
+import { Routes, Route } from "react-router-dom";
+
+import { useAccount } from "wagmi";
+import { ethers } from "ethers";
+import { create } from "ipfs-http-client";
+import { Buffer } from "buffer";
 
 import NavBar from './Components/NavBar';
 import News from './Pages/News';
@@ -9,19 +16,8 @@ import NewsPost from './Pages/FullNewsPost';
 import NewNewsPost from './Pages/PostNews';
 import Landing from './Pages/Landing';
 import TermsOfUse from './Pages/TermsOfUse';
-import GetContract from './Utils/GetContract';
-
 import contractABI from "./Utils/AnonNews.json";
-import { ethers } from "ethers";
-
-import { ConnectButtonCustom } from './Utils/ConnectButton';
-import { useAccount } from 'wagmi';
-
-import { Routes, Route } from 'react-router-dom';
-import TestingIPFS from './TestingIPFS';
-
-import { create } from 'ipfs-http-client';
-import { Buffer } from 'buffer';
+import { ConnectButtonCustom } from './Components/ConnectButton';
 
 export const AppContext = createContext();
 
@@ -41,20 +37,16 @@ function App() {
     return contract;
   };
 
-  useEffect(() => {
-    getNews();
-  }, [])
-
   const getNews = async () => {
     try {
-      let allnews = await getContract().getAllNews();
-      console.log("All news on contract:", allnews);
-      setAllNews(allNews);
+      let news = await getContract().getAllNews();
+      console.log("All news on contract:", news);
+      console.log(news[15])
+      setAllNews(news);
     } catch (error) {
       console.log(error)
     }
   }
-  
   // **********
 
   // Setting up ipfs infura
@@ -71,7 +63,12 @@ function App() {
       authorization: auth,
     },
   });
+  // **********
 
+
+  useEffect(() => {
+    getNews();
+  }, []);
 
   return (
     <AppContext.Provider
@@ -96,8 +93,6 @@ function App() {
             <Route path="/profile/:address" element={<ProfilePage />} />
             <Route path="/NewsPost/:url" element={<NewsPost />} />
             <Route path="/terms" element={<TermsOfUse />} />
-            <Route path='/ipfs' element={<TestingIPFS />} />
-            <Route path='/contract' element={<GetContract />} />
           </Routes>
         </div>
       </div>
