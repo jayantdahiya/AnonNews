@@ -1,18 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { AppContext } from '../App';
 import Loader from '../Components/Loader';
 import NewsCard from '../Components/NewsCard';
 import { sampleImageLink, sampleNewsHeading, sampleNewsContent } from '../Utils/TestLinks';
-import contractABI from '../Utils/AnonNews.json';
-import { ethers } from 'ethers';
 
 function News() {
-  const { contract } = useState(AppContext);
-  const getNews = async () => {
-    console.log('Fetching contract')
-    let news = await contract.getAllNews;
-    console.log(news)
-  }
+  const { allNews } = useState(AppContext);
   return (
     <>
       <div className='flex items-center w-screen min-h-screen p-4 -ml-16'>

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { AppContext } from '../App';
 import { useAccount } from 'wagmi';
 
-import Tooltip from '../Utils/Tooltip';
+import Tooltip from './Tooltip';
 import NewsIcon from '../Utils/svg/sideBarNewsIcon.svg';
 import AboutIcon from '../Utils/svg/sideBarAboutIcon.svg';
 import ProfileIcon from '../Utils/svg/sideBarProfileIcon.svg';
