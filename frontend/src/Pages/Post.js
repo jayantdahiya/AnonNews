@@ -4,7 +4,7 @@ import { AppContext } from '../App';
 
 // import { sampleIPFSLink } from '../Utils/TestLinks';
 
-function PostNews() {
+function Post() {
   const { getContract, client } = React.useContext(AppContext);
   const [termsOfUse, setTermsOfUse] = useState(false);
   const [newsHeadline, setNewsHeadline] = useState();
@@ -187,4 +187,4 @@ function PostNews() {
   );
 }
 
-export default PostNews
+export default Post

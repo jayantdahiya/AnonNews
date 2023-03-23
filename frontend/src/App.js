@@ -13,7 +13,7 @@ import News from './Pages/News';
 import AboutPage from './Pages/AboutPage';
 import ProfilePage from './Pages/ProfilePage';
 import NewsPost from './Pages/FullNewsPost';
-import NewNewsPost from './Pages/PostNews';
+import PostNews from './Pages/Post';
 import Landing from './Pages/Landing';
 import TermsOfUse from './Pages/TermsOfUse';
 import contractABI from "./Utils/AnonNews.json";
@@ -23,7 +23,7 @@ export const AppContext = createContext();
 
 function App() {
   const { address } = useAccount();
-  const [ allNews, setAllNews] = useState();
+  const [allNews, setAllNews] = useState({});
 
   // Setting up smart contract
   const getContract = () => {
@@ -44,22 +44,21 @@ function App() {
       let news = await getContract().getAllNews();
       console.log('Fetching news from contract...')
       // cleaning up news
-      let res = Object.keys(news).map((key) => [
-        news[key].author,
-        Number(news[key].id),
-        news[key].mediaUrl,
-        Date(Number(news[key].timestamp)),
-        Number(news[key].votes),
-      ]);
-      setAllNews(res);
+      let res = Object.keys(news).map((key) => ({
+        id: Number(news[key].id),
+        media: news[key].mediaUrl,
+        author: news[key].author,
+        timestamp: new Date(Number(news[key].timestamp) * 1000),
+        votes: Number(news[key].votes),
+      }));
+      let cleaned = res.filter((item) => item.media !== "");
       console.log("Fetched all news from contract!");
+      setAllNews(cleaned);
     } catch (error) {
       console.log(error);
     }
   };
   // **********
-
-  console.log(allNews)
 
   // Setting up ipfs infura
   const projectId = process.env.REACT_APP_INFURA_API_KEY;
@@ -99,7 +98,7 @@ function App() {
             <Route path="/" element={<Landing />} />
             <Route path="/news" element={<News />} />
             <Route path="/about" element={<AboutPage />} />
-            <Route path="/newNewsPost" element={<NewNewsPost />} />
+            <Route path="/post" element={<PostNews />} />
             <Route path="/profile/:address" element={<ProfilePage />} />
             <Route path="/NewsPost/:url" element={<NewsPost />} />
             <Route path="/terms" element={<TermsOfUse />} />
