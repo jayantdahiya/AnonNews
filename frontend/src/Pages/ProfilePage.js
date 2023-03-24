@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import {useParams} from 'react-router-dom';
 import NewsCard from '../Components/NewsCard';
 import {
@@ -8,10 +8,16 @@ import {
 } from "../Utils/TestLinks";
 import { useAccount } from 'wagmi';
 
+import { AppContext } from '../App';
+
 
 function ProfilePage() {
   const {address} = useParams();
-  const {isConnected} = useAccount();
+  const { isConnected } = useAccount();
+  const { allNews } = useContext(AppContext);
+  // filtered allNews by address
+  let filteredNews = allNews.filter((news) => news.author === address);
+  console.log(filteredNews);
   if (isConnected) {
     return (
       <div className="flex items-center w-screen min-h-screen p-4 -ml-12">
@@ -31,20 +37,18 @@ function ProfilePage() {
           </div>
           <div className="max-w-lg p-2 mx-10 mt-10 mb-10 lg:mx-0 lg:p-4 outline-dashed lg:max-w-2xl">
             <div className="w-full">
-              <NewsCard
-                heading={sampleNewsHeading}
-                content={sampleNewsContent}
-                imageUrl={sampleImageLink}
-                url="000"
-              />
-            </div>
-            <div className="w-full">
-              <NewsCard
-                heading={sampleNewsHeading}
-                content={sampleNewsContent}
-                imageUrl={sampleImageLink}
-                url="000"
-              />
+              {filteredNews.map((news) => (
+                <NewsCard
+                  key={news.id}
+                  id={news.id}
+                  imageUrl={news.image}
+                  heading={news.heading}
+                  content={news.content}
+                  author={news.author}
+                  timestamp={news.timestamp}
+                  votes={news.votes}
+                />
+              ))}
             </div>
           </div>
         </div>

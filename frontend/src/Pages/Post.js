@@ -1,40 +1,55 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 
+import { ethers } from 'ethers';
+import contractABI from "../Utils/AnonNews.json";
 import { AppContext } from '../App';
 
 // import { sampleIPFSLink } from '../Utils/TestLinks';
 
 function Post() {
-  const { getContract, client } = React.useContext(AppContext);
+  const { client } = React.useContext(AppContext);
   const [termsOfUse, setTermsOfUse] = useState(false);
   const [newsHeadline, setNewsHeadline] = useState();
   const [newsContent, setNewsContent] = useState();
   const [newsMedia, setNewsMedia] = useState();
   const [newsMeta, setNewsMeta] = useState("");
-  
+
+  // Setting up smart contract
+  const getContract = () => {
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
+    let contract = new ethers.Contract(
+      process.env.REACT_APP_CONTRACT_ADDRESS,
+      contractABI.abi,
+      signer
+    );
+    return contract;
+  };
+  // **********
+
   const HandleNewsPost = async (e, newsHeadline, newsContent, newsMedia) => {
     e.preventDefault();
     if (newsHeadline === "" && newsContent === "" && newsMedia === "") {
-      console.log('Please fill all the fields')
+      console.log("Please fill all the fields");
     } else {
-      console.log('uploading news...')
+      console.log("uploading news...");
       await uploadNewsContent(newsHeadline, newsContent, newsMedia);
-      console.log('news uploaded to ipfs!')
+      console.log("news uploaded to ipfs!");
     }
-  }
-  
+  };
+
   const uploadNewsContent = async (newsHeadline, newsContent, newsMedia) => {
     let newUrl;
     // uploading media to IPFS
     if (newsMedia) {
       try {
         const added = await client.add(newsMedia);
-        console.log('Uploading news media file...')
+        console.log("Uploading news media file...");
         const url = `https://anonnews.infura-ipfs.io/ipfs/${added.path}`;
         newUrl = url.toString();
-        console.log('Media url: ', newUrl);
+        console.log("Media url: ", newUrl);
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
     }
     let newsBody = {
@@ -42,26 +57,27 @@ function Post() {
       body: newsContent,
       media: newUrl,
     };
-    let jsonString = JSON.stringify(newsBody)
+    let jsonString = JSON.stringify(newsBody);
     try {
       const added = await client.add(jsonString);
       const url = `https://anonnews.infura-ipfs.io/ipfs/${added.path}`;
       console.log("News content url: ", url);
-      updateContract(url)
+      updateContract(url);
     } catch (error) {
       console.log(error);
     }
-  }
+  };
   // updating smart contract with IPFS link
   const updateContract = async (url) => {
     try {
-      await getContract().postNews(url.toString())
-      console.log('Contract updated!')
+      await getContract().postNews(url.toString());
+      console.log("Contract updated!");
+      window.location.reload();
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
-  
+  };
+
   return (
     <div className="min-h-screen mt-3 bg-base">
       <div className="lg:grid lg:h-screen lg:grid-cols-12">
@@ -123,8 +139,8 @@ function Post() {
                       <img
                         src={URL.createObjectURL(newsMedia)}
                         alt="newsMedia"
-                        width='200px'
-                        className='mx-auto'
+                        width="200px"
+                        className="mx-auto"
                       />
                       <div className="mx-auto font-light text-gray-900">
                         {newsMedia.name}

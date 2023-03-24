@@ -1,9 +1,11 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
 
-function NewsCard({imageUrl, heading, content, url}) {
+function NewsCard({url, imageUrl, heading, content, author, timestamp, votes}) {
   const max_length = 200;
-  const trimmedString = content.length > max_length ? content.substring(0, max_length - 3) + "..." : content;
+  console.log("NewsCard:", url, imageUrl, heading, content, author, timestamp, votes);
+  const postContent = content.substring(0, max_length);
+  const postAuthor = author.substring(0, 3) + "..." + author.substring(38, 42);
 
   const navigate = useNavigate();
   const handlePostCardClick = () => {
@@ -13,7 +15,7 @@ function NewsCard({imageUrl, heading, content, url}) {
     }
   }
   return (
-    <div className="flex flex-col max-h-[800px] max-w-[90%] m-4">
+    <div className="flex flex-col max-h-[800px] max-w-[90%] m-4 border-4 border-gray-900 border-dashed">
       <div className="pb-4 mt-4 text-xl font-light text-center border-b-4 border-gray-900 border-dashed lg:text-3xl">
         {heading}
       </div>
@@ -27,18 +29,24 @@ function NewsCard({imageUrl, heading, content, url}) {
       <div className="p-4">
         <div className="flex">
           <span className="mt-4 text-xs text-left text-gray-400">
-            <span className='text-gray-900'>Author: {" "}</span> 0x000...000
+            <span className="text-gray-900">Author: </span> {postAuthor}
           </span>
           <span className="mt-4 ml-auto text-xs text-right text-gray-400">
-            <span className='text-gray-900'>Date: {" "}</span> 00/00/0000
+            <span className="text-gray-900">Date: </span>{" "}
+            {timestamp.toISOString().slice(0, 10)}
           </span>
         </div>
         <br />
         <div className="text-sm text-justify text-gray-500 lg:text-md">
-          {trimmedString}
+          {postContent} ...
         </div>
         <span>
-          <div className="mt-3 text-center cursor-pointer text-md">
+          <div>
+            <span className="text-xs text-right text-gray-400">
+              <span className="text-gray-900">Votes: </span> {votes}
+            </span>
+          </div>
+          <div className="mt-3 text-right cursor-pointer text-md">
             <span
               className="text-black border-gray-900 border-dashed border-y-2"
               onClick={handlePostCardClick}

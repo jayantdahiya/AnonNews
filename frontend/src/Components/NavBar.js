@@ -65,7 +65,7 @@ function NavBar() {
         <button
           onClick={
             isConnected ? (
-              () => (window.location.href = "/newNewsPost")
+              () => (window.location.href = "/post")
             ) : (
               () => alert("Please login to post news")
             )

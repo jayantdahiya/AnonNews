@@ -7,6 +7,7 @@ import { useAccount } from "wagmi";
 import { ethers } from "ethers";
 import { create } from "ipfs-http-client";
 import { Buffer } from "buffer";
+import axios from "axios";
 
 import NavBar from './Components/NavBar';
 import News from './Pages/News';
@@ -23,7 +24,8 @@ export const AppContext = createContext();
 
 function App() {
   const { address } = useAccount();
-  const [allNews, setAllNews] = useState({});
+  const [allNews, setAllNews] = useState([]);
+  const [loading, setLaoding] = useState(true);
 
   // Setting up smart contract
   const getContract = () => {
@@ -41,9 +43,11 @@ function App() {
   // Getting all news from smart contract
   const getNews = async () => {
     try {
-      let news = await getContract().getAllNews();
-      console.log('Fetching news from contract...')
+      var news = await getContract().getAllNews();
+      console.log("Fetching news from contract...");
       // cleaning up news
+      let cleaned = news.filter((item) => item.mediaUrl !== "");
+      console.log(cleaned);
       let res = Object.keys(news).map((key) => ({
         id: Number(news[key].id),
         media: news[key].mediaUrl,
@@ -51,14 +55,41 @@ function App() {
         timestamp: new Date(Number(news[key].timestamp) * 1000),
         votes: Number(news[key].votes),
       }));
-      let cleaned = res.filter((item) => item.media !== "");
+      getNewsMedia(res);
       console.log("Fetched all news from contract!");
-      setAllNews(cleaned);
     } catch (error) {
       console.log(error);
     }
   };
   // **********
+
+  const getNewsMedia = async (res) => {
+    let arr = [];
+    try {
+      Object.keys(res).map((key) => { 
+        fetch(res[key].media)
+          .then((res) => res.json())
+          .then((data) => {
+            arr.push({
+              id: res[key].id,
+              author: res[key].author,
+              timestamp: res[key].timestamp,
+              heading: data.headline,
+              content: data.body,
+              image: data.media,
+              votes: res[key].votes,
+            });
+          }).then(() => {
+            setLaoding(false);
+            setAllNews(arr);
+          })
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  console.log("All news:", allNews);
 
   // Setting up ipfs infura
   const projectId = process.env.REACT_APP_INFURA_API_KEY;
@@ -76,16 +107,15 @@ function App() {
   });
   // **********
 
-  useEffect(() => {
-    getNews();
-  }, []);
-
   return (
     <AppContext.Provider
       value={{
         address,
         client,
         allNews,
+        loading,
+        setLaoding,
+        getNews,
       }}
     >
       <div className="flex font-RobotoSlab bg-[#F5F2E8]">
