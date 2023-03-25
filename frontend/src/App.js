@@ -64,6 +64,8 @@ function App() {
   };
   // **********
 
+  // Getting news media from ipfs
+
   const getNewsMedia = async (res) => {
     let arr = [];
     try {
@@ -89,6 +91,7 @@ function App() {
       console.log(error);
     }
   };
+  // **********
 
   console.log("All news:", allNews);
 
