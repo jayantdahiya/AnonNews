@@ -46,6 +46,8 @@ contract AnonNews is ERC721, ERC721URIStorage {
         uint256 currentCount = _postCounts.current();
         // mint the token
         _safeMint(msg.sender, currentCount);
+        // Validate the mediaUrl
+        require(bytes(mediaUrl).length > 0, "Media url is required");
         // set the token data
         _setTokenURI(currentCount, mediaUrl);
         // Add post to the contract

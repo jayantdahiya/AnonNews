@@ -11,9 +11,9 @@ import axios from "axios";
 
 import NavBar from './Components/NavBar';
 import News from './Pages/News';
-import AboutPage from './Pages/AboutPage';
-import ProfilePage from './Pages/ProfilePage';
-import NewsPost from './Pages/FullNewsPost';
+import AboutPage from './Pages/About';
+import ProfilePage from './Pages/Profile';
+import NewsPost from './Pages/FullPost';
 import PostNews from './Pages/Post';
 import Landing from './Pages/Landing';
 import TermsOfUse from './Pages/TermsOfUse';
@@ -28,8 +28,9 @@ function App() {
   const [loading, setLaoding] = useState(true);
 
   // Setting up smart contract
-  const getContract = () => {
+  const getContract = async() => {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
+    await provider.send('eth_requestAccounts', []);
     const signer = provider.getSigner();
     let contract = new ethers.Contract(
       process.env.REACT_APP_CONTRACT_ADDRESS,
@@ -46,7 +47,7 @@ function App() {
       var news = await getContract().getAllNews();
       console.log("Fetching news from contract...");
       // cleaning up news
-      let cleaned = news.filter((item) => item.mediaUrl !== "");
+      let cleaned = news?.filter((item) => item.mediaUrl !== "");
       console.log(cleaned);
       let res = Object.keys(news).map((key) => ({
         id: Number(news[key].id),
@@ -118,8 +119,10 @@ function App() {
         getNews,
       }}
     >
-      <div className="flex font-RobotoSlab bg-[#F5F2E8]">
-        <NavBar />
+      <div className="flex w-screen h-screen font-RobotoSlab bg-[#F5F2E8] items-center justify-center">
+        <div className='fixed left-0 h-screen'>
+          <NavBar />
+        </div>
         <div className="fixed top-3 right-3">
           <ConnectButtonCustom />
         </div>

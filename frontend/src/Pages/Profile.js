@@ -1,15 +1,9 @@
 import React, {useContext} from 'react'
 import {useParams} from 'react-router-dom';
 import NewsCard from '../Components/NewsCard';
-import {
-  sampleImageLink,
-  sampleNewsHeading,
-  sampleNewsContent,
-} from "../Utils/TestLinks";
 import { useAccount } from 'wagmi';
 
 import { AppContext } from '../App';
-
 
 function ProfilePage() {
   const {address} = useParams();
