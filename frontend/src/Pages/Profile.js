@@ -14,9 +14,9 @@ function ProfilePage() {
   console.log(filteredNews);
   if (isConnected) {
     return (
-      <div className="flex items-center w-screen min-h-screen p-4 -ml-12">
+      <div className="flex items-center w-screen min-h-screen p-4">
         <div className="m-auto">
-          <div className="max-w-lg p-4 mx-10 lg:mx-0 outline-dashed lg:max-w-2xl">
+          <div className="max-w-lg p-4 mx-10 border-4 border-gray-900 border-dashed lg:mx-0 lg:max-w-2xl">
             <div className="Justify-start">
               <div className="inline-flex">
                 <div className="text-3xl font-light">Hi 👋</div>
@@ -29,7 +29,7 @@ function ProfilePage() {
               </div>
             </div>
           </div>
-          <div className="max-w-lg p-2 mx-10 mt-10 mb-10 lg:mx-0 lg:p-4 outline-dashed lg:max-w-2xl">
+          <div className="max-w-lg p-2 mx-10 mt-10 mb-10 border-4 border-gray-900 border-dashed lg:mx-0 lg:p-4 lg:max-w-2xl">
             <div className="w-full">
               {filteredNews.map((news) => (
                 <NewsCard

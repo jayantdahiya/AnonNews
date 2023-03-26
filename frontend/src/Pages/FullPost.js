@@ -14,7 +14,7 @@ function NewsPost() {
     console.log({url});
   }
   return (
-    <div className="flex items-center w-screen min-h-screen p-4 -ml-12">
+    <div className="flex items-center w-screen min-h-screen p-4">
       <div className='m-auto'>
         <div className="flex-col max-w-lg">
         <div className="p-4 text-xl font-bold text-center outline-dashed lg:text-4xl shrink">

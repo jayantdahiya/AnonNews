@@ -122,14 +122,14 @@ function App() {
         getNews,
       }}
     >
-      <div className="flex w-screen h-screen font-RobotoSlab bg-[#F5F2E8] items-center justify-center">
+      <div className="flex min-h-screen font-RobotoSlab bg-[#F5F2E8]">
         <div className='fixed left-0 h-screen'>
           <NavBar />
         </div>
         <div className="fixed top-3 right-3">
           <ConnectButtonCustom />
         </div>
-        <div className="mt-16 ml-16">
+        <div className="m-auto">
           <Routes>
             <Route path="/" element={<Landing />} />
             <Route path="/news" element={<News />} />

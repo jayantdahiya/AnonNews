@@ -18,7 +18,7 @@ function News() {
 
   if (loading) {
     return (
-      <div className="flex items-center w-screen min-h-screen p-4 -ml-16">
+      <div className="flex items-center w-screen min-h-screen p-4">
         <div className="m-auto">
           <div className="p-4 mx-10 mb-8 min-w-lg lg:mx-0 lg:max-w-xl">
             <Loader size='60' />
@@ -28,7 +28,7 @@ function News() {
     )
   } else {
     return (
-      <div className="flex flex-col items-center w-screen min-h-screen p-4 -ml-16">
+      <div className="flex flex-col items-center w-screen min-h-screen p-4">
         <div className="m-auto">
           <div className="p-4 mx-10 mb-8 min-w-lg lg:mx-0 lg:max-w-xl">
             {allNews.map((news) => (

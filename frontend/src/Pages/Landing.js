@@ -2,8 +2,8 @@ import React from 'react'
 
 function Landing() {
   return (
-    <div className="p-10 mx-auto space-y-3 text-center border-4 border-gray-900 border-dashed">
-      <div className="flex flex-col">
+    <div className="p-10 space-y-3 text-center border-4 border-gray-900 border-dashed">
+      <div className="flex-col">
         <div className="text-4xl font-bold text-gray-700">
           The news you deserve
         </div>
@@ -11,15 +11,15 @@ function Landing() {
           -Uncensored & Anonymous
         </div>
       </div>
-      <div className="flex flex-row justify-center gap-16">
+      <div className="flex flex-row justify-center">
         <a
-          className="px-4 py-2 border-4 border-gray-900 border-dashed hover:bg-gray-900 hover:text-gray-200"
+          className="px-4 py-2 border-2 border-gray-900 hover:bg-gray-900 hover:text-gray-200"
           href="/news"
         >
           View News
         </a>
         <a
-          className="inline-flex gap-2 px-4 py-2 border-4 border-gray-900 border-dashed hover:bg-gray-900 hover:text-gray-200"
+          className="inline-flex items-center gap-2 px-4 py-2 border-2 border-gray-900 hover:bg-gray-900 hover:text-gray-200"
           href="https://github.com/jayantdahiya/AnonNews"
         >
           <svg
