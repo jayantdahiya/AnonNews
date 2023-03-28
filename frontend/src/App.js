@@ -4,9 +4,6 @@ import { createContext, useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import { useAccount } from "wagmi";
-import { ethers } from "ethers";
-import { create } from "ipfs-http-client";
-import { Buffer } from "buffer";
 
 import NavBar from "./Components/NavBar";
 import News from "./Pages/News";
@@ -16,8 +13,9 @@ import NewsPost from "./Pages/FullPost";
 import PostNews from "./Pages/Post";
 import Landing from "./Pages/Landing";
 import TermsOfUse from "./Pages/TermsOfUse";
-import contractABI from "./Utils/AnonNews.json";
 import { ConnectButtonCustom } from "./Components/ConnectButton";
+
+import { getContract } from "./Utils/Contract";
 
 export const AppContext = createContext();
 
@@ -25,20 +23,6 @@ function App() {
   const { address } = useAccount();
   const [allNews, setAllNews] = useState([]);
   const [loading, setLoading] = useState(true);
-
-  // Setting up smart contract
-  const getContract = () => {
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    provider.send("eth_requestAccounts", []);
-    const signer = provider.getSigner();
-    let contract = new ethers.Contract(
-      process.env.REACT_APP_CONTRACT_ADDRESS,
-      contractABI.abi,
-      signer
-    );
-    return contract;
-  };
-  // **********
 
   // Getting all news from smart contract
   const getNews = async () => {
@@ -55,7 +39,7 @@ function App() {
         votes: Number(news[key].votes),
       }));
       console.log("News from contract: ", res);
-      await getNewsMedia(res);
+      await GetNewsMedia(res);
       console.log("Fetched all news from contract!");
     } catch (error) {
       console.log(error);
@@ -64,8 +48,7 @@ function App() {
   // **********
 
   // Getting news media from ipfs
-
-  const getNewsMedia = async (res) => {
+  const GetNewsMedia = async (res) => {
     let arr = [];
     try {
       Object.keys(res).map(async (key, idx) => {
@@ -96,22 +79,6 @@ function App() {
   };
   // **********
 
-  // Setting up ipfs infura (POST)
-  const projectId = process.env.REACT_APP_INFURA_API_KEY;
-  const projectSecret = process.env.REACT_APP_INFURA_API_KEY_SECRET;
-  const auth =
-    "Basic " + Buffer.from(projectId + ":" + projectSecret).toString("base64");
-  const client = create({
-    host: "ipfs.infura.io",
-    port: 5001,
-    protocol: "https",
-    apiPath: "/api/v0",
-    headers: {
-      authorization: auth,
-    },
-  });
-  // **********
-
   useEffect(() => {
     getNews();
   }, []);
@@ -120,11 +87,9 @@ function App() {
     <AppContext.Provider
       value={{
         address,
-        client,
         allNews,
         loading,
         setLoading,
-        getNews,
       }}
     >
       <div className="flex min-h-screen font-RobotoSlab bg-[#F5F2E8]">

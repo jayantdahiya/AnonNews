@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 import { useAccount } from 'wagmi';
 import { AppContext } from '../App';
 
+import { getContract } from '../Utils/Contract';
+
 function NewsPost() {
   const { url } = useParams();
   const { allNews, address } = useContext(AppContext);
@@ -10,9 +12,20 @@ function NewsPost() {
   // filter allNews to get the news with the same id as the url
   const newsPost = allNews.filter((item) => item.id === Number(url))[0];
   // console.log(newsPost);
-  const handleVote = async() => {
-    console.log({url});
-  }
+  const voteNews = async (id) => {
+    if(newsPost.author === address) {
+      alert("You can't vote on your own news!");
+      return;
+    } else {
+      try {
+        await getContract().voteNews(id);
+        alert('Voted for news!');
+        console.log("Voted for news!");
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
   return (
     <div className="flex items-center mt-12">
       <div className="m-auto">
@@ -28,7 +41,7 @@ function NewsPost() {
             />
           </div>
           <div className="p-4 mb-4 bordered-box">
-            <div className="flex flex-col lg:flex-row">
+            <div className="flex flex-row shrink">
               <span className="mt-4 text-left text-gray-400 text-md">
                 <span className="font-semibold text-gray-900">Date: </span>{" "}
                 {newsPost.timestamp.toISOString().slice(0, 10)}
@@ -45,9 +58,9 @@ function NewsPost() {
               {newsPost.content}
             </div>
             <br />
-            <div className='flex items-center justify-between'>
+            <div className="flex items-center justify-between">
               <span className="inline-flex font-semibold text-gray-400 text-md">
-                <div className="text-gray-900">Votes:</div>{" "}
+                <div className="text-gray-900">Votes:</div>&nbsp;
                 {newsPost.votes}
               </span>
               <div>
@@ -55,7 +68,7 @@ function NewsPost() {
                   className="p-3 font-semibold text-gray-200 bg-gray-900 border-2 border-gray-900 rounded-sm cursor-pointer w-fit hover:bg-gray-900 hover:text-gray-100"
                   onClick={
                     address
-                      ? handleVote
+                      ? () => voteNews(newsPost.id)
                       : () => alert("Please connect your wallet!")
                   }
                 >
