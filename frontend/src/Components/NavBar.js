@@ -17,7 +17,7 @@ function NavBar() {
    navigate(`/profile/${address}`);
  };
   return (
-    <div className="flex flex-col justify-between w-12 lg:w-16 h-screen backdrop-blur-md bg-[#F5F2E8]/40 border-gray-700 fixed">
+    <div className="flex flex-col justify-between h-screen backdrop-blur-md bg-[#F5F2E8]/40 border-gray-700">
       <div>
         <div className="inline-flex items-center justify-center w-full h-16 cursor-pointer bg-[#1E2022] text-[#F0F5F9]">
           <a href='/'>

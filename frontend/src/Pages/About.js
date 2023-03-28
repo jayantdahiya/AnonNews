@@ -5,7 +5,7 @@ function AboutPage() {
     <div className="min-h-screen h-fit">
       <section className="text-gray-900 bg-base">
         {/* why section */}
-        <div className="lg:w-[90vw] md:w-[80vw] px-4 mx-4 lg:mx-10 py-[20%] sm:px-6 lg:px-8 items-center text-center border-dashed border-4 border-gray-900 my-10">
+        <div className="lg:w-[90vw] md:w-[80vw] px-4 lg:mx-10 py-[20%] sm:px-6 lg:px-8 items-center text-center border-dashed border-4 border-gray-900 my-10">
           <div className="w-full">
             <h2 className="text-2xl font-bold lg:text-4xl">Why?</h2>
 
@@ -20,7 +20,7 @@ function AboutPage() {
           </div>
         </div>
         {/* what section */}
-        <div className="lg:w-[90vw] md:w-[80vw] px-4 mx-4 lg:mx-10 py-[20%] sm:px-6 lg:px-8 items-center text-center border-dashed border-4 border-gray-900 mb-10 mt-3">
+        <div className="lg:w-[90vw] md:w-[80vw] px-4 lg:mx-10 py-[20%] sm:px-6 lg:px-8 items-center text-center border-dashed border-4 border-gray-900 mb-10 mt-3">
           <div className="w-full text-center">
             <h2 className="text-2xl font-bold lg:text-4xl">What?</h2>
             <div className="max-w-xl mx-auto mt-4 text-sm font-light text-justify lg:text-xl sm:leading-relaxed">
@@ -59,7 +59,7 @@ function AboutPage() {
           </div>
         </div>
         {/* how section */}
-        <div className="flex flex-col lg:w-[90vw] md:w-[80vw] mx-4 lg:mx-10 px-4 py-[20%] sm:px-6 lg:px-8 items-center text-center border-dashed border-4 border-gray-900 my-10">
+        <div className="flex flex-col lg:w-[90vw] md:w-[80vw] lg:mx-10 px-4 py-[20%] sm:px-6 lg:px-8 items-center text-center border-dashed border-4 border-gray-900 my-10">
           <div className="w-full">
             <h2 className="text-2xl font-bold lg:text-4xl">How?</h2>
           </div>

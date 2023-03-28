@@ -6,3 +6,9 @@
     font-family: 'RobotoSlab';
     src: url('./Fonts/RobotoSlab-VariableFont_wght.ttf');
 }
+
+@layer components {
+  .bordered-box {
+    @apply border-4 border-gray-900 border-dashed shadow-lg;
+  }
+}

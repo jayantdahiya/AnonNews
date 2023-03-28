@@ -4,6 +4,7 @@ import NewsCard from '../Components/NewsCard';
 import { useAccount } from 'wagmi';
 
 import { AppContext } from '../App';
+import { ConnectButtonCustom } from '../Components/ConnectButton';
 
 function ProfilePage() {
   const {address} = useParams();
@@ -11,56 +12,39 @@ function ProfilePage() {
   const { allNews } = useContext(AppContext);
   // filtered allNews by address
   let filteredNews = allNews.filter((news) => news.author === address);
-  console.log(filteredNews);
+  console.log('Filtered News: ',filteredNews);
   if (isConnected) {
     return (
-      <div className="flex items-center w-screen min-h-screen p-4">
-        <div className="m-auto">
-          <div className="max-w-lg p-4 mx-10 border-4 border-gray-900 border-dashed lg:mx-0 lg:max-w-2xl">
-            <div className="Justify-start">
-              <div className="inline-flex">
-                <div className="text-3xl font-light">Hi 👋</div>
-                <span className="p-2 text-xl font-light text-gray-900">
-                  {address.slice(0, 4) + " ... " + address.slice(-4)}
-                </span>
-              </div>
-              <div className="text-lg text-gray-900 lg:text-xl">
-                Here is the news you've posted
-              </div>
-            </div>
+      <div className='w-full lg:w-[30vw]'>
+        <div className='p-4 my-12 bordered-box'>
+          <div className='text-2xl'>
+            Hi, {address.substring(0, 3) + "..." + address.substring(38, 42)}
           </div>
-          <div className="max-w-lg p-2 mx-10 mt-10 mb-10 border-4 border-gray-900 border-dashed lg:mx-0 lg:p-4 lg:max-w-2xl">
-            <div className="w-full">
-              {filteredNews.map((news) => (
-                <NewsCard
-                  key={news.id}
-                  id={news.id}
-                  imageUrl={news.image}
-                  heading={news.heading}
-                  content={news.content}
-                  author={news.author}
-                  timestamp={news.timestamp}
-                  votes={news.votes}
-                />
-              ))}
-            </div>
-          </div>
+          <div className='text-xl'>Here are the news you've posted:</div>
+        </div>
+        <div>
+          {filteredNews.map((news) => (
+            <NewsCard
+              key={news.id}
+              url={news.id}
+              imageUrl={news.image}
+              heading={news.heading}
+              content={news.content}
+              author={news.author}
+              timestamp={news.timestamp}
+              votes={news.votes}
+            />))}
         </div>
       </div>
     );
   }
   return (
-    <div className="grid min-h-screen grid-cols-4 gap-4 p-4">
-      <div className="col-span-4">
-        <div className="flex flex-col justify-start p-4 mt-16 outline-dashed">
-          <div className="text-3xl font-light">Hi 👋,</div>
-          <div className="text-xl font-light">
-            Connect your wallet to see your profile
-            <br />
-            <br />
-            <span className='text-sm'>(ps: you can use the top right button 🙃)</span>
-          </div>
-        </div>
+    <div className="p-10 text-lg border-4 border-gray-900 border-dashed lg:text-2xl">
+      Hi 👋,
+      <br />
+      connect your wallet to view your profile
+      <div className='m-8'>
+        <ConnectButtonCustom />
       </div>
     </div>
   );

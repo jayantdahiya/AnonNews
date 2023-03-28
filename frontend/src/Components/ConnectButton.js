@@ -36,7 +36,7 @@ export const ConnectButtonCustom = () => {
                   <button
                     onClick={openConnectModal}
                     type="button"
-                    className="p-2 text-sm font-light border-4 border-gray-500 border-dashed rounded-sm text-dark lg:text-md backdrop-blur-lg bg-white/50 hover:bg-gray-900 hover:text-gray-100 hover:border-gray-100"
+                    className="p-2 text-sm font-normal border-4 border-gray-900 border-dashed rounded-sm text-dark lg:text-md hover:bg-gray-900 hover:text-gray-100"
                   >
                     Connect Wallet
                   </button>
@@ -47,7 +47,7 @@ export const ConnectButtonCustom = () => {
                   <button
                     onClick={openChainModal}
                     type="button"
-                    className="p-2 text-sm font-light border-4 border-gray-500 border-dashed rounded-sm text-dark lg:text-md backdrop-blur-lg bg-white/50 hover:bg-gray-900 hover:text-gray-100 hover:border-gray-100"
+                    className="p-2 text-sm font-normal bg-transparent border-4 border-gray-900 border-dashed rounded-sm text-dark lg:text-md backdrop-blur-lg hover:bg-gray-900 hover:text-gray-100"
                   >
                     Wrong network
                   </button>
@@ -58,7 +58,7 @@ export const ConnectButtonCustom = () => {
                   <button
                     onClick={openAccountModal}
                     type="button"
-                    className="p-2 text-sm font-light border-l-4 border-gray-500 border-dashed rounded-sm border-y-4 text-dark lg:text-md backdrop-blur-lg bg-white/50 hover:bg-gray-900 hover:text-gray-100 hover:border-gray-100"
+                    className="p-2 text-sm font-normal bg-transparent border-l-4 border-gray-900 border-dashed rounded-sm border-y-4 text-dark lg:text-md backdrop-blur-lg hover:bg-gray-900 hover:text-gray-100"
                   >
                     {account.displayName}
                   </button>
@@ -67,13 +67,13 @@ export const ConnectButtonCustom = () => {
                     onClick={openChainModal}
                     style={{ display: "flex", alignItems: "center" }}
                     type="button"
-                    className="p-2 text-sm font-light border-4 border-gray-500 border-dashed rounded-sm text-dark lg:text-md backdrop-blur-lg bg-white/50 hover:bg-gray-900 hover:text-gray-100 hover:border-gray-100"
+                    className="p-2 text-sm font-normal bg-transparent border-4 border-gray-900 border-dashed rounded-sm text-dark lg:text-md backdrop-blur-lg hover:bg-gray-900 hover:text-gray-100"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="16"
                       height="16"
-                      fill="currentColor"
+                      fill="gray-900"
                       className="bi bi-three-dots-vertical"
                       viewBox="0 0 16 16"
                     >

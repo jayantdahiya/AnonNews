@@ -2,7 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom';
 
 function NewsCard({url, imageUrl, heading, content, author, timestamp, votes}) {
-  const max_length = 200;
+  const max_length = 500;
   console.log("NewsCard:", url, imageUrl, heading, content, author, timestamp, votes);
   const postContent = content.substring(0, max_length);
   const postAuthor = author.substring(0, 3) + "..." + author.substring(38, 42);
@@ -15,8 +15,8 @@ function NewsCard({url, imageUrl, heading, content, author, timestamp, votes}) {
     }
   }
   return (
-    <div className="flex flex-col max-h-[800px] max-w-[90%] m-4 border-4 border-gray-900 border-dashed">
-      <div className="pb-4 mt-4 text-xl font-light text-center border-b-4 border-gray-900 border-dashed lg:text-3xl">
+    <div className="flex flex-col min-h-[60vh] mb-6 border-4 border-gray-900 border-dashed shadow-lg">
+      <div className="pb-4 mt-4 text-2xl font-semibold text-center border-b-4 border-gray-900 border-dashed lg:text-3xl">
         {heading}
       </div>
       <div className="py-4 text-3xl border-b-4 border-gray-700 border-dashed">
@@ -28,27 +28,28 @@ function NewsCard({url, imageUrl, heading, content, author, timestamp, votes}) {
       </div>
       <div className="p-4">
         <div className="flex">
-          <span className="mt-4 text-xs text-left text-gray-400">
-            <span className="text-gray-900">Author: </span> {postAuthor}
+          <span className="mt-4 text-sm text-gray-400 text-md">
+            <span className="font-semibold text-gray-900">Author: </span> {postAuthor}
           </span>
-          <span className="mt-4 ml-auto text-xs text-right text-gray-400">
-            <span className="text-gray-900">Date: </span>{" "}
+          <span className="mt-4 ml-auto text-sm text-right text-gray-400">
+            <span className="font-semibold text-gray-900">Date: </span>{" "}
             {timestamp.toISOString().slice(0, 10)}
           </span>
         </div>
         <br />
-        <div className="text-sm text-justify text-gray-500 lg:text-md">
+        <div className="text-justify text-gray-400 text-md lg:text-md">
           {postContent} ...
         </div>
+        <br />
         <span>
-          <div>
-            <span className="text-xs text-right text-gray-400">
-              <span className="text-gray-900">Votes: </span> {votes}
+          <div className='flex'>
+            <span className="text-right text-gray-400 text-md">
+              <span className="font-semibold text-gray-900">Votes: </span> {votes}
             </span>
           </div>
           <div className="mt-3 text-right cursor-pointer text-md">
             <span
-              className="text-black border-gray-900 border-dashed border-y-2"
+              className="font-semibold text-black border-gray-900 border-dashed border-y-2"
               onClick={handlePostCardClick}
             >
               Read More
