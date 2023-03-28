@@ -7,7 +7,7 @@ function Landing() {
         <div className="font-semibold text-gray-600">The news you deserve</div>
         <div className="font-bold text-gray-900">-Uncensored & Anonymous</div>
       </div>
-      <div className="flex flex-row justify-between pt-10 text-sm lg:text-lg lg:px-10">
+      <div className="flex flex-row justify-between pt-10 text-sm lg:text-lg lg:px-10 shrink">
         <a
           className="items-center p-3 text-gray-200 bg-gray-900 shadow-lg bordered-box hover:bg-transparent hover:text-gray-900 lg:p-4"
           href="/news"
