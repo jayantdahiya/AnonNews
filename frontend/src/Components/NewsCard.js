@@ -15,47 +15,51 @@ function NewsCard({url, imageUrl, heading, content, author, timestamp, votes}) {
     }
   }
   return (
-    <div className="flex flex-col min-h-[60vh] mb-6 border-4 border-gray-900 border-dashed shadow-lg">
-      <div className="pb-4 mt-4 text-2xl font-semibold text-center border-b-4 border-gray-900 border-dashed lg:text-3xl">
-        {heading}
-      </div>
-      <div className="py-4 text-3xl border-b-4 border-gray-700 border-dashed">
-        <img
-          src={imageUrl}
-          alt=""
-          className="object-cover max-h-[300px] w-[90%] mx-auto"
-        />
-      </div>
-      <div className="p-4">
-        <div className="flex">
-          <span className="mt-4 text-sm text-gray-400 text-md">
-            <span className="font-semibold text-gray-900">Author: </span> {postAuthor}
-          </span>
-          <span className="mt-4 ml-auto text-sm text-right text-gray-400">
-            <span className="font-semibold text-gray-900">Date: </span>{" "}
-            {timestamp.toISOString().slice(0, 10)}
-          </span>
+    <div onClick={handlePostCardClick} className='cursor-pointer'>
+      <div className="flex flex-col min-h-[60vh] mb-6 border-4 border-gray-900 border-dashed shadow-lg">
+        <div className="pb-4 mt-4 text-2xl font-semibold text-center border-b-4 border-gray-900 border-dashed lg:text-3xl">
+          {heading}
         </div>
-        <br />
-        <div className="text-justify text-gray-400 text-md lg:text-md">
-          {postContent} ...
+        <div className="py-4 text-3xl border-b-4 border-gray-900 border-dashed">
+          <img
+            src={imageUrl}
+            alt=""
+            className="object-cover max-h-[300px] w-[90%] mx-auto shadow-lg"
+          />
         </div>
-        <br />
-        <span>
-          <div className='flex'>
-            <span className="text-right text-gray-400 text-md">
-              <span className="font-semibold text-gray-900">Votes: </span> {votes}
+        <div className="p-4">
+          <div className="flex">
+            <span className="mt-4 text-sm text-gray-400 text-md">
+              <span className="font-semibold text-gray-900">Author: </span>{" "}
+              {postAuthor}
+            </span>
+            <span className="mt-4 ml-auto text-sm text-right text-gray-400">
+              <span className="font-semibold text-gray-900">Date: </span>{" "}
+              {timestamp.toISOString().slice(0, 10)}
             </span>
           </div>
-          <div className="mt-3 text-right cursor-pointer text-md">
+          <br />
+          <div className="text-justify text-gray-400 text-md lg:text-md">
+            {postContent} ...
+          </div>
+          <br />
+          <div className="flex items-center justify-between">
+            <span className="text-right text-gray-400 text-md">
+              <span className="font-semibold text-gray-900">Votes: </span>{" "}
+              {votes}
+            </span>
             <span
-              className="font-semibold text-black border-gray-900 border-dashed border-y-2"
+              className="font-semibold text-black border-gray-900 border-dashed cursor-pointer border-y-2"
               onClick={handlePostCardClick}
             >
               Read More
             </span>
           </div>
-        </span>
+          <span className="">
+            <div className="flex"></div>
+            <div className="mt-3 text-right text-md"></div>
+          </span>
+        </div>
       </div>
     </div>
   );
