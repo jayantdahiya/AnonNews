@@ -16,6 +16,7 @@ import TermsOfUse from "./Pages/TermsOfUse";
 import { ConnectButtonCustom } from "./Components/ConnectButton";
 
 import { getContract } from "./Utils/Contract";
+import { alchemy } from "./Utils/getContract";
 
 export const AppContext = createContext();
 
