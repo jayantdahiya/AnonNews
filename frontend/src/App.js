@@ -16,7 +16,6 @@ import TermsOfUse from "./Pages/TermsOfUse";
 import { ConnectButtonCustom } from "./Components/ConnectButton";
 
 import { getContract } from "./Utils/Contract";
-import { alchemy } from "./Utils/getContract";
 
 export const AppContext = createContext();
 
@@ -24,6 +23,7 @@ function App() {
   const { address } = useAccount();
   const [allNews, setAllNews] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [helpHidden, setHelpHidden] = useState(false);
 
   // Getting all news from smart contract
   const getNews = async () => {
@@ -91,6 +91,8 @@ function App() {
         allNews,
         loading,
         setLoading,
+        setHelpHidden,
+        helpHidden
       }}
     >
       <div className="flex min-h-screen font-RobotoSlab bg-[#F5F2E8]">
@@ -100,7 +102,7 @@ function App() {
         <div className="fixed top-3 right-3">
           <ConnectButtonCustom />
         </div>
-        <div className="flex items-center justify-center p-4 pl-16 m-auto text-center lg:ml-18 min-w-screen">
+        <div className="flex items-center justify-center p-4 pl-16 m-auto lg:ml-18 min-w-screen">
           <Routes>
             <Route path="/" element={<Landing />} />
             <Route path="/news" element={<News />} />

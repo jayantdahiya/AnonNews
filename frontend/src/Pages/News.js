@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { AppContext } from "../App";
 
 import Loader from "../Components/Loader";
@@ -6,7 +6,7 @@ import NewsCard from "../Components/NewsCard";
 
 function News() {
   const { allNews, loading } = useContext(AppContext);
-  console.log("news comp :", allNews);
+  // console.log("news comp :", allNews);
   if (!loading) {
     return (
       <div className="mt-12 lg:max-w-[30vw]">

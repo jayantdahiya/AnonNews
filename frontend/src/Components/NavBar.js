@@ -20,7 +20,7 @@ function NavBar() {
     <div className="flex flex-col justify-between h-screen backdrop-blur-md bg-[#F5F2E8]/40 border-gray-700">
       <div>
         <div className="inline-flex items-center justify-center w-full h-16 cursor-pointer bg-[#1E2022] text-[#F0F5F9]">
-          <a href='/'>
+          <a href="/">
             <span className="text-2xl lg:text-3xl">an</span>
             <span className="text-2xl text-red-500 lg:text-3xl">.</span>
           </a>
@@ -29,21 +29,25 @@ function NavBar() {
         <div className="h-screen border-r-4 border-gray-900 border-dashed">
           <nav className="flex flex-col">
             <div className="py-2">
-              <a
-                href="/news"
+              <span
                 className="flex justify-center px-2 py-1.5 group relative cursor-pointer"
+                onClick={
+                  isConnected
+                    ? () => (window.location.href = "/news")
+                    : () => alert("Please connect your wallet!")
+                }
               >
                 <img src={NewsIcon} alt="" />
 
                 <Tooltip message="News" />
-              </a>
+              </span>
             </div>
             <div className="py-2">
               <a
                 href="/about"
                 className="flex justify-center px-2 py-1.5 group relative  cursor-pointer"
               >
-                <img src={AboutIcon} alt='about us icon' />
+                <img src={AboutIcon} alt="about us icon" />
 
                 <Tooltip message={"About"} />
               </a>
@@ -64,15 +68,13 @@ function NavBar() {
       <div className="sticky inset-x-0 bottom-0 border-t-4 border-gray-900 border-dashed">
         <button
           onClick={
-            isConnected ? (
-              () => (window.location.href = "/post")
-            ) : (
-              () => alert("Please login to post news")
-            )
+            isConnected
+              ? () => (window.location.href = "/post")
+              : () => alert("Please login to post news")
           }
           className="relative flex justify-center w-full px-2 py-4 text-md group"
         >
-          <img src={EditIcon} alt='edit icon' />
+          <img src={EditIcon} alt="edit icon" />
           <Tooltip message={"New Post!"} />
         </button>
       </div>

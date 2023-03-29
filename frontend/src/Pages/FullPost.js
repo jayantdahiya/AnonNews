@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
 import { useParams } from 'react-router-dom';
-import { useAccount } from 'wagmi';
 import { AppContext } from '../App';
 
 import { getContract } from '../Utils/Contract';
@@ -12,6 +11,8 @@ function NewsPost() {
   // filter allNews to get the news with the same id as the url
   const newsPost = allNews.filter((item) => item.id === Number(url))[0];
   // console.log(newsPost);
+
+  //voteNews function
   const voteNews = async (id) => {
     if(newsPost.author === address) {
       alert("You can't vote on your own news!");
@@ -19,13 +20,18 @@ function NewsPost() {
     } else {
       try {
         await getContract().voteNews(id);
-        alert('Voted for news!');
-        console.log("Voted for news!");
+        window.location.href = "/news";
+        alert("Voted for news! It'll reflect in some time 😊");
+        console.log("Voted for news! It'll reflect in some time");
       } catch (error) {
+        window.location.href = "/news";
+        alert("Error voting for news!");
         console.log(error);
       }
     }
   };
+// **********
+
   return (
     <div className="flex items-center mt-12">
       <div className="m-auto">

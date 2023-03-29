@@ -4,11 +4,12 @@ import { ethers } from 'ethers';
 import contractABI from "../Utils/AnonNews.json";
 import { AppContext } from '../App';
 import Loader from '../Components/Loader';
+import {client} from '../Utils/IPFSClient';
 
 // import { sampleIPFSLink } from '../Utils/TestLinks';
 
 function Post() {
-  const { client, loading, setLoading } = React.useContext(AppContext);
+  const { loading, setLoading } = React.useContext(AppContext);
   const [termsOfUse, setTermsOfUse] = useState(false);
   const [newsHeadline, setNewsHeadline] = useState();
   const [newsContent, setNewsContent] = useState();
@@ -74,10 +75,11 @@ function Post() {
       await getContract().postNews(url.toString());
       console.log("Contract updated!");
       setLoading(false);
-      window.location.reload();
+      window.location.href = "/news";
       alert("News posted!");
     } catch (error) {
       console.log(error);
+      alert("Error posting news!");
     }
   };
 
@@ -133,7 +135,7 @@ function Post() {
                     News Media (Image)
                   </label>
 
-                  <div className="relative items-center mt-1 border-4 border-gray-900 border-dashed shadow-lg min-h-64">
+                  <div className="relative items-center mt-1 border-4 border-gray-900 border-dashed shadow-lg min-h-[300px]">
                     <input
                       type="file"
                       multiple
@@ -143,20 +145,20 @@ function Post() {
                       }}
                     />
                     {newsMedia ? (
-                      <div className="absolute top-0 left-0 right-0 p-10 text-sm">
+                      <div className="absolute top-0 left-0 right-0 p-10 m-auto text-sm">
                         <img
                           src={URL.createObjectURL(newsMedia)}
                           alt="newsMedia"
-                          width="200px"
-                          className="m-auto max-h-64"
+                          width="auto"
+                          className="max-h-[200px]"
                         />
                         <div className="mx-auto font-light text-gray-900">
                           {newsMedia.name}
                         </div>
                       </div>
                     ) : (
-                      <div className="absolute top-0 left-0 right-0 p-10 text-sm">
-                        <div className="h-full m-auto">
+                      <div className="absolute top-[30%] left-0 right-0 p-10 m-auto text-sm">
+                        <div className="h-full m-auto text-center">
                           <div className="font-light text-gray-900">
                             Drop files here to upload
                             <br />

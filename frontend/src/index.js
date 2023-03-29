@@ -10,11 +10,10 @@ import { chain, configureChains, createClient, WagmiConfig } from "wagmi";
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
 
-
 const { chains, provider } = configureChains(
   [chain.polygonMumbai],
   [
-    alchemyProvider({ apiKey: "0iAmaxqXkXu0LCsk7dxtu11lxllr6pgq" }),
+    alchemyProvider({ apiKey: process.env.REACT_APP_ALCHEMY_API_KEY }),
     publicProvider(),
   ]
 );
@@ -28,14 +27,13 @@ const wagmiClient = createClient({
   provider
 })
 
-
+window.Buffer = window.Buffer || require("buffer").Buffer;
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <WagmiConfig client={wagmiClient}>
     <RainbowKitProvider
       chains={chains}
-      initialChain={chain.polygonMumbai}
       modalSize="compact"
       theme={darkTheme({
         overlayBlur: "small",

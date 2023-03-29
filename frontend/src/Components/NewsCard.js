@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 function NewsCard({url, imageUrl, heading, content, author, timestamp, votes}) {
   const max_length = 500;
-  console.log("NewsCard:", url, imageUrl, heading, content, author, timestamp, votes);
+  // console.log("NewsCard:", url, imageUrl, heading, content, author, timestamp, votes);
   const postContent = content.substring(0, max_length);
   const postAuthor = author.substring(0, 3) + "..." + author.substring(38, 42);
 
