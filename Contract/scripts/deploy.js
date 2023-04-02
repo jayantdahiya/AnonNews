@@ -6,7 +6,7 @@ async function main() {
 
   await anonNews.deployed();
 
-  console.log("Blog is deployed to:", anonNews.address);
+  console.log("AnonNews is deployed to:", anonNews.address);
 }
 
 main().catch((error) => {

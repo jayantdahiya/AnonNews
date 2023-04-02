@@ -12,7 +12,11 @@ const main = async () => {
     // postCounts = await anonNewsContract.getPostCounts();
     // console.log(postCounts);
 
-    let user1 = await anonNewsContract.newPost("This is test message!", "www.testingUrl.com");
+    let user1 = await anonNewsContract.newPost(
+      "This is test message!",
+      "www.testingUrl.com",
+      "https://placehold.jp/300x150.png"
+    );
     await user1.wait();
 
     let user2 = await anonNewsContract.newPost("This is the new test message!", "testing.com");
