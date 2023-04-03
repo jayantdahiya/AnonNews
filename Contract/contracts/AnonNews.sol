@@ -41,7 +41,6 @@ contract AnonNews is ERC721, ERC721URIStorage {
         console.log("AnonNews Contract");
     }
 
-
     function postNews(string memory mediaUrl) external  {
         uint256 currentCount = _postCounts.current();
         // mint the token
@@ -103,4 +102,3 @@ contract AnonNews is ERC721, ERC721URIStorage {
         return super.tokenURI(tokenId);
     }
 }
-

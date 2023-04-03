@@ -28,6 +28,7 @@ function Post() {
   };
   // **********
 
+  // Posting news handler
   const HandleNewsPost = async (e, newsHeadline, newsContent, newsMedia) => {
     e.preventDefault();
     setLoading(true);
@@ -39,7 +40,9 @@ function Post() {
       console.log("news uploaded to ipfs!");
     }
   };
+  // **********
 
+  // Uploading news content to IPFS
   const uploadNewsContent = async (newsHeadline, newsContent, newsMedia) => {
     let newUrl;
     // uploading media to IPFS
@@ -69,6 +72,8 @@ function Post() {
       console.log(error);
     }
   };
+  // **********
+
   // updating smart contract with IPFS link
   const updateContract = async (url) => {
     try {
@@ -82,7 +87,12 @@ function Post() {
       alert("Error posting news!");
     }
   };
+  // **********
 
+  useEffect(() => {
+    setLoading(false);
+  }, [])
+  
   if (loading) {
     return (
       <Loader size='60' />
