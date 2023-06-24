@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { useAccount } from "wagmi";
 import { AppContext } from "../App";
 
@@ -16,7 +16,7 @@ function Landing() {
         </div>
         <div className="flex flex-row justify-between pt-10 text-sm lg:text-lg lg:px-10 shrink">
           <span
-            className="items-center p-3 text-gray-200 bg-gray-900 shadow-lg bordered-box hover:bg-transparent hover:text-gray-900 lg:p-4"
+            className="items-center p-3 text-gray-200 bg-gray-900 shadow-lg cursor-pointer bordered-box hover:bg-transparent hover:text-gray-900 lg:p-4"
             onClick={
               isConnected
                 ? () => (window.location.href = "/news")
@@ -26,7 +26,7 @@ function Landing() {
             View News
           </span>
           <a
-            className="inline-flex items-center p-3 shadow-lg lg:p-4 bordered-box hover:bg-gray-900 hover:text-gray-200"
+            className="inline-flex items-center p-3 shadow-lg cursor-pointer lg:p-4 bordered-box hover:bg-gray-900 hover:text-gray-200"
             href="https://github.com/jayantdahiya/AnonNews"
             target="_blank"
             rel="noreferrer"
