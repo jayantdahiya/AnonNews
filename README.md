@@ -3,7 +3,7 @@
     
   </a>
   <p align="center">
-   <img width="150" height="150" src="Content/Logo/An-grey.PNG" alt="Logo">
+   <img width="150" height="150" src="Assets/Logo/An-grey.PNG" alt="Logo">
   </p>
   <h1 align="center"><b>AnonNews</b></h1>
   <p align="center">
